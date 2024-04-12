@@ -26,8 +26,8 @@ TLDR: Everything you need is in app. Most of our pages are in (visible). The API
 
 ### Config Files
 - .gitignore: Telling github which files to not allow to be tracked/uploaded to github. For example, node_modules should NEVER be allowed to be tracked or uploaded to github. Another good example is an environment or .env file. This .env file contains all our super secret passwords, and should NOT be uploaded to github.
-- package.json: What packages should our project import and use? This should directly correlate with the contents of node_modules. In fact, when you delete node_modules and reinstall using 'bun install', bun will look inside of package.json in order to understand what packages should be reinstalled.
-tsconfig.json: How should the typescript be configured in order to read and run all the typescript code. No touching.
+- package.json: What packages should our project import and use? This should directly correlate with the contents of node_modules. In fact, when you delete node_modules and reinstall using 'bun install', bun will look inside of package.json in order to understand what packages should be reinstalled. 
+- tsconfig.json: How should the typescript compile be configured in order to read and run all the typescript code. No touching.
 - bun.lockb: You can't read this, don't mess with it. It's instructions for bun, our package manager.
 - next.config.mjs: Unimportant for now.
 - postcss.config.mjs: Unimportant for now.
