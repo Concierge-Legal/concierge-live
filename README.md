@@ -18,19 +18,26 @@ This guide will explain how to use Bun
 
 ### Web Frameworks
 - Node.js: Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine. It enables developers to run JavaScript on the server side. Node.js is a crucial part of many web frameworks, including Next.js, and it allows for the development of scalable server-side applications.
+https://nodejs.org/docs/latest/api/
 
 - Next.js: Next.js is a powerful framework built on top of Node.js for building server-rendered React applications. It provides functionalities for both static and server-side rendering, making it easier to build optimized web applications that perform well on a variety of devices.
+https://nextjs.org/docs
 
 - Bun: Bun is a package manager for javascript packages. Bun makes sure we track our packages, keep them installed and updated, and makes sure everytime we build the website for hosting all of our packages we need are included. 'bun install' is used to add a new package. 'bun run $COMMAND' is used to run a variety of different commands. The two most important are 'build' and 'dev'. Build is necessary to make the website ready for being live, and dev is used to create a local dev site.
+https://bun.sh/docs
 
 - Vercel: Vercel is a cloud platform for hosting websites and web services that is optimized for Next.js, though it supports other frameworks as well. It provides a seamless deployment process and additional services like scale, performance monitoring, and analytics.
+https://vercel.com/docs
 
 ### UI Frameworks
 - React: React is a popular JavaScript library for building user interfaces, primarily for single-page applications where you need a fast, interactive user experience. It uses a component-based architecture, which means that the UI is broken down into individual components that manage their own state and compose together to form complex UIs.
+https://react.dev/learn/tutorial-tic-tac-toe
 
 - Tailwind CSS: Tailwind is a utility-first CSS framework for rapidly building custom designs. Unlike traditional CSS frameworks that come with predefined components, Tailwind provides low-level utility classes that you apply to HTML elements, which gives you more control over the design without battling against pre-defined styles.
+https://tailwindcss.com/docs/installation
 
 - NextJS UI Components: Within Next.js, you can also use built-in or third-party React components optimized for server-rendered applications. These components can help speed up development by providing commonly used functionality and UI elements out of the box.
+[https://nextjs.org/docs/getting-started/installation](https://nextui.org/docs/frameworks/nextjs)
 
 ### Backend
 - Database: Our backend storage relies on PostgreSQL, managed through Supabase which offers an easy-to-use interface and additional tools like real-time capabilities and automated backups.
