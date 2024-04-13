@@ -3,23 +3,23 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-between min-h-screen bg-gradient-to-b from-white to-pink-100 p-10">
+    <main className="flex flex-col items-right justify-between min-h-screen bg-gradient-to-b from-white to-blue-100 p-10">
       {/* Logo Section */}
       <div className="w-full flex justify-center py-10">
-        <div className="text-4xl font-bold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500">
+        <div className="text-4xl font-bold text-gradient bg-clip-text text-transparent bg-gradient-to-r from-[#1C036B] via-[#2B38BA] to-[#1E76C8]">
           Concierge
         </div>
       </div>
 
       {/* Hero Section */}
       <section className="flex flex-col items-center text-center w-full mb-20">
-        <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-300 mb-4">
+        <h1 className="text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1E76C8] via-[#34BCE4] to-[#E4FEF4]">
           Your Web3 Legal Guide
         </h1>
         <p className="text-xl bg-clip-text text-transparent bg-gradient-to-r from-green-300 to-blue-400 mb-8">
           Explore legal information and connect with professionals easily.
         </p>
-        <Link href="/chat" className="mt-4 px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-500 text-white rounded-lg shadow-lg hover:bg-gradient-to-r from-purple-700 to-blue-600 transition-colors">
+        <Link href="/chat" className="mt-4 px-8 py-4 bg-gradient-to-r from-purple-600 to-[#1E76C8] text-white rounded-lg shadow-lg hover:bg-gradient-to-r from-purple-700 to-blue-600 transition-colors">
             Start Chatting
         
         </Link>
@@ -37,7 +37,7 @@ export default function Home() {
           </p>
         </div>
         <div className="flex flex-col items-center p-6 shadow-lg rounded-lg bg-gradient-to-b from-purple-300 to-blue-200">
-          <Image src="/assets/network.svg" alt="Professional Network" width={100} height={100} />
+          <Image src="/network.jpg" alt="Professional Network" width={300} height={100} className="rounded-lg"/>
           <h2 className="text-lg font-semibold mt-2 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-purple-700 to-pink-600">
             Professional Network
           </h2>
