@@ -6,7 +6,7 @@ import React, { useState } from 'react';
 export default function Chat () {
     return (
         <div className="App">
-          <div className="min-h-screen bg-neutral-800 flex items-center justify-center">
+          <div className="min-h-screen bg-gradient-to-b from-[#0E2F2B] via-[#184E48] to-[#081209] flex items-center justify-center">
             <div className="bg-neutral-800 shadow-md rounded-lg p-6 w-full max-w-md">
               <div className="space-y-4">
                 <div className="overflow-y-auto h-96 bg-white p-4 rounded-lg">
@@ -21,7 +21,7 @@ export default function Chat () {
                   />
                   <button
                     type="submit"
-                    className="bg-emerald-700 text-white px-4 py-2 rounded-lg hover:bg-emerald-800"
+                    className="bg-[#3E8F86] text-white px-4 py-2 rounded-lg hover:bg-emerald-800"
                   >
                     Send
                   </button>
