@@ -26,7 +26,7 @@ const NavBar: React.FC = () => {
     const handleNav2 = () => {
         setNav(false);
     };
-
+// stupid little comment
 
 
 
