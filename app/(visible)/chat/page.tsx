@@ -121,36 +121,7 @@ export default function Chat() {
 	};
 
 
-	async function callFunction(tool_call: OpenAI.Beta.Threads.Runs.RequiredActionFunctionToolCall, threadId: string, runId: string): Promise<void> {
-		if (tool_call.type !== "function") {
-			return;
-		}
-
-		const args = JSON.parse(tool_call.function.arguments);
-		const toolId = tool_call.id;
-		let output: string = "Error occured.";
-
-		switch (tool_call.function.name) {
-			case 'ConsultAbeForLegalInformation':
-				// Call this function asynchronously!
-				askAbeNewQuestion(args["query"]);
-				output = "Abe here. I received your request, and will individually contact the user with my full response, however I need some more time. Feel free to continue interacting with the user";
-				break;
-
-			case 'FetchGeneralInformation':
-				// Wait for the result, in order to submit back to the thread.
-				//output = await FetchGeneralInformation(args['topic']);
-				output = "TODO!";
-				break;
-
-			case 'HandleSpecificHelpRequest':
-				//output = await HandleSpecificHelpRequest(args['serviceType'], args['details']);
-				output = "TODO";
-				break;
-		}
-		await submitTool(threadId, runId, toolId, output);
-		return;
-	}
+	
 
 
 	const handleUserInput = async (userInput: string) => {
