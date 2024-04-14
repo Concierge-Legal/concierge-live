@@ -3,7 +3,7 @@ import React, { useState, useEffect, FormEvent, ChangeEvent, useCallback } from 
 import { ChatContextProvider } from '../../components/chatContext';
 import ContentQueue from '../../components/contentQueue'; // Adjust path as necessary
 import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../../lib/types'; // Assume types are exported from a types file
-import { checkForLegalRequestHelper, submitTool } from '../../lib/helpers';
+import { submitTool } from '../../lib/helpers';
 import { OpenAI } from "openai";
 
 export default function Chat() {
@@ -23,7 +23,7 @@ export default function Chat() {
 		content: "Hello, my name is Concierge. How can I assist you today?",
 		streamingType: StreamingType.fake
 	}
-]);
+	]);
 	const [showLoadingIcon, setShowLoadingIcon] = useState<boolean>(false);
 	const [inputText, setInputText] = useState('');
 	const [threadId, setThreadId] = useState<string>("");
@@ -31,6 +31,8 @@ export default function Chat() {
 
 	const onStreamEnd = (concurrentStreaming: boolean) => console.log("Stream ended:", concurrentStreaming);
 	const setActiveCitationId = (citationId: string) => console.log("Citation ID:", citationId);
+
+
 
 	// UI Helper Functions
 	const addContentBlock = (type: ContentType, streamingType: StreamingType, content: string | AsyncIterable<string>, speaker: SpeakerType) => {
@@ -62,8 +64,8 @@ export default function Chat() {
 		setContentBlocks([...contentBlocks, newBlock]);
 	};
 
-	
-	
+
+
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setInputText(e.target.value);
@@ -156,58 +158,70 @@ export default function Chat() {
 		if (!inputText) return;
 
 		addContentBlock(ContentType.Question, StreamingType.noStream, inputText, SpeakerType.user);
-		const generator = checkForLegalRequestHelper({
-			"vendor": "openai",
-			"model": "gpt-4-turbo-preview",
-			"pipelineModel": new PipelineModel({ "history": [], "session_id": "test20" }),
-			"callingFunction": "handleNewInput"
-		}, inputText);
+		const requestBody = {
+			base: {
+				vendor: "openai",
+				model: "gpt-4-turbo-preview",
+				callingFunction: "scoreQuestion",
+				pipelineModel: new PipelineModel({ "history": [], "session_id": "test20" }),
+			},
+			inputText: inputText,
+		};
+		const response = await fetch("/api/improveQuery/queryScoring", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(requestBody),
+		});
+		const result = await response.json();
 
-		for await (let result of generator) {
-			if (result.type === 'thread.created') {
-				setThreadId(result.threadId!);
-			} else if (result.type === 'thread.run.created') {
-				setThreadId(result.threadId!);
-				setRunId(result.runId!);
-			} else if (result.type === 'thread.run.required_action') {
-				// You can process any function call here
-				callFunction(result.tool_call!, threadId, runId);
-			}
-		}
+
+		// for await (let result of generator) {
+		// 	if (result.type === 'thread.created') {
+		// 		setThreadId(result.threadId!);
+		// 	} else if (result.type === 'thread.run.created') {
+		// 		setThreadId(result.threadId!);
+		// 		setRunId(result.runId!);
+		// 	} else if (result.type === 'thread.run.required_action') {
+		// 		// You can process any function call here
+		// 		callFunction(result.tool_call!, threadId, runId);
+		// 	}
+		// }
 	};
 
 
 
 	return (
 		<ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
-    <div className="App">
-        <div className="min-h-screen flex items-center justify-center px-4">
-            <div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full max-w-2xl">
-                <div className="flex flex-col h-[80vh]"> 
-                    <div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
-                        
-                        <ContentQueue items={contentBlocks} />
-                    </div>
-                    <form className="flex gap-2" onSubmit={handleFormSubmit}>
-                        <input
-                            type="text"
-                            className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                            placeholder="Type your message..."
-                            value={inputText}
-                            onChange={handleInputChange}
-                        />
-                        <button
-                            type="submit"
-                            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
-                        >
-                            Send
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</ChatContextProvider>
+			<div className="App">
+				<div className="min-h-screen flex items-center justify-center px-4">
+					<div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full">
+						<div className="flex flex-col h-[80vh]">
+							<div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
+
+								<ContentQueue items={contentBlocks} />
+							</div>
+							<form className="flex gap-2" onSubmit={handleFormSubmit}>
+								<input
+									type="text"
+									className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+									placeholder="Type your message..."
+									value={inputText}
+									onChange={handleInputChange}
+								/>
+								<button
+									type="submit"
+									className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+								>
+									Send
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ChatContextProvider>
 
 
 	);

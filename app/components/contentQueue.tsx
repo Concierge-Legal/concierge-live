@@ -23,14 +23,14 @@ const ContentQueue: React.FC<ContentQueueProps> = ({ items }) => {
     const ContentComponent = componentMap[item.type];
     if (!ContentComponent) return null;
 
-    const props = {
-      ...item,
-      key: item.blockId
-    };
+    
+
+    const { blockId, ...props } = item;
 
     return (
       <div className={`flex ${item.type === ContentType.Question ? 'justify-end' : 'justify-start'}`}>
-        <ContentComponent {...props} />
+        {/* Apply the key directly on the component and spread the rest of the props */}
+        <ContentComponent key={blockId} {...props} />
       </div>
     );
   };
