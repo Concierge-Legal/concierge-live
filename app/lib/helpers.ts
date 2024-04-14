@@ -34,7 +34,7 @@ export async function submitTool(threadId: string, runId: string, toolCallId: st
 
 }
 
-
+// Implementing tools?
 async function ConsultAbeForLegalInformation(query: string) {
 
     return query;
@@ -45,6 +45,21 @@ async function FetchGeneralInformation(topic: string) {
 async function HandleSpecificHelpRequest(serviceType: string, details: string) {
     return "";
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export function generateLlmReport(
     base: BaseRequest,
     apiUsageId: string,

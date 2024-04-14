@@ -20,30 +20,22 @@ const roleToSpeakerTypeMap: Record<string, SpeakerType> = {
     assistant: SpeakerType.concierge,
 };
 
-
-
 export default function Chat() {
 
 	const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
-		blockId: `concierge_logo_${new Date().getTime()}_${Math.random()
-			.toString(36)
-			.substr(2, 9)}`, // Generate a unique ID for the new block
+		blockId: `concierge_logo_welcome`, // Generate a unique ID for the new block
 		type: ContentType.ConciergeSpeaker,
 		content: "",
 		streamingType: StreamingType.noStream
 	}, {
-		blockId: `concierge_${new Date().getTime()}_${Math.random()
-			.toString(36)
-			.substr(2, 9)}`, // Generate a unique ID for the new block
+		blockId: `concierge_welcome}`, // Generate a unique ID for the new block
 		type: ContentType.Welcome,
 		content: "Hello, my name is Concierge. How can I assist you today?",
 		streamingType: StreamingType.fake
 	}
 	]);
-	const [currentlyStreaming, setCurrentlyStreaming] = useState<String>("");
-
+	const [conciergeStreamBlockId, setConciergeStreamBlockId] = useState<String>("NULL");
 	const [showLoadingIcon, setShowLoadingIcon] = useState<boolean>(false);
-	
 	const { status, messages, input, submitMessage, handleInputChange, error } = useAssistant(
 		{
 			api: '/api/assistants/conciergeInitial',
@@ -82,19 +74,54 @@ export default function Chat() {
 			streamingType: streamingType
 		};
 		setContentBlocks([...contentBlocks, newBlock]);
+		if (streamingType === StreamingType.real) {
+			setConciergeStreamBlockId(blockId)
+		}
 	};
 
+	const isUniqueBlockId = (blockId: string) => {
+		console.log(`Checking uniqueness of (${blockId}) in isUniqueBlockId.`)
+		for (let block of contentBlocks) {
+			console.log(`Block.blockId: ${block.blockId}`)
+			if (block.blockId === blockId) {
+				console.log(`Returning false!`)
+				return false;
+			}
+		}
+		console.log(`Returning true.`)
+		return true;
+	}
+	const updateBlockContent = (blockId: string, content: string) => {
+		for (let block of contentBlocks) {
+			if (block.blockId === blockId) {
+				block.content = content;
+				break
+			}
+		}
+	}
 
-	useEffect(() => {
-        console.log(`Status changed to: ${status}`);
-    }, [status]);
-
-	const processChatMessage = async (message: Message) => {
+	const processChatMessage = (message: Message) => {
 		const { id, role, content } = message;
+		console.log(`== processChatMessage ==`)
+		console.log(message)
 		if (role == "user") {	
-			addContentBlock(id, ContentType.Question, StreamingType.noStream, content, SpeakerType.user)
+			// Only call this function if there's not a block with in ContentBlocks with a blockId equal to id
+			if (isUniqueBlockId(id)) {
+				
+				addContentBlock(id, ContentType.Question, StreamingType.noStream, content, SpeakerType.user)
+			}
 		} else {
-			addContentBlock(id, ContentType.Answer, StreamingType.real, content, SpeakerType.concierge)
+			// If this is the block that's currently streaming, update it.
+			if(id === conciergeStreamBlockId) {
+				updateBlockContent(id, content);
+			// If this is a completely new Id, not seen in contentBlocks
+			} else if (isUniqueBlockId(id)) {
+				addContentBlock(id, ContentType.Answer, StreamingType.real, content, SpeakerType.concierge)
+			// ALready handled block, ignore
+			} else {
+				console.log(`Ignoring block with ID: ${id}`)
+			}
+			
 		}
 
 	}
@@ -107,11 +134,22 @@ export default function Chat() {
 		console.log(`Data received! ${message}`)
 	}
 
+	useEffect(() => {
+        console.log(`Status changed to: ${status}`);
+		if (status == "awaiting_message") {
+			setConciergeStreamBlockId("NULL")
+		}
+    }, [status]);
+
     // useEffect to log changes to messages
     useEffect(() => {
+		console.log(messages)
         messages.forEach(message => {
+			
             const { id, role, content } = message;
-			if (role === "assistant" || role === "user") {
+			if (id === "") {
+				console.log(`Ignored message with no ID!`)
+			} else if (role === "assistant" || role === "user") {
 				processChatMessage(message)
 			} else if (role === "function") {
 				processFunctionMessage(message)

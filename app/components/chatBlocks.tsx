@@ -8,7 +8,7 @@ import { useStreaming } from '../lib/hooks/useStreaming';
 import { StreamingType } from '../lib/types';
 
 interface ChatBlockProps {
-	content: string | AsyncIterable<string>;
+	content: string;
 	streamingType: StreamingType;
 }
 

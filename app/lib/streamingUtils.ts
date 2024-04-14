@@ -1,19 +1,6 @@
 
-export const realStreamHandler = (contentStream: AsyncIterable<string>, callback: (chunk: string) => void) => {
-    let active = true;
-    
-    (async () => {
-        try {
-            for await (const chunk of contentStream) {
-                if (!active) break;
-                callback(chunk);
-            }
-        } catch (error) {
-            console.error('Streaming error:', error);
-        }
-    })();
-
-    return () => { active = false; };  // This cancel function now correctly matches the expected signature
+export const realStreamHandler = (content: string, callback: (content: string) => void) => {
+    callback(content);
 };
 
 
