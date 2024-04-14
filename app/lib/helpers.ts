@@ -10,12 +10,13 @@ import {
 } from 'openai/resources/chat/completions';
 
 // TEMPORARILY USING MY KEY
-const openAiKey = process.env.SPARTYPKP_OPENAI_API_KEY;
-const client = new OpenAI({
-    apiKey: openAiKey,
-});
+
 
 export async function* checkForLegalRequestHelper(base: BaseRequest, userInput: string, existingThreadId?: string) {
+    const openAiKey = process.env.OPENAI_API_KEY;
+    const client = new OpenAI({
+        apiKey: openAiKey,
+    });
     const assistant = await client.beta.assistants.retrieve("asst_Vff9LRAqBmxRLQLBaN7jTgve");
     let assistantId = assistant.id;
     let stream;
@@ -66,6 +67,8 @@ export async function* checkForLegalRequestHelper(base: BaseRequest, userInput: 
 
 
 export async function submitTool(threadId: string, runId: string, toolCallId: string, toolOutput: string) {
+    const openAiKey = process.env.OPENAI_API_KEY;
+    const client = new OpenAI()
     const stream = await client.beta.threads.runs.submitToolOutputs(
         threadId,
         runId,

@@ -13,30 +13,31 @@ interface ChatBlockProps {
 }
 
 export const WelcomeBlock: React.FC<ChatBlockProps> = ({content, streamingType}) => {
-	const displayContent = useStreaming(content, streamingType);
-	return (
-		<div className="p-4 bg-black rounded-md shadow">
-			<p className="text-sm font-semibold">{displayContent}</p>
-		</div>
-	);
+    const displayContent = useStreaming(content, streamingType);
+    return (
+        <div className="p-4 bg-[#957DAD] text-white rounded-md shadow"> {/* Concierge color */}
+            <p className="text-sm font-semibold">{displayContent}</p>
+        </div>
+    );
 };
 
 export const QuestionBlock: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
-	const displayContent = useStreaming(content, streamingType);
-	return (
-		<div className="flex flex-col items-end">
-			<div className="p-2 bg-[#B2d2da] rounded-lg shadow">
-				<h3 className="text-xl text-black">{displayContent}</h3>
-			</div>
-		</div>
-	);
+    const displayContent = useStreaming(content, streamingType);
+    return (
+        <div className="flex flex-col items-end">
+            <div className="p-2 bg-[#4D7C8A] text-white rounded-lg shadow"> {/* User color */}
+                <h3 className="text-xl">{displayContent}</h3>
+            </div>
+        </div>
+    );
 };
 
 export const AnswerBlock: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
     const displayContent = useStreaming(content, streamingType);
-
     return (
-        <div>{displayContent}</div>
+        <div className="p-2 bg-[#49a6aa] text-white rounded-lg shadow mb-2"> {/* Abe color */}
+            {displayContent}
+        </div>
     );
 };
 
@@ -56,7 +57,7 @@ export const ConciergeIconLabel: React.FC<ChatBlockProps> = ({ content, streamin
     return (
         <div className="flex flex-col items-start">
             <div className="flex mb-0">
-                <div className="h-8 w-8 rounded-full flex mr-2">
+                <div className="h-8 w-8 rounded-full flex mr-2 bg-[#957DAD]">
                     <span>
                         <Image
                             src="/home/Concierge.png"
@@ -112,7 +113,7 @@ export const AbeIconLabel: React.FC<ChatBlockProps> = ({ content, streamingType 
                     />
                 </div>
                 <p className="text-xl font-imfell">Abe</p>
-                {isLoading && <Bouncy />}  // Show loading animation based on isLoading state
+                {isLoading && <Bouncy />}  
             </div>
         </div>
     );

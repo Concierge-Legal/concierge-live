@@ -1,5 +1,5 @@
-
-import React, { useState, useEffect, FormEvent, ChangeEvent } from 'react';
+"use client";
+import React, { useState, useEffect, FormEvent, ChangeEvent, useCallback } from 'react';
 import { ChatContextProvider } from '../../components/chatContext';
 import ContentQueue from '../../components/contentQueue'; // Adjust path as necessary
 import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../../lib/types'; // Assume types are exported from a types file
@@ -8,7 +8,22 @@ import { OpenAI } from "openai";
 
 export default function Chat() {
 
-	const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([]);
+	const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
+		blockId: `id_${new Date().getTime()}_${Math.random()
+			.toString(36)
+			.substr(2, 9)}`, // Generate a unique ID for the new block
+		type: ContentType.ConciergeSpeaker,
+		content: "",
+		streamingType: StreamingType.noStream
+	}, {
+		blockId: `id_${new Date().getTime()}_${Math.random()
+			.toString(36)
+			.substr(2, 9)}`, // Generate a unique ID for the new block
+		type: ContentType.Welcome,
+		content: "Hello, my name is Concierge. How can I assist you today?",
+		streamingType: StreamingType.fake
+	}
+]);
 	const [showLoadingIcon, setShowLoadingIcon] = useState<boolean>(false);
 	const [inputText, setInputText] = useState('');
 	const [threadId, setThreadId] = useState<string>("");
@@ -16,7 +31,7 @@ export default function Chat() {
 
 	const onStreamEnd = (concurrentStreaming: boolean) => console.log("Stream ended:", concurrentStreaming);
 	const setActiveCitationId = (citationId: string) => console.log("Citation ID:", citationId);
-	
+
 	// UI Helper Functions
 	const addContentBlock = (type: ContentType, streamingType: StreamingType, content: string | AsyncIterable<string>, speaker: SpeakerType) => {
 		// Add a Speaker Block beforehand
@@ -47,23 +62,20 @@ export default function Chat() {
 		setContentBlocks([...contentBlocks, newBlock]);
 	};
 
-	// Add initial Welcome Message from Concierge
-	useEffect(() => {
-		const welcomeContent = "Hello, my name is Concierge. How can I assist you today?";
-		addContentBlock(ContentType.Welcome, StreamingType.fake, welcomeContent, SpeakerType.concierge);
-	}, []);
+	
+	
 
 	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setInputText(e.target.value);
-    };
+		setInputText(e.target.value);
+	};
 
-    const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault(); // Prevent the default form submission behavior
-        if (!inputText.trim()) return; // Avoid processing empty inputs
+	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault(); // Prevent the default form submission behavior
+		if (!inputText.trim()) return; // Avoid processing empty inputs
 
-        await handleUserInput(inputText); // Call your input handler function
-        setInputText(''); // Clear the input field after submission
-    };
+		await handleUserInput(inputText); // Call your input handler function
+		setInputText(''); // Clear the input field after submission
+	};
 
 	const askAbeNewQuestion = async (question: string) => {
 		const questionText = question.trim();
@@ -167,35 +179,38 @@ export default function Chat() {
 
 
 	return (
-        <ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
-            <div className="App">
-                <div className="min-h-screen bg-gradient-to-b from-[#0E2F2B] via-[#184E48] to-[#081209] flex items-center justify-center">
-                    <div className="bg-neutral-800 shadow-md rounded-lg p-6 w-full max-w-md">
-                        <div className="space-y-4">
-                            <div className="overflow-y-auto h-96 bg-white p-4 rounded-lg">
-                                <ContentQueue items={contentBlocks} />
-                            </div>
-                            <form className="flex gap-2" onSubmit={handleFormSubmit}>
-                                <input
-                                    type="text"
-                                    className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-700"
-                                    placeholder="Type your message..."
-                                    value={inputText}
-                                    onChange={handleInputChange}
-                                />
-                                <button
-                                    type="submit"
-                                    className="bg-[#3E8F86] text-white px-4 py-2 rounded-lg hover:bg-emerald-800"
-                                >
-                                    Send
-                                </button>
-                            </form>
-                        </div>
+		<ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
+    <div className="App">
+        <div className="min-h-screen flex items-center justify-center px-4">
+            <div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full max-w-2xl">
+                <div className="flex flex-col h-[80vh]"> 
+                    <div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
+                        
+                        <ContentQueue items={contentBlocks} />
                     </div>
+                    <form className="flex gap-2" onSubmit={handleFormSubmit}>
+                        <input
+                            type="text"
+                            className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                            placeholder="Type your message..."
+                            value={inputText}
+                            onChange={handleInputChange}
+                        />
+                        <button
+                            type="submit"
+                            className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+                        >
+                            Send
+                        </button>
+                    </form>
                 </div>
             </div>
-        </ChatContextProvider>
-    );
+        </div>
+    </div>
+</ChatContextProvider>
+
+
+	);
 }
 
 
