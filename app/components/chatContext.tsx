@@ -1,8 +1,7 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
 type ChatContextType = {
-    onStreamEnd: (concurrentStreaming: boolean) => void;
-    setActiveCitationId: (citationId: string) => void;
+    currentlyStreamingBlockId: String;
     showLoadingIcon: boolean;
 };
 

@@ -10,19 +10,18 @@ const ALLOWED_LEVELS: AllowedLevels[] = ["title", "subtitle", "code", "part", "s
 
 
 export enum ContentType {
-    Loading = 'Loading',
     Question = 'Question',
     Answer = 'Answer',
     Welcome = "Welcome",
-    UserSpeaker = "UserSpeaker",
-    ConciergeSpeaker = "ConciergeSpeaker",
-    AbeSpeaker = "AbeSpeaker"
+    
 }
 export enum StreamingType {
     fake = "fake",
     real = "real",
     noStream = "noStream'"
 }
+
+
 export enum SpeakerType {
     concierge = "concierge",
     abe = "abe",
@@ -32,8 +31,9 @@ export enum SpeakerType {
 export interface ContentBlock {
     blockId: string;
     type: ContentType;
-    content: string | AsyncIterable<string>;
+    content: string;
     streamingType: StreamingType;
+    speaker: SpeakerType;
 }
 
 
@@ -344,12 +344,6 @@ export class PipelineModel {
         return model;
     }
 }
-
-
-
-
-
-
 
 
 const PRICING_DATA: { [vendor: string]: { [model: string]: { input_price: string, output_price: string, context_window?: number, RPM?: number, TPM?: number; }; }; } = {
