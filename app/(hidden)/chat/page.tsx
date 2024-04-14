@@ -1,10 +1,20 @@
 "use client";
-import React, { useState, useEffect, FormEvent, ChangeEvent, useCallback } from 'react';
+import React, { useState, useEffect, useRef, FormEvent, ChangeEvent, useCallback } from 'react';
 import { ChatContextProvider } from '../../components/chatContext';
 import ContentQueue from '../../components/contentQueue'; // Adjust path as necessary
 import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../../lib/types'; // Assume types are exported from a types file
-import { submitTool } from '../../lib/helpers';
-import { OpenAI } from "openai";
+import { Message, useAssistant as useAssistant } from 'ai/react';
+
+
+const roleToColorMap: Record<Message['role'], string> = {
+	system: 'red',
+	user: 'black',
+	function: 'blue',
+	tool: 'purple',
+	assistant: 'green',
+	data: 'orange',
+};
+
 
 export default function Chat() {
 
@@ -26,8 +36,16 @@ export default function Chat() {
 	]);
 	const [showLoadingIcon, setShowLoadingIcon] = useState<boolean>(false);
 	const [inputText, setInputText] = useState('');
-	const [threadId, setThreadId] = useState<string>("");
-	const [runId, setRunId] = useState<string>("");
+	const { status, messages, input, submitMessage, handleInputChange, error } = useAssistant(
+		{
+			api: '/api/assistants/conciergeInitial',
+			body: {
+				vendor: "openai",
+				model: "gpt-4-turbo-preview",
+				callingFunction: "scoreQuestion",
+				pipelineModel: new PipelineModel({ "history": [], "session_id": "test20" }),
+			}
+		});
 
 	const onStreamEnd = (concurrentStreaming: boolean) => console.log("Stream ended:", concurrentStreaming);
 	const setActiveCitationId = (citationId: string) => console.log("Citation ID:", citationId);
@@ -62,21 +80,6 @@ export default function Chat() {
 			streamingType: streamingType
 		};
 		setContentBlocks([...contentBlocks, newBlock]);
-	};
-
-
-
-
-	const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setInputText(e.target.value);
-	};
-
-	const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault(); // Prevent the default form submission behavior
-		if (!inputText.trim()) return; // Avoid processing empty inputs
-
-		await handleUserInput(inputText); // Call your input handler function
-		setInputText(''); // Clear the input field after submission
 	};
 
 	const askAbeNewQuestion = async (question: string) => {
@@ -120,79 +123,111 @@ export default function Chat() {
 		addContentBlock(ContentType.Answer, StreamingType.fake, answer, SpeakerType.abe);
 	};
 
+	const handleUserInput = async (e: React.FormEvent<HTMLFormElement>) => {
+		e.preventDefault(); // Prevent the default form submission action
 
-	
-
-
-	const handleUserInput = async (userInput: string) => {
-		const inputText = userInput.trim();
-		if (!inputText) return;
-
+		if (!inputText.trim()) return;  // Ensure there's non-whitespace input
+		// Call the UseAssistant function to call the API
+		submitMessage();
+		// Add a new contentBlock
 		addContentBlock(ContentType.Question, StreamingType.noStream, inputText, SpeakerType.user);
-		const requestBody = {
-			base: {
-				vendor: "openai",
-				model: "gpt-4-turbo-preview",
-				callingFunction: "scoreQuestion",
-				pipelineModel: new PipelineModel({ "history": [], "session_id": "test20" }),
-			},
-			inputText: inputText,
-		};
-		const response = await fetch("/api/improveQuery/queryScoring", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(requestBody),
-		});
-		const result = await response.json();
 
-
-		// for await (let result of generator) {
-		// 	if (result.type === 'thread.created') {
-		// 		setThreadId(result.threadId!);
-		// 	} else if (result.type === 'thread.run.created') {
-		// 		setThreadId(result.threadId!);
-		// 		setRunId(result.runId!);
-		// 	} else if (result.type === 'thread.run.required_action') {
-		// 		// You can process any function call here
-		// 		callFunction(result.tool_call!, threadId, runId);
-		// 	}
-		// }
 	};
 
+	const inputRef = useRef<HTMLInputElement>(null);
+	useEffect(() => {
+		if (status === 'awaiting_message') {
+			inputRef.current?.focus();
+		}
+	}, [status]);
 
 
 	return (
-		<ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
-			<div className="App">
-				<div className="min-h-screen flex items-center justify-center px-4">
-					<div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full">
-						<div className="flex flex-col h-[80vh]">
-							<div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
-
-								<ContentQueue items={contentBlocks} />
-							</div>
-							<form className="flex gap-2" onSubmit={handleFormSubmit}>
-								<input
-									type="text"
-									className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-									placeholder="Type your message..."
-									value={inputText}
-									onChange={handleInputChange}
-								/>
-								<button
-									type="submit"
-									className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
-								>
-									Send
-								</button>
-							</form>
-						</div>
-					</div>
+		<div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
+			{error != null && (
+				<div className="relative px-6 py-4 text-white bg-red-500 rounded-md">
+					<span className="block sm:inline">
+						Error: {(error as any).toString()}
+					</span>
 				</div>
-			</div>
-		</ChatContextProvider>
+			)}
+
+			{messages.map((m: Message) => (
+				<div
+					key={m.id}
+					className="whitespace-pre-wrap"
+					style={{ color: roleToColorMap[m.role] }}
+				>
+					<strong>{`${m.role}: `}</strong>
+					{m.role !== 'data' && m.content}
+					{m.role === 'data' && (
+						<>
+							{(m.data as any).description}
+							<br />
+							<pre className={'bg-gray-200'}>
+								{JSON.stringify(m.data, null, 2)}
+							</pre>
+						</>
+					)}
+					<br />
+					<br />
+				</div>
+			))}
+
+			{status === 'in_progress' && (
+				<div className="w-full h-8 max-w-md p-2 mb-8 bg-gray-300 rounded-lg dark:bg-gray-600 animate-pulse" />
+			)}
+
+			<form onSubmit={handleUserInput}>
+				<input
+					ref={inputRef}
+					disabled={status !== 'awaiting_message'}
+					className="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
+					value={input}
+					placeholder="How can I help you today?"
+					onChange={handleInputChange}
+				/>
+				<button
+					type="submit"
+					className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+				>
+					Send
+				</button>
+			</form>
+		</div>
+
+
+
+
+		// <ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
+		// 	<div className="App">
+		// 		<div className="min-h-screen flex items-center justify-center px-4">
+		// 			<div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full">
+		// 				<div className="flex flex-col h-[80vh]">
+		// 					<div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
+
+		// 						<ContentQueue items={contentBlocks} />
+		// 					</div>
+		// 					<form className="flex gap-2" onSubmit={handleUserInput}>
+		// 						<input
+		// 							type="text"
+		// 							className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+		// 							placeholder="Type your message..."
+		// 							value={input}
+		// 							onChange={handleInputChange}
+		// 						/>
+		// 						<button
+		// 							type="submit"
+		// 							className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+		// 						>
+		// 							Send
+		// 						</button>
+		// 					</form>
+		// 				</div>
+		// 			</div>
+		// 		</div>
+		// 	</div>
+		// </ChatContextProvider>
 
 
 	);
