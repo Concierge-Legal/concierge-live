@@ -21,6 +21,9 @@ export async function POST(req: Request) {
   // Parse the request body
   const request: ChatRequest = await req.json();
   const base: BaseRequest = request.body
+  if (request.message.trim() == "") {
+    throw new Error("You must provide some user Input!")
+  }
 
   // Create a thread if needed
   const threadId = request.threadId ?? (await openai.beta.threads.create({})).id;

@@ -15,18 +15,24 @@ const roleToColorMap: Record<Message['role'], string> = {
 	data: 'orange',
 };
 
+const roleToSpeakerTypeMap: Record<string, SpeakerType> = {
+    user: SpeakerType.user,
+    assistant: SpeakerType.concierge,
+};
+
+
 
 export default function Chat() {
 
 	const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
-		blockId: `id_${new Date().getTime()}_${Math.random()
+		blockId: `concierge_logo_${new Date().getTime()}_${Math.random()
 			.toString(36)
 			.substr(2, 9)}`, // Generate a unique ID for the new block
 		type: ContentType.ConciergeSpeaker,
 		content: "",
 		streamingType: StreamingType.noStream
 	}, {
-		blockId: `id_${new Date().getTime()}_${Math.random()
+		blockId: `concierge_${new Date().getTime()}_${Math.random()
 			.toString(36)
 			.substr(2, 9)}`, // Generate a unique ID for the new block
 		type: ContentType.Welcome,
@@ -34,8 +40,10 @@ export default function Chat() {
 		streamingType: StreamingType.fake
 	}
 	]);
+	const [currentlyStreaming, setCurrentlyStreaming] = useState<String>("");
+
 	const [showLoadingIcon, setShowLoadingIcon] = useState<boolean>(false);
-	const [inputText, setInputText] = useState('');
+	
 	const { status, messages, input, submitMessage, handleInputChange, error } = useAssistant(
 		{
 			api: '/api/assistants/conciergeInitial',
@@ -50,10 +58,8 @@ export default function Chat() {
 	const onStreamEnd = (concurrentStreaming: boolean) => console.log("Stream ended:", concurrentStreaming);
 	const setActiveCitationId = (citationId: string) => console.log("Citation ID:", citationId);
 
-
-
 	// UI Helper Functions
-	const addContentBlock = (type: ContentType, streamingType: StreamingType, content: string | AsyncIterable<string>, speaker: SpeakerType) => {
+	const addContentBlock = (blockId: string, type: ContentType, streamingType: StreamingType, content: string | AsyncIterable<string>, speaker: SpeakerType) => {
 		// Add a Speaker Block beforehand
 		let speakerBlockType = ContentType.UserSpeaker;
 		if (speaker === SpeakerType.concierge) {
@@ -62,9 +68,7 @@ export default function Chat() {
 			speakerBlockType = ContentType.AbeSpeaker;
 		}
 		const speakerBlock: ContentBlock = {
-			blockId: `id_${new Date().getTime()}_${Math.random()
-				.toString(36)
-				.substr(2, 9)}`, // Generate a unique ID for the new block
+			blockId: `icon_${blockId}`, 
 			type: speakerBlockType,
 			content: "",
 			streamingType: streamingType
@@ -72,9 +76,7 @@ export default function Chat() {
 		setContentBlocks([...contentBlocks, speakerBlock]);
 
 		const newBlock: ContentBlock = {
-			blockId: `id_${new Date().getTime()}_${Math.random()
-				.toString(36)
-				.substr(2, 9)}`, // Generate a unique ID for the new block
+			blockId: blockId,
 			type: type,
 			content: content,
 			streamingType: streamingType
@@ -82,14 +84,47 @@ export default function Chat() {
 		setContentBlocks([...contentBlocks, newBlock]);
 	};
 
+
+	useEffect(() => {
+        console.log(`Status changed to: ${status}`);
+    }, [status]);
+
+	const processChatMessage = async (message: Message) => {
+		const { id, role, content } = message;
+		if (role == "user") {	
+			addContentBlock(id, ContentType.Question, StreamingType.noStream, content, SpeakerType.user)
+		} else {
+			addContentBlock(id, ContentType.Answer, StreamingType.real, content, SpeakerType.concierge)
+		}
+
+	}
+	const processFunctionMessage = async (message: Message) => {
+		
+		console.log(`Function call received! ${message}`)
+
+	}
+	const processDataMessage = async (message: Message) => {
+		console.log(`Data received! ${message}`)
+	}
+
+    // useEffect to log changes to messages
+    useEffect(() => {
+        messages.forEach(message => {
+            const { id, role, content } = message;
+			if (role === "assistant" || role === "user") {
+				processChatMessage(message)
+			} else if (role === "function") {
+				processFunctionMessage(message)
+			} else if (role === "data") {
+				processDataMessage
+			} else {
+				console.log(`Ignored message from role: ${role}`)
+			}
+        });
+    }, [messages]);
+
 	const askAbeNewQuestion = async (question: string) => {
 		const questionText = question.trim();
-		if (!questionText) return;
-
-		// Show the user's question
-		addContentBlock(ContentType.Question, StreamingType.noStream, questionText, SpeakerType.user);
-		// Let Concierge tell the user it's asking Abe about the legal question
-		addContentBlock(ContentType.Answer, StreamingType.fake, "Great question. I can't provide legal information or education, so I'll my friend Abe to answer this for you", SpeakerType.concierge);
 
 		const abe_api_key: string = "conciergeTestKey";
 		const request = {
@@ -118,21 +153,11 @@ export default function Chat() {
 
 		let answer = response_json.answer || "Sorry, no answer available."; // Default message if no answer
 
-		// Processing answer to replace "<" and ">" if still needed
-
-		addContentBlock(ContentType.Answer, StreamingType.fake, answer, SpeakerType.abe);
+		
+		addContentBlock(`abe${messages.length}`, ContentType.Answer, StreamingType.fake, answer, SpeakerType.abe);
 	};
 
-	const handleUserInput = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault(); // Prevent the default form submission action
-
-		if (!inputText.trim()) return;  // Ensure there's non-whitespace input
-		// Call the UseAssistant function to call the API
-		submitMessage();
-		// Add a new contentBlock
-		addContentBlock(ContentType.Question, StreamingType.noStream, inputText, SpeakerType.user);
-
-	};
+	
 
 	const inputRef = useRef<HTMLInputElement>(null);
 	useEffect(() => {
@@ -143,93 +168,42 @@ export default function Chat() {
 
 
 	return (
-		<div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
-			{error != null && (
-				<div className="relative px-6 py-4 text-white bg-red-500 rounded-md">
-					<span className="block sm:inline">
-						Error: {(error as any).toString()}
-					</span>
+		<ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
+			<div className="App">
+				<div className="min-h-screen flex items-center justify-center px-4">
+					<div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full">
+						<div className="flex flex-col h-[80vh]">
+							<div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
+
+								<ContentQueue items={contentBlocks} />
+							</div>
+
+
+							{status === 'in_progress' && (
+								<div className="w-full h-8 max-w-md p-2 mb-8 bg-gray-300 rounded-lg dark:bg-gray-600 animate-pulse" />
+							)}
+
+							<form className="flex gap-2" onSubmit={submitMessage}>
+								<input
+									ref={inputRef}
+									disabled={status !== 'awaiting_message'}
+									className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+									value={input}
+									placeholder="How can I help you today?"
+									onChange={handleInputChange}
+								/>
+								<button
+									type="submit"
+									className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+								>
+									Send
+								</button>
+							</form>
+						</div>
+					</div>
 				</div>
-			)}
-
-			{messages.map((m: Message) => (
-				<div
-					key={m.id}
-					className="whitespace-pre-wrap"
-					style={{ color: roleToColorMap[m.role] }}
-				>
-					<strong>{`${m.role}: `}</strong>
-					{m.role !== 'data' && m.content}
-					{m.role === 'data' && (
-						<>
-							{(m.data as any).description}
-							<br />
-							<pre className={'bg-gray-200'}>
-								{JSON.stringify(m.data, null, 2)}
-							</pre>
-						</>
-					)}
-					<br />
-					<br />
-				</div>
-			))}
-
-			{status === 'in_progress' && (
-				<div className="w-full h-8 max-w-md p-2 mb-8 bg-gray-300 rounded-lg dark:bg-gray-600 animate-pulse" />
-			)}
-
-			<form onSubmit={handleUserInput}>
-				<input
-					ref={inputRef}
-					disabled={status !== 'awaiting_message'}
-					className="fixed bottom-0 w-full max-w-md p-2 mb-8 border border-gray-300 rounded shadow-xl"
-					value={input}
-					placeholder="How can I help you today?"
-					onChange={handleInputChange}
-				/>
-				<button
-					type="submit"
-					className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
-				>
-					Send
-				</button>
-			</form>
-		</div>
-
-
-
-
-		// <ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
-		// 	<div className="App">
-		// 		<div className="min-h-screen flex items-center justify-center px-4">
-		// 			<div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full">
-		// 				<div className="flex flex-col h-[80vh]">
-		// 					<div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
-
-		// 						<ContentQueue items={contentBlocks} />
-		// 					</div>
-		// 					<form className="flex gap-2" onSubmit={handleUserInput}>
-		// 						<input
-		// 							type="text"
-		// 							className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-		// 							placeholder="Type your message..."
-		// 							value={input}
-		// 							onChange={handleInputChange}
-		// 						/>
-		// 						<button
-		// 							type="submit"
-		// 							className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
-		// 						>
-		// 							Send
-		// 						</button>
-		// 					</form>
-		// 				</div>
-		// 			</div>
-		// 		</div>
-		// 	</div>
-		// </ChatContextProvider>
-
-
+			</div>
+		</ChatContextProvider>
 	);
 }
 
