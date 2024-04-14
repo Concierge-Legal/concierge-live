@@ -4,34 +4,18 @@ import { ChatContextProvider } from '../../components/chatContext';
 import ContentQueue from '../../components/contentQueue'; // Adjust path as necessary
 import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../../lib/types'; // Assume types are exported from a types file
 import { Message, useAssistant as useAssistant } from 'ai/react';
+import { JSONValue } from 'ai';
 
 
-const roleToColorMap: Record<Message['role'], string> = {
-	system: 'red',
-	user: 'black',
-	function: 'blue',
-	tool: 'purple',
-	assistant: 'green',
-	data: 'orange',
-};
-
-const roleToSpeakerTypeMap: Record<string, SpeakerType> = {
-    user: SpeakerType.user,
-    assistant: SpeakerType.concierge,
-};
 
 export default function Chat() {
 
 	const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([{
-		blockId: `concierge_logo_welcome`, // Generate a unique ID for the new block
-		type: ContentType.ConciergeSpeaker,
-		content: "",
-		streamingType: StreamingType.noStream
-	}, {
-		blockId: `concierge_welcome}`, // Generate a unique ID for the new block
+		blockId: `concierge_welcome`, // Generate a unique ID for the new block
 		type: ContentType.Welcome,
 		content: "Hello, my name is Concierge. How can I assist you today?",
-		streamingType: StreamingType.fake
+		streamingType: StreamingType.fake,
+		speaker: SpeakerType.concierge
 	}
 	]);
 	const [conciergeStreamBlockId, setConciergeStreamBlockId] = useState<String>("NULL");
@@ -46,129 +30,38 @@ export default function Chat() {
 				pipelineModel: new PipelineModel({ "history": [], "session_id": "test20" }),
 			}
 		});
+	const [oldMessageIds, setOldMessageIds] = useState<String[]>([]);
 
-	const onStreamEnd = (concurrentStreaming: boolean) => console.log("Stream ended:", concurrentStreaming);
-	const setActiveCitationId = (citationId: string) => console.log("Citation ID:", citationId);
+
+
 
 	// UI Helper Functions
-	const addContentBlock = (blockId: string, type: ContentType, streamingType: StreamingType, content: string | AsyncIterable<string>, speaker: SpeakerType) => {
-		// Add a Speaker Block beforehand
-		let speakerBlockType = ContentType.UserSpeaker;
-		if (speaker === SpeakerType.concierge) {
-			speakerBlockType = ContentType.ConciergeSpeaker;
-		} else if (speaker === SpeakerType.abe) {
-			speakerBlockType = ContentType.AbeSpeaker;
-		}
-		const speakerBlock: ContentBlock = {
-			blockId: `icon_${blockId}`, 
-			type: speakerBlockType,
-			content: "",
-			streamingType: streamingType
-		};
-		setContentBlocks([...contentBlocks, speakerBlock]);
-
+	const addContentBlock = (
+		blockId: string,
+		type: ContentType,
+		streamingType: StreamingType,
+		content: string,
+		speaker: SpeakerType
+	) => {
 		const newBlock: ContentBlock = {
 			blockId: blockId,
 			type: type,
 			content: content,
-			streamingType: streamingType
+			streamingType: streamingType,
+			speaker: speaker, // Add speaker information directly in the content block
 		};
 		setContentBlocks([...contentBlocks, newBlock]);
-		if (streamingType === StreamingType.real) {
-			setConciergeStreamBlockId(blockId)
-		}
 	};
-
-	const isUniqueBlockId = (blockId: string) => {
-		console.log(`Checking uniqueness of (${blockId}) in isUniqueBlockId.`)
-		for (let block of contentBlocks) {
-			console.log(`Block.blockId: ${block.blockId}`)
-			if (block.blockId === blockId) {
-				console.log(`Returning false!`)
-				return false;
-			}
-		}
-		console.log(`Returning true.`)
-		return true;
-	}
-	const updateBlockContent = (blockId: string, content: string) => {
-		for (let block of contentBlocks) {
-			if (block.blockId === blockId) {
-				block.content = content;
-				break
-			}
-		}
-	}
-
-	const processChatMessage = (message: Message) => {
-		const { id, role, content } = message;
-		console.log(`== processChatMessage ==`)
-		console.log(message)
-		if (role == "user") {	
-			// Only call this function if there's not a block with in ContentBlocks with a blockId equal to id
-			if (isUniqueBlockId(id)) {
-				
-				addContentBlock(id, ContentType.Question, StreamingType.noStream, content, SpeakerType.user)
-			}
-		} else {
-			// If this is the block that's currently streaming, update it.
-			if(id === conciergeStreamBlockId) {
-				updateBlockContent(id, content);
-			// If this is a completely new Id, not seen in contentBlocks
-			} else if (isUniqueBlockId(id)) {
-				addContentBlock(id, ContentType.Answer, StreamingType.real, content, SpeakerType.concierge)
-			// ALready handled block, ignore
-			} else {
-				console.log(`Ignoring block with ID: ${id}`)
-			}
-			
-		}
-
-	}
-	const processFunctionMessage = async (message: Message) => {
-		
-		console.log(`Function call received! ${message}`)
-
-	}
-	const processDataMessage = async (message: Message) => {
-		console.log(`Data received! ${message}`)
-	}
-
-	useEffect(() => {
-        console.log(`Status changed to: ${status}`);
-		if (status == "awaiting_message") {
-			setConciergeStreamBlockId("NULL")
-		}
-    }, [status]);
-
-    // useEffect to log changes to messages
-    useEffect(() => {
-		console.log(messages)
-        messages.forEach(message => {
-			
-            const { id, role, content } = message;
-			if (id === "") {
-				console.log(`Ignored message with no ID!`)
-			} else if (role === "assistant" || role === "user") {
-				processChatMessage(message)
-			} else if (role === "function") {
-				processFunctionMessage(message)
-			} else if (role === "data") {
-				processDataMessage
-			} else {
-				console.log(`Ignored message from role: ${role}`)
-			}
-        });
-    }, [messages]);
-
 	const askAbeNewQuestion = async (question: string) => {
 		const questionText = question.trim();
+
+		//addContentBlock(`abe_icon_${messages.length}`, ContentType.AbeSpeaker, StreamingType.noStream, "", SpeakerType.abe);
 
 		const abe_api_key: string = "conciergeTestKey";
 		const request = {
 			abe_api_key: abe_api_key,
 			question: questionText,  // Ensure to trim and use the cleaned text
-			jurisdiction: 'ca',  // A list of questions that have already been answered
+			jurisdiction: 'mhl',  // A list of questions that have already been answered
 		};
 
 		console.log("Sending request to AskAbeAI API");
@@ -191,57 +84,139 @@ export default function Chat() {
 
 		let answer = response_json.answer || "Sorry, no answer available."; // Default message if no answer
 
-		
+
 		addContentBlock(`abe${messages.length}`, ContentType.Answer, StreamingType.fake, answer, SpeakerType.abe);
 	};
 
-	
+	function updateContentBlocks(blockId: string, newContent: string) {
+		for (let block of contentBlocks) {
+			if (block.blockId === blockId) {
+				block.content = newContent;
+				return;
+			}
+		}
+	}
 
-	const inputRef = useRef<HTMLInputElement>(null);
+	const processChatMessage = (message: Message) => {
+		const { id, role, content } = message;
+		const speakerType = role === "user" ? SpeakerType.user : SpeakerType.concierge;
+		const contentType = role === "user" ? ContentType.Question : ContentType.Answer;
+		const streamingType = role === "user" ? StreamingType.noStream : StreamingType.real;
+
+		// Check if this is the currently streaming id
+		if (id !== conciergeStreamBlockId) {
+			// New message ID, add to tracking and create a block
+			setOldMessageIds(prevIds => [...prevIds, id]);
+			addContentBlock(id, contentType, streamingType, content, speakerType);
+			setConciergeStreamBlockId(id);
+		} else {
+			// Update existing block with new content
+			console.log(`Updating block with ${content}`);
+			updateContentBlocks(id, content);
+		}
+	};
+
+	const processFunctionMessage = async (message: Message) => {
+
+		console.log(`Function call received! ${message}`);
+
+	};
+
+	interface FunctionCallData {
+		messageType: 'functionCall';
+		functionCalled: string;
+		parameters: any;
+		description: string;
+	}
+	const processDataMessage = async (message: Message) => {
+		if (!message.data) {
+			return;
+		}
+		const data = message.data as string;
+		const functionCallData: FunctionCallData = JSON.parse(data);
+		// Check if the message is of type 'functionCall'
+		if (functionCallData.messageType! === 'functionCall') {
+			if (functionCallData.functionCalled === "ConsultAbeForLegalInformation") {
+				askAbeNewQuestion(functionCallData.parameters['query']);
+			}
+		}
+
+		setOldMessageIds(prevIds => [...prevIds, message.id]);
+
+	};
+
 	useEffect(() => {
-		if (status === 'awaiting_message') {
-			inputRef.current?.focus();
+		console.log(`Status changed to: ${status}`);
+		if (status == "awaiting_message") {
+			setOldMessageIds(prevIds => [...prevIds, conciergeStreamBlockId]);
+			setConciergeStreamBlockId("NULL");
 		}
 	}, [status]);
 
+	useEffect(() => {
+
+		if (conciergeStreamBlockId !== "null") {
+
+			setShowLoadingIcon(true);
+		} else {
+			setShowLoadingIcon(false);
+		}
+	}, [conciergeStreamBlockId]);
+
+	// useEffect to log changes to messages
+	useEffect(() => {
+		console.log(messages);
+		messages.forEach(message => {
+
+			const { id, role, content } = message;
+			if (id === "") {
+				console.log(`Ignored message with no ID!`);
+			} else if (oldMessageIds.includes(id) && id !== conciergeStreamBlockId) {
+				console.log(`Ignoring old message ID!`);
+			} else if (role === "assistant" || role === "user") {
+				processChatMessage(message);
+			} else if (role === "function") {
+				processFunctionMessage(message);
+			} else if (role === "data") {
+				processDataMessage(message);
+			} else {
+				console.log(`Ignored message from role: ${role}`);
+			}
+		});
+	}, [messages]);
+
 
 	return (
-		<ChatContextProvider value={{ onStreamEnd, setActiveCitationId, showLoadingIcon }}>
-			<div className="App">
-				<div className="min-h-screen flex items-center justify-center px-4">
-					<div className="bg-neutral-800 shadow-lg rounded-lg p-6 w-full">
-						<div className="flex flex-col h-[80vh]">
-							<div className="flex-1 overflow-y-auto my-4 bg-white p-4 rounded-lg">
-
-								<ContentQueue items={contentBlocks} />
-							</div>
-
-
-							{status === 'in_progress' && (
-								<div className="w-full h-8 max-w-md p-2 mb-8 bg-gray-300 rounded-lg dark:bg-gray-600 animate-pulse" />
-							)}
-
-							<form className="flex gap-2" onSubmit={submitMessage}>
-								<input
-									ref={inputRef}
-									disabled={status !== 'awaiting_message'}
-									className="flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-									value={input}
-									placeholder="How can I help you today?"
-									onChange={handleInputChange}
-								/>
-								<button
-									type="submit"
-									className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out"
-								>
-									Send
-								</button>
-							</form>
+		<ChatContextProvider value={{ currentlyStreamingBlockId: conciergeStreamBlockId, showLoadingIcon }}>
+			<div className="App flex flex-col min-h-screen bg-app">
+				<div className="flex flex-col shadow-lg rounded-lg p-6 bg-chat flex-grow">
+					<div className="flex flex-col flex-grow">
+						<div className="overflow-y-auto flex-grow p-4 rounded-lg">
+							<ContentQueue items={contentBlocks} />
 						</div>
+						
 					</div>
+					<form className="flex gap-2 mt-4 bg-white" onSubmit={submitMessage}>
+						<input
+							disabled={status !== 'awaiting_message'}
+							className="flex-1 p-2 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 bg-input border-focus"
+							value={input}
+							placeholder="How can I help you today?"
+							onChange={handleInputChange}
+						/>
+						<button
+							type="submit"
+							className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-button-hover focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out text-primary"
+						>
+							Send
+						</button>
+					</form>
 				</div>
 			</div>
 		</ChatContextProvider>
+
+
+
 	);
 }
 

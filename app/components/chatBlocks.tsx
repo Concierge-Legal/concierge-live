@@ -5,133 +5,60 @@ import dynamic from 'next/dynamic';
 
 import { useChatContext } from './chatContext';
 import { useStreaming } from '../lib/hooks/useStreaming';
-import { StreamingType } from '../lib/types';
+import { StreamingType, SpeakerType } from '../lib/types';
+import ReactMarkdown from 'react-markdown';
+
 
 interface ChatBlockProps {
 	content: string;
 	streamingType: StreamingType;
+	speaker: SpeakerType;
+	blockId: string;
 }
-
-export const WelcomeBlock: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
+export const ChatBlock: React.FC<ChatBlockProps> = ({ content, streamingType, speaker, blockId }) => {
+	const { currentlyStreamingBlockId } = useChatContext();
 	const displayContent = useStreaming(content, streamingType);
-	return (
-		<div className="w-full p-4 bg-[#957DAD] text-white rounded-md shadow"> {/* Concierge color */}
-			<p className="text-sm font-semibold">{displayContent}</p>
-		</div>
-	);
-};
 
-export const QuestionBlock: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
-	const displayContent = useStreaming(content, streamingType);
-	return (
-		<div className="w-full flex flex-col items-end">
-			<div className="p-2 bg-[#4D7C8A] text-white rounded-lg shadow"> {/* User color */}
-				<h3 className="text-xl">{displayContent}</h3>
-			</div>
-		</div>
-	);
-};
+	const loadingComponent = currentlyStreamingBlockId === blockId ? <Bouncy /> : null;
 
-export const AnswerBlock: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
-	const displayContent = useStreaming(content, streamingType);
-	return (
-		<div className="p-2 bg-[#49a6aa] text-white rounded-lg shadow mb-2"> {/* Abe color */}
-			{displayContent}
-		</div>
-	);
-};
+	const backgroundColors = {
+        [SpeakerType.user]: "bg-[#D6E6F2]", // Light blue for user
+        [SpeakerType.concierge]: "bg-[#E0E8F9]", // Light indigo for concierge
+        [SpeakerType.abe]: "bg-[#E9D8FD]", // Light purple for Abe
+    };
+
+    const textColors = {
+        [SpeakerType.user]: "text-black",
+        [SpeakerType.concierge]: "text-black",
+        [SpeakerType.abe]: "text-black",
+    };
+
+	const iconSrc = {
+		//[SpeakerType.assistant]: "/path/to/userIcon.png", // Replace with actual path
+		[SpeakerType.concierge]: "/home/Concierge.png",   // Replace with actual path
+		[SpeakerType.abe]: "/home/ASKABELOGO.png",        // Replace with actual path
+		[SpeakerType.user]: "/fake.png"
+	};
 
 
-
-export const ConciergeIconLabel: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
-	const displayContent = useStreaming(content, streamingType);
-	const { showLoadingIcon } = useChatContext();
-	const [neverLoadAgain, setNeverLoadAgain] = useState(false);
-
-	useEffect(() => {
-		if (!showLoadingIcon) {
-			setNeverLoadAgain(true);
-		}
-	}, [showLoadingIcon]);
+	const placeholderIcons = {
+		[SpeakerType.concierge]: <ConciergeIconPlaceholder />,
+		[SpeakerType.abe]: <AbeIconPlaceholder />,
+		[SpeakerType.user]: <UserIconPlaceholder />
+	};
 
 	return (
-		<div className="flex flex-col items-start">
-			<div className="flex mb-0">
-				<div className="h-8 w-8 rounded-full flex mr-2 bg-[#957DAD]">
-					<span>
-						{/* <Image
-							src="/home/Concierge.png"
-							alt="Concierge"
-							width={40}
-							height={50}
-						/> */}
-					</span>
-				</div>
-				<p className="text-xl font-imfell">Concierge {displayContent}</p>
-				{(!neverLoadAgain && showLoadingIcon) && (
-					<div>Loading...</div>  // Placeholder for an actual loading component or animation
-				)}
-			</div>
-		</div>
-	);
-};
-
-
-export const AbeIconLabel: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
-	const { showLoadingIcon } = useChatContext();
-	const [isLoading, setIsLoading] = useState(showLoadingIcon);
-
-	useEffect(() => {
-		// Start loading when component mounts and content is being "streamed"
-		if (streamingType !== StreamingType.noStream) {
-			setIsLoading(true);
-		}
-
-		// Assuming content is streamed or set after some API call or calculation,
-		// stop loading once content is received or after a delay
-		if (content) {
-			setIsLoading(false);
-		}
-
-		// Optionally, set a timeout to stop loading if it takes too long
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-		}, 5000);  // Stop loading after 5 seconds
-
-		return () => clearTimeout(timer);
-	}, [content, streamingType]);
-
-	return (
-		<div className="flex flex-col items-start">
-			<div className="flex mb-0">
-				<div className="h-8 w-8 rounded-full flex mr-2">
-					<Image
-						src="/home/ASKABELOGO.png"
-						alt="Legal Research Image"
-						width={40}
-						height={50}
-					/>
-				</div>
-				<p className="text-xl font-imfell">Abe</p>
-				{isLoading && <Bouncy />}
-			</div>
-		</div>
-	);
-};
-
-
-
-export const UserIconLabel: React.FC<ChatBlockProps> = ({ content, streamingType }) => {
-
-	return (
-		<div className="flex items-center justify-end mb-2">
-			<p className="text-sm mr-2">You</p>
-			<div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
-				{/* Placeholder for icon */}
-				<span>U</span>
-			</div>
-
-		</div>
+		<div className={`flex items-center ${backgroundColors[speaker]} p-4 rounded-md shadow mb-2`}>
+            <div className="mr-2">
+                {placeholderIcons[speaker]}
+            </div>
+            <div className={`flex-1 ${textColors[speaker]} text-sm font-semibold`}>
+                <ReactMarkdown>
+                    {displayContent}
+                </ReactMarkdown>
+            </div>
+            {loadingComponent}
+        </div>
 	);
 };
 
@@ -251,6 +178,28 @@ export const Bouncy = () => {
 			}
 		  `}
 			</style>
+		</div>
+	);
+};
+export const ConciergeIconPlaceholder: React.FC = () => {
+	return (
+		<div className="flex items-center justify-center h-8 w-8 bg-purple-500 text-white text-sm font-semibold rounded-full">
+			C
+		</div>
+	);
+};
+
+export const AbeIconPlaceholder: React.FC = () => {
+	return (
+		<div className="flex items-center justify-center h-8 w-8 bg-teal-500 text-white text-sm font-semibold rounded-full">
+			A
+		</div>
+	);
+};
+export const UserIconPlaceholder: React.FC = () => {
+	return (
+		<div className="flex items-center justify-center h-8 w-8 bg-blue-500 text-white text-sm font-semibold rounded-full">
+			U
 		</div>
 	);
 };

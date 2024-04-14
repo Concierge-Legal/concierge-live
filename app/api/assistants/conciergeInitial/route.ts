@@ -65,12 +65,12 @@ export async function POST(req: Request) {
                         const researchQuery: string = args["query"]
                         sendDataMessage({
                           role: 'data',
-                          data: {
+                          data: JSON.stringify({
                             messageType: 'functionCall',
                             functionCalled: 'ConsultAbeForLegalInformation',
                             parameters: { query: researchQuery},
                             description: `Abe received the request to research ${researchQuery}}`,
-                          },
+                          }),
                         });
                         
                         output = "Abe here. I received your request, and will individually contact the user with my full response, however I need some more time. Feel free to continue interacting with the user";
