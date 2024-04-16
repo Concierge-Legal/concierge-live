@@ -97,6 +97,8 @@ export default function Chat() {
 		}
 	}
 
+
+	
 	const processChatMessage = (message: Message) => {
 		const { id, role, content } = message;
 		const speakerType = role === "user" ? SpeakerType.user : SpeakerType.concierge;

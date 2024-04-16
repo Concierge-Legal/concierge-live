@@ -63,7 +63,7 @@ export const ChatBlock: React.FC<ChatBlockProps> = ({ content, streamingType, sp
 };
 
 
-
+// This is dumb and needs to be nuked
 export const Bouncy = () => {
 	return (
 		<div className="flex justify-left items-left">
