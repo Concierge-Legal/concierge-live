@@ -98,13 +98,14 @@ export default function Chat() {
 	}
 
 
-	
+
 	const processChatMessage = (message: Message) => {
 		const { id, role, content } = message;
 		const speakerType = role === "user" ? SpeakerType.user : SpeakerType.concierge;
 		const contentType = role === "user" ? ContentType.Question : ContentType.Answer;
 		const streamingType = role === "user" ? StreamingType.noStream : StreamingType.real;
-
+		//console.log(`SpeakerType: ${speakerType}\nContentType: ${contentType}\nStreamingType: ${streamingType}`)
+		//console.log(`Id: ${id}, role: ${role}, content: ${content}`)
 		// Check if this is the currently streaming id
 		if (id !== conciergeStreamBlockId) {
 			// New message ID, add to tracking and create a block
@@ -131,6 +132,7 @@ export default function Chat() {
 		description: string;
 	}
 	const processDataMessage = async (message: Message) => {
+		console.log(message)
 		if (!message.data) {
 			return;
 		}
@@ -167,19 +169,34 @@ export default function Chat() {
 
 	// useEffect to log changes to messages
 	useEffect(() => {
-		console.log(messages);
+		//console.log(`Length of messages: ${messages.length}`)
+		
+		if (messages.length == 0) {
+			return;
+		}
+		
+		//console.log(messages[0]);
 		messages.forEach(message => {
-
+			console.log(message)
 			const { id, role, content } = message;
+			console.log(`Id: ${id}, role: ${role}, content: ${content}`)
 			if (id === "") {
 				console.log(`Ignored message with no ID!`);
+			} else if (role === "user" && ! id.includes('msg_')) {
+
+				console.log(`Ignoring preliminary user message!`)
+			
 			} else if (oldMessageIds.includes(id) && id !== conciergeStreamBlockId) {
 				console.log(`Ignoring old message ID!`);
 			} else if (role === "assistant" || role === "user") {
+
+				console.log("Moving to processChatMessage!")
 				processChatMessage(message);
 			} else if (role === "function") {
+				console.log("Moving to processFunctionMessage!")
 				processFunctionMessage(message);
 			} else if (role === "data") {
+				console.log("Moving to processDataMessage")
 				processDataMessage(message);
 			} else {
 				console.log(`Ignored message from role: ${role}`);

@@ -19,9 +19,9 @@ const ContentQueue: React.FC<ContentQueueProps> = ({ items }) => {
       const justifyClass = speaker === 'user' ? 'justify-end' : 'justify-start';
   
       return (
-        <div className={`flex w-full ${justifyClass} my-1`}>
+        <div className={`flex w-full ${justifyClass} my-1`} key={item.blockId}>
           {/* Use the ChatBlock for all content types and spread the item props */}
-          <ChatBlock key={item.blockId} {...item} />
+          <ChatBlock {...item} />
         </div>
       );
     };
