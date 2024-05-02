@@ -1,34 +1,9 @@
-"use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useMediaQuery } from 'react-responsive';
-import { HiMenuAlt3 } from 'react-icons/hi';
-import Image from 'next/image';
+import AuthButton from './imported/AuthButton';
 
 
 const NavBar: React.FC = () => {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const showDropdown = () => setIsDropdownOpen(true);
-    const hideDropdown = () => setIsDropdownOpen(false);
-
-    const isDesktopOrLaptop = useMediaQuery({ minWidth: 1224 });
-    const isMobile = useMediaQuery({ maxWidth: 1224 });
-    const [nav, setNav] = useState(false);
-    const handleNav = () => {
-        setNav(!nav);
-        if (!nav) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'scroll';
-        }
-    };
-    const handleNav2 = () => {
-        setNav(false);
-    };
-// stupid little comment
-
-
 
     return (
         <div>
@@ -47,14 +22,15 @@ const NavBar: React.FC = () => {
                             </Link>
                         </li>
                     </ul>
-                    <Link href="/sign-in" className="relative px-5 py-3 overflow-hidden font-medium text-[#081209] bg-[#F8FDFD] border border-[#11A688] rounded-lg shadow-inner group hover:bg-[#11A688]">
+                    <AuthButton></AuthButton>
+                    {/* <Link href="/login" className="relative px-5 py-3 overflow-hidden font-medium text-[#081209] bg-[#F8FDFD] border border-[#11A688] rounded-lg shadow-inner group hover:bg-[#11A688]">
                         <span className="absolute top-0 left-0 w-0 h-0 transition-all duration-200 border-t-2 border-[#081209] group-hover:w-full ease"></span>
                         <span className="absolute bottom-0 right-0 w-0 h-0 transition-all duration-200 border-b-2 border-[#081209] group-hover:w-full ease"></span>
                         <span className="absolute top-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-[#081209] group-hover:h-full ease"></span>
                         <span className="absolute bottom-0 left-0 w-full h-0 transition-all duration-300 delay-200 bg-[#081209] group-hover:h-full ease"></span>
                         <span className="absolute inset-0 w-full h-full duration-300 delay-300 bg-cyan-800 opacity-0 group-hover:opacity-100"></span>
-                        <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">Sign In</span>
-                    </Link>
+                        <span className="relative transition-colors duration-300 delay-200 group-hover:text-white ease">Login</span>
+                    </Link> */}
                 </div>
             </nav>
         </div>

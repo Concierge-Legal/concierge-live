@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect, useRef, FormEvent, ChangeEvent, useCallback } from 'react';
-import { ChatContextProvider } from '../../components/chatContext';
-import ContentQueue from '../../components/contentQueue'; // Adjust path as necessary
-import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../../lib/types'; // Assume types are exported from a types file
+import { ChatContextProvider } from '../components/chatContext';
+import ContentQueue from '../components/contentQueue'; // Adjust path as necessary
+import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../lib/types'; // Assume types are exported from a types file
 import { Message, useAssistant as useAssistant } from 'ai/react';
 import { JSONValue } from 'ai';
 

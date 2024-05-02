@@ -1,9 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import NavBar from "./components/navBar";
+import Footer from "./components/footer";
 
 export default function Home() {
   
   return (
+    <div>
+
+    
+    <NavBar></NavBar>
     <main className="flex flex-col justify-between min-h-screen bg-gray-100 p-10">
       {/* Logo Section */}
       <div className="w-full flex justify-center py-10">
@@ -56,5 +62,7 @@ export default function Home() {
         </div>
       </section>
     </main>
+    <Footer></Footer>
+    </div>
   );
 }
