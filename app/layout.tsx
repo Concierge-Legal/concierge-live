@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import NavBar from "./components/navBar";
 
 
 const inter = Inter({ subsets: ["latin"] });
+const defaultUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : "http://localhost:3000";
 
 export const metadata: Metadata = {
   title: "Concierge",
@@ -20,7 +24,7 @@ export default function RootLayout({
 
     <body className={inter.className}>
       
-      
+      <NavBar></NavBar>
       
       {children}
       {/* <PageFooter /> */}

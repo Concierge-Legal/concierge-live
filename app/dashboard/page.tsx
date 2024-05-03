@@ -1,5 +1,4 @@
-import DeployButton from "@/app/components/imported/DeployButton";
-import AuthButton from "@/app/components/imported/AuthButton";
+
 import { createClient } from "@/utils/supabase/server";
 // import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
 // import Header from "@/components/Header";
@@ -15,15 +14,14 @@ export default async function Dashboard() {
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  console.log(user);
+  
   if (!user) {
-    console.log(`Not user is true!`);
-    //return redirect("/login");
+    return redirect("/login");
   }
 
   return (
     <div>
-      <NavBar></NavBar>
+      
 
       <div className="flex h-screen">
         <NavigationSidebar />
