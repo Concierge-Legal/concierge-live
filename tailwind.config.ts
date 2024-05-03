@@ -8,18 +8,15 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      colors: {
+        'primary': '#FFFFFF', // white as dominant
+        'secondary': '#000000', // black as secondary (used for text)
+        'accent': '#32CD32', // green as the accent color for interactions
+      },
+      fontFamily: {
+        'body': ['Inter', 'sans-serif'],
       },
     },
-    // screens: {
-    //   'mobile': '374px',
-    //   'tablet': '640px',
-    //   'laptop': '1024px',
-
-    // },
   },
   plugins: [],
 };
