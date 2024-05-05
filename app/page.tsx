@@ -34,7 +34,6 @@ export default function Home() {
   ];
   return (
     <div className="min-h-screen flex flex-col bg-white text-black">
-
       <main className="flex-grow pt-36 p-10">
         {/* Hero Section with Banner Graphic */}
         <section className="relative text-center w-full" style={{ minHeight: '40vh' }}>
