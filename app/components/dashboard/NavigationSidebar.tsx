@@ -1,67 +1,41 @@
-import React from 'react';
-import StyledLink from '../StyledLink';
+import Link from 'next/link';
 
 interface NavigationSidebarProps {
-  openMenu: string | null;
-  setOpenMenu: (menuName: string | null) => void;
+  activeMenu: string;
 }
 
-const NavigationSidebar: React.FC<NavigationSidebarProps> = ({ openMenu, setOpenMenu }) => {
-  const handleMenuClick = (menuName: string) => {
-    if (openMenu === menuName) {
-      setOpenMenu(null); // Close the menu if it's already open
-    } else {
-      setOpenMenu(menuName); // Open the clicked menu
-    }
-  };
-
+const NavigationSidebar: React.FC<NavigationSidebarProps> = ({ activeMenu }) => {
   return (
     <div className="h-full w-64 bg-gray-800 text-white">
       <div className="flex flex-col p-4">
-        {/* Home Section */}
-        <a href="#" className="py-2 text-sm hover:bg-gray-700 cursor-pointer" onClick={() => handleMenuClick('home')}>
-          Home
-        </a>
-        {openMenu === 'home' && (
+        {/* Links now directly use the className attribute */}
+        <Link href="/dashboard?menu=home" className="py-2 text-sm hover:bg-gray-700">Home</Link>
+        {activeMenu === 'home' && (
           <div className="pl-4">
-            <StyledLink href="#Overview">Overview</StyledLink>
-            <StyledLink href="#Stats">Stats</StyledLink>
+            <Link href="#Overview" className="py-2 text-sm hover:bg-gray-700">Overview</Link>
+            <Link href="#Stats" className="py-2 text-sm hover:bg-gray-700">Stats</Link>
           </div>
         )}
 
-        {/* Usage Section */}
-        <a href="#" className="py-2 text-sm hover:bg-gray-700 cursor-pointer" onClick={() => handleMenuClick('usage')}>
-          Usage
-        </a>
-        {openMenu === 'usage' && (
+        <Link href="/dashboard?menu=usage" className="py-2 text-sm hover:bg-gray-700">Usage</Link>
+        {activeMenu === 'usage' && (
           <div className="pl-4">
-            <StyledLink href="#Traffic Analysis">Traffic Analysis</StyledLink>
-            <StyledLink href="#Engagement Metrics">Engagement Metrics</StyledLink>
-            <StyledLink href="#Patterns">Patterns</StyledLink>
+            <Link href="#Traffic Analysis" className="py-2 text-sm hover:bg-gray-700">Traffic Analysis</Link>
+            <Link href="#Engagement Metrics" className="py-2 text-sm hover:bg-gray-700">Engagement Metrics</Link>
           </div>
         )}
 
-        {/* Customization Section */}
-        <a href="#" className="py-2 text-sm hover:bg-gray-700 cursor-pointer" onClick={() => handleMenuClick('customization')}>
-          Customization
-        </a>
-        {openMenu === 'customization' && (
+        <Link href="/dashboard?menu=customization" className="py-2 text-sm hover:bg-gray-700">Customization</Link>
+        {activeMenu === 'customization' && (
           <div className="pl-4">
-            <StyledLink href="#UI Themes">UI Themes</StyledLink>
-            <StyledLink href="#Responses">Responses</StyledLink>
-            <StyledLink href="#Settings">Settings</StyledLink>
+            <Link href="#UI Themes" className="py-2 text-sm hover:bg-gray-700">UI Themes</Link>
           </div>
         )}
 
-        {/* File Management Section */}
-        <a href="#" className="py-2 text-sm hover:bg-gray-700 cursor-pointer" onClick={() => handleMenuClick('fileManagement')}>
-          File Management
-        </a>
-        {openMenu === 'fileManagement' && (
+        <Link href="/dashboard?menu=fileManagement" className="py-2 text-sm hover:bg-gray-700">File Management</Link>
+        {activeMenu === 'fileManagement' && (
           <div className="pl-4">
-            <StyledLink href="#Upload Files">Upload Files</StyledLink>
-            <StyledLink href="#Manage Files">Manage Files</StyledLink>
-            <StyledLink href="#Version Control">Version Control</StyledLink>
+            <Link href="#Upload Files" className="py-2 text-sm hover:bg-gray-700">Upload Files</Link>
           </div>
         )}
       </div>
