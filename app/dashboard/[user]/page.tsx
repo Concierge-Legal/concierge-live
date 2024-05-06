@@ -17,7 +17,7 @@
     } = await supabase.auth.getUser();
     
     if (!user) {
-      // return redirect("/login");
+      //return redirect("/login");
     }
   
     return (
