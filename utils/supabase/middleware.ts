@@ -6,6 +6,7 @@ export const updateSession = async (request: NextRequest) => {
   // Feel free to remove once you have Supabase connected.
 
   // Create an unmodified response
+  console.log(`Inside updateSession:\nrequest:${request}`)
   let response = NextResponse.next({
     request: {
       headers: request.headers,

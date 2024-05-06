@@ -5,6 +5,7 @@
   import NavigationSidebar from '@/app/components/dashboard/NavigationSidebar';
   import MainContent from '@/app/components/dashboard/MainContent';
   import TopBar from '@/app/components/dashboard/TopBar';
+  import { redirect } from "next/navigation";
   
   export default async function Dashboard({ params }: { params: { user: string } }) {
     console.log(`=== Loading Dashboard Page ===\nParams:${params}`)
@@ -17,7 +18,7 @@
     } = await supabase.auth.getUser();
     
     if (!user) {
-      //return redirect("/login");
+      return redirect("/login");
     }
   
     return (
