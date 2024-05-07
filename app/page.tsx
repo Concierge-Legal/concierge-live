@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "./components/footer";
 
+
+
 export default function Home() {
   const features = [
     {
@@ -33,8 +35,7 @@ export default function Home() {
     }
   ];
   return (
-    <div className="min-h-screen flex flex-col bg-white text-black">
-
+    <div className="min-h-screen flex flex-col bg-white text-black">d
       <main className="flex-grow pt-36 p-10">
         {/* Hero Section with Banner Graphic */}
         <section className="relative text-center w-full" style={{ minHeight: '40vh' }}>

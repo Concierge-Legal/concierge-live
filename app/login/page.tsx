@@ -9,6 +9,7 @@ export default function Login({
 }: {
   searchParams: { message: string };
 }) {
+  
   const signIn = async (formData: FormData) => {
     "use server";
 
@@ -16,17 +17,17 @@ export default function Login({
     const password = formData.get("password") as string;
     const supabase = createClient();
 
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
-    console.log(error)
+    console.log(`Error from supabase signIn: ${error}`)
 
     if (error) {
       return redirect("/login?message=Could not authenticate user");
     }
 
-    return redirect("/dashboard");
+    return redirect(`/dashboard/${data.user.id}`);
   };
 
   const signUp = async (formData: FormData) => {
@@ -44,7 +45,7 @@ export default function Login({
         emailRedirectTo: `${origin}/auth/callback`,
       },
     });
-
+    console.log(`Error from supabase Signup: ${error}`)
     if (error) {
       return redirect("/login?message=Could not authenticate user");
     }

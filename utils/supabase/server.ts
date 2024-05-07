@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export const createClient = () => {
   const cookieStore = cookies();
-
+  console.log(`Creating server side Supabase Client! Inside utils/supabase/server.ts.\n Cookie Store: ${cookieStore}`)
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
