@@ -225,7 +225,7 @@ export default function Chat() {
 						/>
 						<button
 							type="submit"
-							className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-button-hover focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out text-primary"
+							className="bg-blue-600 px-6 py-2 rounded-lg hover:bg-button-hover focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out text-primary"
 						>
 							Send
 						</button>

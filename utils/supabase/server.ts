@@ -3,7 +3,7 @@ import { cookies } from "next/headers";
 
 export const createClient = () => {
   const cookieStore = cookies();
-  console.log(`Creating server side Supabase Client! Inside utils/supabase/server.ts.\n Cookie Store: ${cookieStore}`)
+  console.log(`Creating server side Supabase Client! Inside utils/supabase/server.ts.\n`) // Cookie Store: ${cookieStore}`)
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
@@ -16,6 +16,7 @@ export const createClient = () => {
           try {
             cookieStore.set({ name, value, ...options });
           } catch (error) {
+            console.log(`Catching error. The 'set' method was called from a Server Component. Error ${error}`)
             // The `set` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
             // user sessions.
@@ -25,6 +26,7 @@ export const createClient = () => {
           try {
             cookieStore.set({ name, value: "", ...options });
           } catch (error) {
+            console.log(`Catching error. The 'delete' method was called from a Server Component. Error ${error}`)
             // The `delete` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
             // user sessions.
