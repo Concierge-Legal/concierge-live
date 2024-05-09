@@ -12,7 +12,6 @@ export default function Layout({ children, params }: {
       <div className="flex h-screen">
       <NavigationSidebar activeMenu={'Home'} userId={params.userId} />
       <div className="flex flex-col flex-1">
-      <TopBar username={params.userId} />
         <div>{children}</div>
       </div>
     </div>
