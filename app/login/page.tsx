@@ -13,6 +13,7 @@ export default function Login({
   const signIn = async (formData: FormData) => {
     "use server";
 
+    console.log(`Inside signIn function on app/login/page.tsx!`)
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
     const supabase = createClient();
