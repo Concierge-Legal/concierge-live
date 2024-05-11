@@ -16,8 +16,14 @@ const config: Config = {
       fontFamily: {
         'body': ['Inter', 'sans-serif'],
       },
+      textShadow: { 
+        'outline': '0 0 2px #FFF', // white outline
+      },
+      
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwindcss-textshadow')
+  ],
 };
 export default config;

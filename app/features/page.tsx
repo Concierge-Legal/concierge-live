@@ -2,6 +2,7 @@ import Image from "next/image";
 export default function Features() {
   
   return (
+    <main>
     <section className="flex overflow-hidden relative flex-col items-start px-16 py-20 leading-[150%] min-h-[900px] max-md:px-5">
       <Image
           src="/featuresplaceholder.jpg"
@@ -19,6 +20,20 @@ export default function Features() {
       </p>
       
     </section>
+
+    <section className="flex overflow-hidden relative flex-col items-center px-16 py-20 text-white leading-[150%] min-h-[479px] max-md:px-5">
+   
+      <h2 className="relative mt-8 text-5xl font-bold text-center leading-[58px] w-[768px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+      Real-Time Analytics
+      </h2>
+      <p className="relative mt-6 text-lg text-center max-md:max-w-full">
+      Monitor live data on user interactions to see what your clients are asking in real time. Understand immediate needs and adjust your services dynamically.
+      </p>
+
+    </section>
+    
+  
+  </main>
   );
 };
 const dashboardFeatures = [

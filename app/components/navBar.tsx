@@ -34,17 +34,6 @@ const NavBar = () => {
                 <StyledLink href={href}>{label}</StyledLink>
               </li>
             ))}
-            {/* <li>
-              <StyledLink href="#">
-                Company
-                <img
-                  loading="lazy"
-                  src="https://cdn.builder.io/api/v1/image/assets/TEMP/1731ce0505219643849696d79c9f822fcd02ad481bda3b4d5933a88033c6ac23?apiKey=0444d2d78e064e0ba018ac2a58ee83fe&"
-                  alt=""
-                  className="shrink-0 w-6 aspect-square inline"
-                />
-              </StyledLink>
-            </li> */}
           </ul>
           <div className="flex gap-4 justify-center whitespace-nowrap">
             <AuthButton />
