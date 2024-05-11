@@ -1,26 +1,47 @@
-import React from 'react';
-import AuthButton from './imported/AuthButton';
-import StyledLink from './StyledLink';  // Make sure the import path is correct
+import React from "react";
+import AuthButton from "./imported/AuthButton";
+import StyledLink from "./StyledLink"; // Make sure the import path is correct
+
+interface ButtonProps {
+  variant?: "outline" | "solid";
+  children: React.ReactNode;
+}
+
+const Button: React.FC<ButtonProps> = ({ variant = "outline", children }) => {
+  const className = `justify-center px-5 py-2 border border-black border-solid ${
+    variant === "solid" ? "text-white bg-black" : "text-black"
+  }`;
+
+  return <div className={className}>{children}</div>;
+};
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/chat", label: "Demo" },
+  { href: "/features", label: "Features" },
+  { href: "/pricing", label: "Pricing" },
+];
 
 const NavBar = () => {
-    return (
-        <div className="w-full">
-            <nav className="fixed top-0 left-0 right-0 z-50 bg-primary shadow-md">
-                <div className="container mx-auto px-6 py-4 flex justify-between items-center">
-                    <div className="flex items-center">
-                        <div className="text-lg font-semibold text-secondary">Concierge</div>
-                    </div>
-                    <ul className="flex items-center space-x-8">
-                        <StyledLink href="/">Home</StyledLink>
-                        <StyledLink href="/about">About</StyledLink>
-                        <StyledLink href="/chat">Concierge Chat</StyledLink>
-                        <StyledLink href="/network">Network</StyledLink>
-                    </ul>
-                    <AuthButton />
-                </div>
-            </nav>
-        </div>
-    );
+  return (
+    <header className="flex flex-col justify-center px-16 py-4 text-base leading-6 bg-white border-b border-solid border-b-black max-md:px-5">
+      <div className="flex gap-5 justify-between w-full max-md:flex-wrap max-md:mr-1 max-md:max-w-full">
+        Concierge
+        <nav className="flex gap-5 justify-center max-md:flex-wrap">
+          <ul className="flex gap-5 justify-between my-auto text-black">
+            {links.map(({ href, label }) => (
+              <li key={label}>
+                <StyledLink href={href}>{label}</StyledLink>
+              </li>
+            ))}
+          </ul>
+          <div className="flex gap-4 justify-center whitespace-nowrap">
+            <AuthButton />
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
 };
 
 export default NavBar;
