@@ -74,6 +74,7 @@ export default function Home() {
   ];
   return (
     <div className="min-h-screen flex flex-col bg-white text-black">
+
       <main className="flex-grow">
         <section
           className="relative text-center w-full"
