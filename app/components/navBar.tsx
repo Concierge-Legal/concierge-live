@@ -30,9 +30,9 @@ const NavBar = () => {
         <nav className="flex gap-5 justify-center max-md:flex-wrap">
           <ul className="flex gap-5 justify-between my-auto text-black">
             {links.map(({ href, label }) => (
-              <li key={label}>
+              <ul key={label}>
                 <StyledLink href={href}>{label}</StyledLink>
-              </li>
+              </ul>
             ))}
           </ul>
           <div className="flex gap-4 justify-center whitespace-nowrap">
