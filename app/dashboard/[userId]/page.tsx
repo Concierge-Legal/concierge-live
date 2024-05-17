@@ -1,10 +1,10 @@
 // Import necessary functions and components
 import React from 'react';
 import { createClient } from "@/utils/supabase/server";
-import { CustomLineChart } from '@/app/components/charts/lineChart';
-import { CustomPieChart } from '@/app/components/charts/pieChart';
-import { CustomBarChart } from '@/app/components/charts/barChart';
-import { AlertComponent } from '@/app/components/dashboard/alert'
+import { CustomLineChart } from '@/components/charts/lineChart';
+import { CustomPieChart } from '@/components/charts/pieChart';
+import { CustomBarChart } from '@/components/charts/barChart';
+import { AlertComponent } from '@/components/dashboard/alert'
 
 const dailyConversationData = [
   { day: 'Mon', conversations: 120 },

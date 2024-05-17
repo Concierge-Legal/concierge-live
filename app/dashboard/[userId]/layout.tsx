@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import TopBar from '@/app/components/dashboard/TopBar'
-import NavigationSidebar from '@/app/components/dashboard/NavigationSidebar'
+import TopBar from '@/components/dashboard/TopBar'
+import NavigationSidebar from '@/components/dashboard/NavigationSidebar'
 
 
 export default function Layout({ children, params }: { 

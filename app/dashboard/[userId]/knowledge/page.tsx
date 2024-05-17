@@ -1,9 +1,11 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@/utils/supabase/client';
-import CategorySelector from '@/app/components/dashboard/fileManagement/CategorySelector';
-import FileUpload from '@/app/components/dashboard/fileManagement/FileUpload';
-import FileList from '@/app/components/dashboard/fileManagement/FileList';
+import CategorySelector from '@/components/dashboard/fileManagement/CategorySelector';
+import FileUploadButton from '@/components/dashboard/fileManagement/FileUpload';
+import FileViewer from '@/components/dashboard/fileManagement/FileViewer';
+import FileList from '@/components/dashboard/fileManagement/FileList';
+import MetadataEditor from '@/components/dashboard/fileManagement/MetadataEditor';
 
 // Initialize Supabase client (configure your Supabase details)
 const supabase = createClient();
@@ -50,14 +52,20 @@ const KnowledgeDashboardSubpage: React.FC<{ userId: string }> = ({ userId }) => 
 
   return (
     
-        <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h1 className="text-2xl font-semibold text-gray-800 mb-6">Knowledge Management Dashboard</h1>
-            <CategorySelector selectedCategory={selectedCategory} onChange={setSelectedCategory} />
-            <FileUpload onFileUpload={handleFileUpload} />
-            <FileList fileList={fileList} onDelete={handleFileDelete} />
+    
+        <div className="flex flex-col md:flex-row p-4 gap-4">
+          <div className="md:w-1/3 bg-white shadow-lg p-4 rounded-lg">
+            <CategorySelector />
+            
+            <FileList />
+            <FileUploadButton />
+          </div>
+          <div className="md:w-2/3 bg-white shadow-lg p-4 rounded-lg flex flex-col">
+            <FileViewer />
+            <MetadataEditor />
           </div>
         </div>
+      
       
   );
 };
