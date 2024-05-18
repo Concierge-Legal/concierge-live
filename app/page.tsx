@@ -87,7 +87,7 @@ export default function Home() {
           >
             Your browser does not support the video tag.
           </video>
-          <div className="relative mt-52 text-2xl sm:text-5xl md:text-7xl lg:text-9xl font-bold text-white font-bold leading-[67px] w-[560px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+          <div className="relative mt-52 text-2xl sm:text-5xl md:text-7xl lg:text-9xl  text-white font-bold leading-[67px] w-[560px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
             CONCIERGE
           </div>
           <div className="relative mt-6 text-lg leading-7 w-[560px] max-md:max-w-full">

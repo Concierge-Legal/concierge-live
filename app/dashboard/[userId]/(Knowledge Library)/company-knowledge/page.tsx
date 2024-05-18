@@ -76,7 +76,7 @@ const data: CustomFile[] = [
 ];
 
 
-export default async function KnowledgeDashboardSubpage({ params }: { params: { userId: string } }) {
+export default function CompanyKnowledgeDashboardSubpage({ params }: { params: { userId: string } }) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -183,7 +183,7 @@ export default async function KnowledgeDashboardSubpage({ params }: { params: { 
 		<div className="min-h-screen bg-white px-8 py-12">
 			<div className="max-w-7xl mx-auto">
 				<div className="bg-gray-100 text-black p-8 rounded-lg shadow-lg mb-12 text-center">
-					<h1 className="text-5xl font-bold">Concierge Knowledge Upload</h1>
+					<h1 className="text-5xl font-bold">Industry Knowledge Upload</h1>
 				</div>
 				{!editorOpen ? (
 					<>

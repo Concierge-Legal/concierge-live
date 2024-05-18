@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { createClient } from "../../utils/supabase/client"
 import { redirect } from "next/navigation";
 import { SubmitButton } from "./submit-button";
+import { login, signup } from './actions'
 
 export default function Login({
   searchParams,
@@ -10,48 +11,14 @@ export default function Login({
   searchParams: { message: string };
 }) {
   
-  const signIn = async (formData: FormData) => {
+  const signInLocal = async (formData: FormData) => {
     "use server";
-
-    console.log(`Inside signIn function on app/login/page.tsx!`)
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    console.log(`Error from supabase signIn: ${error}`)
-
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
-    return redirect(`/dashboard/${data.user.id}`);
+    await login(formData);
   };
 
-  const signUp = async (formData: FormData) => {
+  const signUpLocal = async (formData: FormData) => {
     "use server";
-
-    const origin = headers().get("origin");
-    const email = formData.get("email") as string;
-    const password = formData.get("password") as string;
-    const supabase = createClient();
-
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${origin}/auth/callback`,
-      },
-    });
-    console.log(`Error from supabase Signup: ${error}`)
-    if (error) {
-      return redirect("/login?message=Could not authenticate user");
-    }
-
-    return redirect("/login?message=Check email to continue sign in process");
+    await signup(formData);
   };
 
   return (
@@ -99,14 +66,14 @@ export default function Login({
           required
         />
         <SubmitButton
-          formAction={signIn}
+          formAction={signInLocal}
           className="bg-green-700 rounded-md px-4 py-2 text-foreground mb-2"
           pendingText="Signing In..."
         >
           Sign In
         </SubmitButton>
         <SubmitButton
-          formAction={signUp}
+          formAction={signUpLocal}
           className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
           pendingText="Signing Up..."
         >
@@ -121,3 +88,18 @@ export default function Login({
     </div>
   );
 }
+
+// import { login, signup } from './actions'
+
+// export default function LoginPage() {
+//   return (
+//     <form>
+//       <label htmlFor="email">Email:</label>
+//       <input id="email" name="email" type="email" required />
+//       <label htmlFor="password">Password:</label>
+//       <input id="password" name="password" type="password" required />
+//       <button formAction={login}>Log in</button>
+//       <button formAction={signup}>Sign up</button>
+//     </form>
+//   )
+// }

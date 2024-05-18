@@ -1,5 +1,5 @@
 import React from "react";
-import AuthButton from "./imported/AuthButton";
+import { DashboardButton } from "./imported/AuthButton";
 import StyledLink from "./StyledLink"; // Make sure the import path is correct
 
 interface ButtonProps {
@@ -7,13 +7,13 @@ interface ButtonProps {
   children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ variant = "outline", children }) => {
-  const className = `justify-center px-5 py-2 border border-black border-solid ${
-    variant === "solid" ? "text-white bg-black" : "text-black"
-  }`;
+// const Button: React.FC<ButtonProps> = ({ variant = "outline", children }) => {
+//   const className = `justify-center px-5 py-2 border border-black border-solid ${
+//     variant === "solid" ? "text-white bg-black" : "text-black"
+//   }`;
 
-  return <div className={className}>{children}</div>;
-};
+//   return <div className={className}>{children}</div>;
+// };
 
 const links = [
   { href: "/", label: "Home" },
@@ -36,7 +36,7 @@ const NavBar = () => {
             ))}
           </ul>
           <div className="flex gap-4 justify-center whitespace-nowrap">
-            <AuthButton />
+            <DashboardButton></DashboardButton>
           </div>
         </nav>
       </div>
