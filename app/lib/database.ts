@@ -47,11 +47,12 @@ export async function searchSimilarEmbeddings(query: string) {
       if (error) throw error;
 
       // Output the results
+      console.log(`Data before finalString: ${data}`)
       let finalString = ''
       for(let i = 0; i < 3; i++) {
         finalString += data[i].node_text
       }
-      console.log(data)
+      
       return finalString
   } catch (err) {
       console.error('Error searching similar embeddings:', err);

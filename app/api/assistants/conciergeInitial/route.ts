@@ -77,7 +77,7 @@ export async function POST(req: Request) {
               console.log(args)
               const toolId = toolCall.id;
               let output: string = "Error occured.";
-
+              console.log(toolCall.function.name)
               switch (toolCall.function.name) {
                 case 'ConsultAbe':
                   // Call this function asynchronously!
@@ -105,7 +105,7 @@ export async function POST(req: Request) {
                   //output = await HandleSpecificHelpRequest(args['serviceType'], args['details']);
                   output = await searchSimilarEmbeddings(args.query)!
                   break;
-                case 'SearchLexdaoCompanyInformationDB':
+                case 'SearchLexdaoCompanyInfoDB':
                   output = await searchSimilarEmbeddings(args.query)!
                   break;
                 case 'EscalateHelpRequest':
