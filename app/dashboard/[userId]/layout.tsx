@@ -1,21 +1,17 @@
-import Link from 'next/link'
-import TopBar from '@/app/components/dashboard/TopBar'
-import NavigationSidebar from '@/app/components/dashboard/NavigationSidebar'
+import Link from 'next/link';
+import NavigationSidebar from '@/components/dashboard/NavigationSidebar';
 
-
-export default function Layout({ children, params }: { 
+export default function Layout({ children, params }: {
   children: React.ReactNode,
-  params: { userId: string }
+  params: { userId: string; };
 }) {
   return (
-    <>
-      <div className="flex h-screen">
+    <div className="flex h-screen min-h-screen"> {/* Ensure the container fills the viewport height */}
       <NavigationSidebar activeMenu={'Home'} userId={params.userId} />
-      <div className="flex flex-col flex-1">
-        <div>{children}</div>
+      <div className="flex flex-col flex-1 overflow-y-auto"> {/* Scroll only the main content */}
+       
+        {children} {/* This is where the scrollable content will be */}
       </div>
     </div>
-      
-    </>
   );
 }

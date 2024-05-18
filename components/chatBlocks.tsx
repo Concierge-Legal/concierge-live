@@ -4,8 +4,8 @@ import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 import { useChatContext } from './chatContext';
-import { useStreaming } from '../lib/hooks/useStreaming';
-import { StreamingType, SpeakerType } from '../lib/types';
+import { useStreaming } from '../app/lib/hooks/useStreaming';
+import { StreamingType, SpeakerType } from '../app/lib/types';
 import ReactMarkdown from 'react-markdown';
 
 

@@ -1,8 +1,8 @@
-import { CustomAreaChart } from "@/app/components/charts/areaChart";
-import { CustomBarChart } from "@/app/components/charts/barChart";
-import { CustomLineChart } from "@/app/components/charts/lineChart";
-import { CustomHistogram } from "@/app/components/charts/histogram";
-import { CustomPieChart } from "@/app/components/charts/pieChart";
+import { CustomAreaChart } from "@/components/charts/areaChart";
+import { CustomBarChart } from "@/components/charts/barChart";
+import { CustomLineChart } from "@/components/charts/lineChart";
+import { CustomHistogram } from "@/components/charts/histogram";
+import { CustomPieChart } from "@/components/charts/pieChart";
 
 import { ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'; // For representing FlowChart data as Scatter Chart
 

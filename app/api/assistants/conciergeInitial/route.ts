@@ -3,6 +3,10 @@ import { BaseRequest } from '../../../lib/apiTypes';
 import OpenAI from 'openai';
 import { AssistantResponse } from 'ai';
 
+
+const initialUserQuestion = `Hello - I am looking to shut down a US company that works within Crypto and NFTs and open up a new company in the Marshall Islands, transferring all assets from the US company to the new Marshall company. 
+
+I would like some additional information on the legality surrounding this move, and best practices in terms of transfer of assets, exit taxes, etc.`
 interface ChatRequest {
   body: BaseRequest;
   message: string;
@@ -74,14 +78,14 @@ export async function POST(req: Request) {
               let output: string = "Error occured.";
 
               switch (toolCall.function.name) {
-                case 'ConsultAbeForLegalInformation':
+                case 'ConsultAbe':
                   // Call this function asynchronously!
                   const researchQuery: string = args["query"];
                   sendDataMessage({
                     role: 'data',
                     data: JSON.stringify({
                       messageType: 'functionCall',
-                      functionCalled: 'ConsultAbeForLegalInformation',
+                      functionCalled: 'ConsultAbe',
                       parameters: { query: researchQuery },
                       description: `Abe received the request to research ${researchQuery}}`,
                     }),
@@ -90,14 +94,17 @@ export async function POST(req: Request) {
                   output = "Abe here. I received your request, and will individually contact the user with my full response, however I need some more time. Feel free to continue interacting with the user";
                   break;
 
-                case 'FetchGeneralInformation':
+                case 'SearchIndustryKnowledgeDB':
                   // Wait for the result, in order to submit back to the thread.
                   //output = await FetchGeneralInformation(args['topic']);
                   output = "TODO!";
                   break;
 
-                case 'HandleSpecificHelpRequest':
+                case 'SearchOrganizationProductsDB':
                   //output = await HandleSpecificHelpRequest(args['serviceType'], args['details']);
+                  output = "TODO";
+                  break;
+                case 'SearchOrganizationWebsiteDB':
                   output = "TODO";
                   break;
               }
