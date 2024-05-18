@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import NavBar from "@/components/navBar";
 interface SectionHeadingProps {
   text: string;
 }
@@ -19,6 +19,7 @@ export default function Features() {
   
   return (
     <main>
+    <NavBar></NavBar>
     <div className="flex overflow-hidden relative flex-col items-start px-16 py-20 text-white leading-[150%] min-h-[382px] max-md:px-5">
     <Image
           src="/greenbackdrop.jpg"

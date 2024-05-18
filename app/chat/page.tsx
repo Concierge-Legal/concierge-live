@@ -5,6 +5,7 @@ import ContentQueue from '../../components/contentQueue'; // Adjust path as nece
 import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../lib/types'; // Assume types are exported from a types file
 import { Message, useAssistant as useAssistant } from 'ai/react';
 import { JSONValue } from 'ai';
+import NavBar from '@/components/navBar';
 
 
 
@@ -207,6 +208,7 @@ export default function Chat() {
 
 	return (
 		<ChatContextProvider value={{ currentlyStreamingBlockId: conciergeStreamBlockId, showLoadingIcon }}>
+			<NavBar></NavBar>
 			<div className="App flex flex-col min-h-screen bg-app">
 				<div className="flex flex-col shadow-lg rounded-lg p-6 bg-chat flex-grow">
 					<div className="flex flex-col flex-grow">

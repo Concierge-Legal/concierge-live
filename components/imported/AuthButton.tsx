@@ -32,7 +32,7 @@ export default async function AuthButton() {
       href="/login"
       className="relative px-4 py-2 bg-primary border border-secondary text-black font-medium rounded-lg shadow hover:bg-secondary hover:text-primary transition ease-in-out duration-200"
     >
-      Login
+      Dashboard
     </a>
   );
 }

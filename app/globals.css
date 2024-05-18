@@ -2,59 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* Primary background and text colors */
+    --background: 0 0% 100%; /* White */
+    --foreground: 200 15% 20%; /* Dark grey for text */
 
+    /* Muted background and text colors for less emphasis areas */
+    --muted: 220 5% 95%; /* Very light gray */
+    --muted-foreground: 200 15% 20%; /* Dark grey for text */
 
-/* Enhancements for responsive design */
-@media (min-width: 768px) {
-  .container {
-    max-width: 1024px; /* Optimized container width for readability */
+    /* Card background */
+    --card: 0 0% 98%; /* Slightly off-white */
+    --card-foreground: 200 15% 20%; /* Dark grey for text */
+
+    /* Popover component styling */
+    --popover: 0 0% 98%; /* Slightly off-white */
+    --popover-foreground: 200 15% 20%; /* Dark grey for text */
+
+    /* Borders and inputs */
+    --border: 0 0% 80%; /* Light grey */
+    --input: 0 0% 98%; /* Slightly off-white */
+
+    /* Primary interaction elements like buttons */
+    --primary: 120 40% 50%; /* Green */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    /* Secondary interaction elements */
+    --secondary: 0 0% 95%; /* Light grey */
+    --secondary-foreground: 200 15% 20%; /* Dark grey for text */
+
+    /* Accent elements for hover states or small components */
+    --accent: 120 40% 45%; /* Slightly darker green */
+    --accent-foreground: 0 0% 100%; /* White */
+
+    /* Destructive actions */
+    --destructive: 0 75% 60%; /* Red */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    /* Focus rings */
+    --ring: 120 40% 50%; /* Green */
+
+    /* Common border radius for UI elements */
+    --radius: 0.5rem;
   }
-}
 
-/* Improved visual balance for text */
-.text-balance {
-  text-wrap: balance;
-}
-
-.HomepageButton {
-  width: auto;
-  padding: 10px 20px; 
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(to right, #32CD32, #D7F0D6, #32CD32, #32CD32, #D7F0D6, #32CD32);
-  background-size: 250%;
-  background-position: left;
-  color: #90E190; /* Text color */
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition-duration: 1s;
-  overflow: hidden;
-}
-
-.HomepageButton::before {
-  position: absolute;
-  content: "DEMO CONCIERGE";
-  color: white; /* Text inside the before element */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%; 
-  height: 90%;
-  border-radius: 8px;
-  transition-duration: 1s;
-  background-color: rgba(38, 33, 33, 0.869); /* Background of the before pseudo-element */
-  background-size: 200%;
-}
-
-.HomepageButton:hover {
-  background-position: right;
-  transition-duration: 1s;
-}
-
-.HomepageButton:hover::before {
-  background-position: right;
-  transition-duration: 1s;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
