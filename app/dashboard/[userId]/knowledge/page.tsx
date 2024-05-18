@@ -6,7 +6,6 @@ import FileUploadButton from '@/components/dashboard/fileManagement/FileUpload';
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
 import FileList from '@/components/dashboard/fileManagement/FileList';
 import MetadataEditor from '@/components/dashboard/fileManagement/MetadataEditor';
-import { DataTable } from '@/components/dashboard/fileManagement/data-table';
 import { CustomFile, getColumns } from "@/components/dashboard/fileManagement/columns";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import {

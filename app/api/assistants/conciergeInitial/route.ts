@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { BaseRequest } from '../../../lib/apiTypes';
 import OpenAI from 'openai';
 import { AssistantResponse } from 'ai';
+import { searchSimilarEmbeddings } from '@/app/lib/database';
 
 
 const initialUserQuestion = `Hello - I am looking to shut down a US company that works within Crypto and NFTs and open up a new company in the Marshall Islands, transferring all assets from the US company to the new Marshall company. 
@@ -90,21 +91,24 @@ export async function POST(req: Request) {
                       description: `Abe received the request to research ${researchQuery}}`,
                     }),
                   });
-
+                  // {"message": "Abe here. I received your request, and will individually contact the user with my full response, however I need some more time. Feel free to continue interacting with the user"}
                   output = "Abe here. I received your request, and will individually contact the user with my full response, however I need some more time. Feel free to continue interacting with the user";
                   break;
 
                 case 'SearchIndustryKnowledgeDB':
                   // Wait for the result, in order to submit back to the thread.
                   //output = await FetchGeneralInformation(args['topic']);
-                  output = "TODO!";
+                  output = await searchSimilarEmbeddings(args.query)!
                   break;
 
-                case 'SearchOrganizationProductsDB':
+                case 'SearchLexdaoNetworkDB':
                   //output = await HandleSpecificHelpRequest(args['serviceType'], args['details']);
-                  output = "TODO";
+                  output = await searchSimilarEmbeddings(args.query)!
                   break;
-                case 'SearchOrganizationWebsiteDB':
+                case 'SearchLexdaoCompanyInformationDB':
+                  output = await searchSimilarEmbeddings(args.query)!
+                  break;
+                case 'EscalateHelpRequest':
                   output = "TODO";
                   break;
               }
@@ -114,7 +118,7 @@ export async function POST(req: Request) {
 
 
 
-
+              console.log(output)
               return { tool_call_id: toolCall.id, output: output } as OpenAI.Beta.Threads.Runs.RunSubmitToolOutputsParams.ToolOutput;
             }
           )
