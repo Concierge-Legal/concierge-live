@@ -25,15 +25,6 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-	DropdownMenu,
-	DropdownMenuCheckboxItem,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
 	Table,
@@ -86,7 +77,7 @@ const data: CustomFile[] = [
 ];
 
 
-const KnowledgeDashboardSubpage: React.FC<{ userId: string; }> = ({ userId }) => {
+export default async function KnowledgeDashboardSubpage({ params }: { params: { userId: string } }) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -307,4 +298,4 @@ const KnowledgeDashboardSubpage: React.FC<{ userId: string; }> = ({ userId }) =>
 	);
 };
 
-export default KnowledgeDashboardSubpage;
+
