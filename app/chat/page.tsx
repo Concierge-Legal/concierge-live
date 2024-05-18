@@ -5,7 +5,10 @@ import ContentQueue from '../../components/contentQueue'; // Adjust path as nece
 import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../lib/types'; // Assume types are exported from a types file
 import { Message, useAssistant as useAssistant } from 'ai/react';
 import { JSONValue } from 'ai';
-import NavBar from '@/components/navBar';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+
+
 
 
 
@@ -133,7 +136,7 @@ export default function Chat() {
 		description: string;
 	}
 	const processDataMessage = async (message: Message) => {
-		console.log(message)
+		console.log(message);
 		if (!message.data) {
 			return;
 		}
@@ -171,33 +174,33 @@ export default function Chat() {
 	// useEffect to log changes to messages
 	useEffect(() => {
 		//console.log(`Length of messages: ${messages.length}`)
-		
+
 		if (messages.length == 0) {
 			return;
 		}
-		
+
 		//console.log(messages[0]);
 		messages.forEach(message => {
-			console.log(message)
+			console.log(message);
 			const { id, role, content } = message;
-			console.log(`Id: ${id}, role: ${role}, content: ${content}`)
+			console.log(`Id: ${id}, role: ${role}, content: ${content}`);
 			if (id === "") {
 				console.log(`Ignored message with no ID!`);
-			} else if (role === "user" && ! id.includes('msg_')) {
+			} else if (role === "user" && !id.includes('msg_')) {
 
-				console.log(`Ignoring preliminary user message!`)
-			
+				console.log(`Ignoring preliminary user message!`);
+
 			} else if (oldMessageIds.includes(id) && id !== conciergeStreamBlockId) {
 				console.log(`Ignoring old message ID!`);
 			} else if (role === "assistant" || role === "user") {
 
-				console.log("Moving to processChatMessage!")
+				console.log("Moving to processChatMessage!");
 				processChatMessage(message);
 			} else if (role === "function") {
-				console.log("Moving to processFunctionMessage!")
+				console.log("Moving to processFunctionMessage!");
 				processFunctionMessage(message);
 			} else if (role === "data") {
-				console.log("Moving to processDataMessage")
+				console.log("Moving to processDataMessage");
 				processDataMessage(message);
 			} else {
 				console.log(`Ignored message from role: ${role}`);
@@ -208,32 +211,35 @@ export default function Chat() {
 
 	return (
 		<ChatContextProvider value={{ currentlyStreamingBlockId: conciergeStreamBlockId, showLoadingIcon }}>
-			<div className="App flex flex-col min-h-screen bg-app">
-				<div className="flex flex-col shadow-lg rounded-lg p-6 bg-chat flex-grow">
+			<div className="App flex flex-col min-h-screen bg-background">
+				<div className="flex flex-col shadow-lg rounded-lg p-6 bg-card flex-grow">
 					<div className="flex flex-col flex-grow">
-						<div className="overflow-y-auto flex-grow p-4 rounded-lg">
+						<div className="overflow-y-auto flex-grow p-4 rounded-lg bg-muted">
 							<ContentQueue items={contentBlocks} />
 						</div>
-						
 					</div>
-					<form className="flex gap-2 mt-4 bg-white" onSubmit={submitMessage}>
-						<input
+					<form className="flex gap-2 mt-4 bg-card" onSubmit={submitMessage}>
+						<Input
 							disabled={status !== 'awaiting_message'}
-							className="flex-1 p-2 rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 bg-input border-focus"
+							className="flex-1 p-2 rounded-lg focus:outline-none focus:border-accent focus:ring-1 bg-input border-input"
 							value={input}
 							placeholder="How can I help you today?"
 							onChange={handleInputChange}
+							
 						/>
-						<button
+						<Button
 							type="submit"
-							className="bg-blue-600 px-6 py-2 rounded-lg hover:bg-button-hover focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-150 ease-in-out text-primary"
+							color="primary" // Choose from 'primary', 'secondary', etc., based on ShadCN themes
+							className="px-6 py-2 rounded-lg"
+							disabled={status !== 'awaiting_message'} // Disabled logic
 						>
 							Send
-						</button>
+						</Button>
 					</form>
 				</div>
 			</div>
 		</ChatContextProvider>
+
 
 
 
