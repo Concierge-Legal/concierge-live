@@ -8,9 +8,10 @@ import { Textarea } from '@/components/ui/textArea';
 import CustomTooltip from "@/components/ui/customTooltip";
 
 import { TabsList, Tabs, TabsTrigger, TabsContent } from '@/components/ui/tabs';
+import { Label } from "@/components/ui/label";
 import { Accordion } from '@/components/ui/accordion';
 import { Combobox } from '@/components/ui/combobox';
-
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 interface OrgInfoEditorProps {
     document: OrgInformationFile;
@@ -67,47 +68,96 @@ const OrgInfoEditor: React.FC<OrgInfoEditorProps> = ({ document, onSave }) => {
             <Tabs defaultValue="about" className="w-full">
                 <TabsList>
                     <TabsTrigger value="about">About</TabsTrigger>
-                    <TabsTrigger value="summary">Summary</TabsTrigger>
                     <TabsTrigger value="tags">Tags</TabsTrigger>
-                    <TabsTrigger value="management">Department</TabsTrigger>
                     <TabsTrigger value="questions">Questions</TabsTrigger>
                 </TabsList>
                 <TabsContent value="about">
-                    <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="name" />
-                    <CustomTooltip text='Edit the Name of the Document'></CustomTooltip>
-                </TabsContent>
-                <TabsContent value="summary">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>About</CardTitle>
+                            <CardDescription>
+                                Change AI Metadata about this document. Save Changes when Done.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            <div className="space-y-1">
+                                <div>
+                                    <Label className="px-2">Name</Label>
+                                    <CustomTooltip text='Edit the Name of the Document'></CustomTooltip>
+                                </div>
+                                <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="name" />
+                                
+                            </div>
+                            <div className="space-y-1">
+                                <Textarea value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Summary" />
 
-                    <Textarea value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Summary" />
+                                <CustomTooltip text='Provide a brief summary of the document'></CustomTooltip>
+                            </div>
+                            <div className="spay-y-1">
+                                <Input value={managingDepartment} onChange={(e) => setManagingDepartment(e.target.value)} placeholder="Managing Department" />
 
-                    <CustomTooltip text='Provide a brief summary of the document'></CustomTooltip>
-                </TabsContent>
-                <TabsContent value="tags">
-                    <Combobox
-                        frameworks={informationTypeTags}
-                        inputMessage="Select an Information Type..."
-                        emptyMessage="No information types found."
-                    />
-                </TabsContent>
-
-                <TabsContent value="management">
-
-                    <Input value={managingDepartment} onChange={(e) => setManagingDepartment(e.target.value)} placeholder="Managing Department" />
-
-                    <CustomTooltip text='Add the deparment managing this document'></CustomTooltip>
-                </TabsContent>
-                <TabsContent value="questions">
-                    <div>
-                        {hypotheticalQuestions.map((question, index) => (
-                            <div key={index}>
-                                <Input value={question} onChange={(e) => handleQuestionChange(e, index)} placeholder="Question" />
-
-                                <CustomTooltip text='Enter a hypothetical question this document answers'></CustomTooltip>
+                                <CustomTooltip text='Add the deparment managing this document'></CustomTooltip>
                             </div>
 
-                        ))}
-                        <Button onClick={() => setHypotheticalQuestions([...hypotheticalQuestions, ''])}>Add Another Question</Button>
-                    </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save changes</Button>
+                        </CardFooter>
+                    </Card>
+
+                </TabsContent>
+
+                <TabsContent value="tags">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Metadata Tags</CardTitle>
+                            <CardDescription>
+                                Select tags that describe this document. Save Changes when Done.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            <div className="space-y-1">
+                                <Combobox
+                                    frameworks={informationTypeTags}
+                                    inputMessage="Select an Information Type..."
+                                    emptyMessage="No information types found."
+                                />
+                                <CustomTooltip text='Information Type: Description'></CustomTooltip>
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save changes</Button>
+                        </CardFooter>
+                    </Card>
+
+                </TabsContent>
+
+                <TabsContent value="questions">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Metadata Tags</CardTitle>
+                            <CardDescription>
+                                Enter a hypothetical question this document answers.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            {/* <div>
+                                {hypotheticalQuestions.map((question, index) => (
+                                    <div key={index}>
+                                        <Input value={question} onChange={(e) => handleQuestionChange(e, index)} placeholder="Question" />
+
+                                        <CustomTooltip text='Hypothetical Question: Example'></CustomTooltip>
+                                    </div>
+
+                                ))}
+                                <Button onClick={() => setHypotheticalQuestions([...hypotheticalQuestions, ''])}>Add Another Question</Button>
+                            </div> */}
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save changes</Button>
+                        </CardFooter>
+                    </Card>
+
                 </TabsContent>
             </Tabs>
             {/* <div className="flex justify-end space-x-2 mt-4">
