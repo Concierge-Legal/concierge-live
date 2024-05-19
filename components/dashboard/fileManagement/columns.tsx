@@ -4,13 +4,7 @@
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema here if you want.
-export type CustomFile = {
-  id: string;
-  name: string;
-  type: string; // Added to distinguish between file types visually
-  size: string; // Adjusted to be a string for formatted sizes (e.g., "15 MB", "2 KB")
-  lastModified: string; // More readable date format
-}
+
 
 import * as React from "react"
 import {
@@ -49,12 +43,80 @@ import {
 } from "@/components/ui/table";
 
 
-type ColumnActions = {
-    handleEdit: (file: CustomFile) => void;
+
+
+// Basic File type definition
+export type File = {
+  id: string;
+  name: string;
+  type: string; // e.g., "PDF", "Text File"
+  size: string; // e.g., "1.2 MB"
+  lastModified: string; // e.g., "2023-01-01"
+}
+
+// Extended IndustryFile type definition
+export type IndustryFile = File & {
+  rawText: string;
+  summary: string;
+  textVectorEmbedding: number[]; // Assuming an array of numbers for simplicity
+  hypotheticalQuestions: {
+    commonQuestions: string[];
+    humanPopulated: boolean;
+    aiSuggested: boolean;
   };
+  aboutTheSource: string[];
+  categoryTags: string[];
+}
+export type OrgInformationFile = File & {
   
-  // Extend the column definitions to accept actions
-  export const getColumns = (actions: ColumnActions): ColumnDef<CustomFile>[] => [
+  rawText: string;
+  categoryTags: string[]; // Example values: "Mission", "Github", etc.
+  summary: string;
+  hypotheticalQuestions: {
+    commonQuestions: string[];
+    humanPopulated: boolean;
+    aiSuggested: boolean;
+  };
+  managingDepartment: string; // Department responsible for the file
+};
+
+export type ProductOffering = {
+  name: string;
+  price: string;
+  pricingMethod: "Flat" | "Hourly";
+  retainer: boolean;
+}
+
+// Define the ProductFile type for products and services database
+export type ProductFile = File & {
+  fullName: string; // Name/Title of the legal professional
+  contactInformation: {
+    email: string;
+    discord: string;
+    website?: string;
+    profilePictureUrl?: string;
+  };
+  parentOrganization: {
+    title: string;
+    entityType: string;
+    purpose: string;
+  };
+  authorizedJurisdictions: string[];
+  description: string;
+  servicesOffered: ProductOffering[];
+}
+
+
+
+// Actions type adjusted to handle the unified File type
+type ColumnActions = {
+  handleEdit: (file: File) => void;
+  handleDownload: (file: File) => void;
+  handleDelete: (file: File) => void;
+};
+
+// Adjusted column definitions to accept actions and handle both file types
+export const getColumns = (actions: ColumnActions): ColumnDef<File>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -75,22 +137,26 @@ type ColumnActions = {
     enableHiding: false,
   },
   {
-    accessorKey: "name",
+    accessorFn: (row: File) => row.name,
+    id: 'name',
     header: "File Name",
     cell: info => info.getValue(),
   },
   {
-    accessorKey: "type",
-    header: "Type",
+    accessorFn: (row: File) => row.type,
+    id: 'type',
+    header: "File Type",
     cell: info => info.getValue(),
   },
   {
-    accessorKey: "size",
-    header: "Size",
+    accessorFn: (row: File) => row.size,
+    id: 'size',
+    header: "Size (KB)",
     cell: info => info.getValue(),
   },
   {
-    accessorKey: "lastModified",
+    accessorFn: (row: File) => row.lastModified,
+    id: 'lastModified',
     header: "Last Modified",
     cell: info => info.getValue(),
   },
@@ -100,10 +166,12 @@ type ColumnActions = {
     cell: ({ row }) => (
       <div className="flex gap-2">
         <button onClick={() => actions.handleEdit(row.original)}>📝 Edit</button>
-        <button onClick={() => alert(`Downloading ${row.original.name}`)}>⬇️ Download</button>
-        <button onClick={() => alert(`Deleting ${row.original.name}`)}>🗑 Delete</button>
+        <button onClick={() => actions.handleDownload(row.original)}>⬇️ Download</button>
+        <button onClick={() => actions.handleDelete(row.original)}>🗑 Delete</button>
       </div>
     ),
     enableSorting: false,
   },
 ];
+
+

@@ -34,7 +34,7 @@ export default async function Dashboard({ params }: { params: { userId: string; 
 
   const supabase = createClient();
 
-  const { data: { user } } = await supabase.auth.getUser();
+  const { data: { user }, error } = await supabase.auth.getUser();
 
   const { userId } = params;
   console.log(`Inside Dashboard. UserId = ${userId}`);

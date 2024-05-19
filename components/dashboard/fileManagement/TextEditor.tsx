@@ -1,12 +1,11 @@
 import React from "react";
-import { CustomFile } from "./columns";
+import { File } from "./columns";
 import { Button } from "@/components/ui/button";
 import ReactQuill from 'react-quill';  // Import ReactQuill
 import 'react-quill/dist/quill.snow.css'; // Import Quill stylesheet
 
 interface TextEditorProps {
-  document: CustomFile;
-  onClose: () => void;
+  document: File;
   onSave: (content: string) => void;
 }
 
@@ -29,7 +28,7 @@ const formats = [
 ];
 
 
-const TextEditor: React.FC<TextEditorProps> = ({ document, onClose, onSave }) => {
+const TextEditor: React.FC<TextEditorProps> = ({ document, onSave }) => {
   const [content, setContent] = React.useState('');
 
   React.useEffect(() => {
@@ -43,10 +42,6 @@ const TextEditor: React.FC<TextEditorProps> = ({ document, onClose, onSave }) =>
 
   return (
     <div className="bg-white p-4 h-full w-full">
-      <div className="flex justify-between items-center mb-4">
-        <Button onClick={onClose}>← Back to Files</Button>
-        <Button onClick={handleSave}>Save</Button>
-      </div>
       <h2 className="text-lg font-semibold mb-2">{document.name}</h2>
       <ReactQuill
         theme="snow"

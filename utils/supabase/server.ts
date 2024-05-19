@@ -1,22 +1,21 @@
-import { createServerClient, type CookieOptions } from "@supabase/ssr/dist";
-import { cookies } from "next/headers";
+import { createServerClient, type CookieOptions } from '@supabase/ssr'
+import { cookies } from 'next/headers'
 
-export const createClient = () => {
-  const cookieStore = cookies();
-  console.log(`Creating server side Supabase Client! Inside utils/supabase/server.ts.\n`) // Cookie Store: ${cookieStore}`)
+export function createClient() {
+  const cookieStore = cookies()
+
   return createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
         get(name: string) {
-          return cookieStore.get(name)?.value;
+          return cookieStore.get(name)?.value
         },
         set(name: string, value: string, options: CookieOptions) {
           try {
-            cookieStore.set({ name, value, ...options });
+            cookieStore.set({ name, value, ...options })
           } catch (error) {
-            console.log(`Catching error. The 'set' method was called from a Server Component. Error ${error}`)
             // The `set` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
             // user sessions.
@@ -24,15 +23,14 @@ export const createClient = () => {
         },
         remove(name: string, options: CookieOptions) {
           try {
-            cookieStore.set({ name, value: "", ...options });
+            cookieStore.set({ name, value: '', ...options })
           } catch (error) {
-            console.log(`Catching error. The 'delete' method was called from a Server Component. Error ${error}`)
             // The `delete` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
             // user sessions.
           }
         },
       },
-    },
-  );
-};
+    }
+  )
+}
