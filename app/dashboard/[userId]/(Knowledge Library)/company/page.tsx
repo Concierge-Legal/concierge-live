@@ -4,9 +4,10 @@ import { createClient } from '@/utils/supabase/client';
 import CategorySelector from '@/components/dashboard/fileManagement/CategorySelector';
 import FileUploadButton from '@/components/dashboard/fileManagement/FileUpload';
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
+import { File, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
 import FileList from '@/components/dashboard/fileManagement/FileList';
 import MetadataEditor from '@/components/dashboard/fileManagement/MetadataEditor';
-import { CustomFile, getColumns } from "@/components/dashboard/fileManagement/columns";
+
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import {
 	ColumnDef,
@@ -33,50 +34,309 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
-
+import OrgInfoEditor from '@/components/dashboard/fileManagement/OrgInfoEditor';
 // Initialize Supabase client (configure your Supabase details)
 const supabase = createClient();
 
-const data: CustomFile[] = [
+const data: OrgInformationFile[] = [
+	// Governance Documents
 	{
-		id: "file001",
-		name: "Blockchain-based-gov-primitives",
+		id: "doc001",
+		name: "DemoDAO Charter",
+		type: "PDF",
+		size: "350 KB",
+		lastModified: "2023-01-15",
+		rawText: "",
+		categoryTags: ["Governance", "Charter"],
+		summary: "Defines the foundational governance structure and charter of DemoDAO.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the core governance structures of DemoDAO?", "How is the DAO organized?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Governance"
+	},
+	{
+		id: "doc002",
+		name: "Token Distribution Policy",
+		type: "PDF",
+		size: "290 KB",
+		lastModified: "2023-02-01",
+		rawText: "",
+		categoryTags: ["Governance", "Token"],
+		summary: "Outlines the policies for distribution and use of governance tokens within DemoDAO.",
+		hypotheticalQuestions: {
+			commonQuestions: ["How are governance tokens distributed?", "What are the rules for token usage?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		managingDepartment: "Legal"
+	},
+	{
+		id: "doc003",
+		name: "Board Meeting Minutes 2023-01",
 		type: "Text File",
-		size: "1.2 MB",
-		lastModified: "2022-09-15",
+		size: "150 KB",
+		lastModified: "2023-01-28",
+		rawText: "",
+		categoryTags: ["Governance", "Meeting"],
+		summary: "Minutes from the January 2023 board meeting of DemoDAO.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What decisions were made in the latest board meeting?", "Who attended the last board meeting?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Corporate Secretary"
+	},
+
+	// Legal and Regulatory Compliance
+	{
+		id: "doc004",
+		name: "AI Compliance Policy",
+		type: "PDF",
+		size: "410 KB",
+		lastModified: "2023-02-10",
+		rawText: "",
+		categoryTags: ["Legal", "AI", "Compliance"],
+		summary: "Document detailing compliance policies specific to AI technologies used by DemoDAO.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What compliance measures does DemoDAO follow for AI use?", "How does DemoDAO ensure AI ethical standards?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		managingDepartment: "Compliance"
 	},
 	{
-		id: "file002",
-		name: "Chatbot Development Best Practices.text",
+		id: "doc005",
+		name: "Data Protection Audit Report 2022",
+		type: "PDF",
+		size: "460 KB",
+		lastModified: "2023-03-05",
+		rawText: "",
+		categoryTags: ["Legal", "Compliance", "Audit"],
+		summary: "A comprehensive report on DemoDAO’s adherence to global data protection laws.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What were the findings of the last data protection audit?", "How has DemoDAO improved its data protection measures?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Compliance"
+	},
+
+	// And so on for other document types...
+
+	// Last document for sample space limit
+	{
+		id: "doc030",
+		name: "Member Exit Protocol",
 		type: "Text File",
-		size: "689 KB",
-		lastModified: "2022-08-20",
+		size: "210 KB",
+		lastModified: "2023-05-01",
+		rawText: "",
+		categoryTags: ["Membership", "Protocol"],
+		summary: "Outlines the process and implications of a member's decision to leave DemoDAO.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the steps for a member to exit DemoDAO?", "What happens to a member’s contributions after they leave?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Membership Services"
 	},
 	{
-		id: "file003",
-		name: "Machine Learning Algorithms Overview.docx",
-		type: "Document",
-		size: "2.5 MB",
-		lastModified: "2022-07-05",
+		id: "doc031",
+		name: "Annual Financial Report 2022",
+		type: "PDF",
+		size: "500 KB",
+		lastModified: "2023-04-12",
+		rawText: "",
+		categoryTags: ["Financial", "Annual Report"],
+		summary: "Comprehensive financial performance report of DemoDAO for the year 2022.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What was DemoDAO’s financial status in 2022?", "How did DemoDAO perform financially last year?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Finance"
 	},
 	{
-		id: "file004",
-		name: "Data Privacy in AI Services.md",
-		type: "Markdown",
-		size: "780 KB",
-		lastModified: "2022-10-01",
+		id: "doc032",
+		name: "Budget Forecast 2023-2024",
+		type: "Excel",
+		size: "320 KB",
+		lastModified: "2023-02-28",
+		rawText: "",
+		categoryTags: ["Financial", "Budget"],
+		summary: "Detailed budget projections for the fiscal years 2023 to 2024.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the budget expectations for the next fiscal year?", "How much budget is allocated to R&D?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Finance"
+	},
+
+	// Research and Development
+	{
+		id: "doc033",
+		name: "Whitepaper on AI-driven Contract Automation",
+		type: "PDF",
+		size: "410 KB",
+		lastModified: "2023-03-15",
+		rawText: "",
+		categoryTags: ["Research", "AI"],
+		summary: "Exploration of cutting-edge AI techniques to automate contract management processes.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What advancements does AI offer for contract management?", "How can AI transform contract automation?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		managingDepartment: "R&D"
+	},
+
+	// Human Resources
+	{
+		id: "doc034",
+		name: "Employee Handbook 2023",
+		type: "PDF",
+		size: "460 KB",
+		lastModified: "2023-01-10",
+		rawText: "",
+		categoryTags: ["HR", "Policy"],
+		summary: "Guidelines and policies for employees of DemoDAO, including code of conduct and ethics.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the core employee policies at DemoDAO?", "What conduct is expected from DemoDAO employees?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Human Resources"
 	},
 	{
-		id: "file005",
-		name: "AI Ethics and Compliance Regulations.text",
+		id: "doc035",
+		name: "AI Specialist Training Program",
+		type: "PDF",
+		size: "350 KB",
+		lastModified: "2023-04-01",
+		rawText: "",
+		categoryTags: ["HR", "Training"],
+		summary: "Comprehensive training modules for new AI specialists at DemoDAO.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What does the AI specialist training involve?", "How long is the training period for new AI specialists?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Human Resources"
+	},
+
+	// Educational and Outreach Programs
+	{
+		id: "doc036",
+		name: "Public Webinar Series on Legal Tech",
 		type: "Text File",
-		size: "465 KB",
-		lastModified: "2022-11-12",
+		size: "210 KB",
+		lastModified: "2023-03-22",
+		rawText: "",
+		categoryTags: ["Education", "Outreach"],
+		summary: "Schedule and topics for the upcoming public webinar series focused on innovations in legal technology.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What topics will be covered in the legal tech webinar?", "How can one register for the webinar series?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		managingDepartment: "Outreach"
 	},
+
+	// Technology and Infrastructure
+	{
+		id: "doc037",
+		name: "System Architecture Review 2023",
+		type: "PDF",
+		size: "470 KB",
+		lastModified: "2023-05-08",
+		rawText: "",
+		categoryTags: ["Technology", "Infrastructure"],
+		summary: "Annual review of DemoDAO’s system architecture, focusing on scalability and security enhancements.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What architectural improvements were made in the last year?", "How is DemoDAO enhancing its technological infrastructure?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		managingDepartment: "Technology"
+	},
+
+	// Marketing and Public Relations
+	{
+		id: "doc038",
+		name: "Annual Marketing Strategy 2023",
+		type: "PDF",
+		size: "390 KB",
+		lastModified: "2023-01-20",
+		rawText: "",
+		categoryTags: ["Marketing", "Strategy"],
+		summary: "The strategic marketing plan for DemoDAO in 2023, aiming to expand its reach and impact.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the key marketing initiatives for DemoDAO in 2023?", "How does DemoDAO plan to attract new members?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		managingDepartment: "Marketing"
+	},
+	{
+		id: "doc039",
+		name: "Community Engagement Report Q1 2023",
+		type: "PDF",
+		size: "410 KB",
+		lastModified: "2023-04-18",
+		rawText: "",
+		categoryTags: ["Public Relations", "Community"],
+		summary: "A report detailing DemoDAO’s community engagement activities and their impact during the first quarter of 2023.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What community engagement activities were conducted?", "How effective were the outreach efforts in Q1?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Public Relations"
+	},
+
+	// Membership Files
+	{
+		id: "doc040",
+		name: "New Member Onboarding Process",
+		type: "Text File",
+		size: "180 KB",
+		lastModified: "2023-02-25",
+		rawText: "",
+		categoryTags: ["Membership", "Onboarding"],
+		summary: "The onboarding process for new members joining DemoDAO, including initial steps and resources.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What is the onboarding process for new members?", "What resources are available to new members?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		managingDepartment: "Membership"
+	},
+	{
+		id: "doc045",
+		name: "Member Contribution Records 2022",
+		type: "Excel",
+		size: "260 KB",
+		lastModified: "2023-03-30",
+		rawText: "",
+		categoryTags: ["Membership", "Records"],
+		summary: "Detailed records of all contributions made by members of DemoDAO in the year 2022.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What contributions were made by members last year?", "Who were the top contributors in 2022?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		managingDepartment: "Membership"
+	}
 ];
 
+// This array now contains detailed entries for different document types relating to DemoDAO
 
-export default function CompanyKnowledgeDashboardSubpage({ params }: { params: { userId: string } }) {
+
+
+export default function CompanyKnowledgeDashboardSubpage({ params }: { params: { userId: string; }; }) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -85,16 +345,25 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const [editorOpen, setEditorOpen] = React.useState(false);
-	const [currentDocument, setCurrentDocument] = React.useState<CustomFile | null>(null);
+	const [currentDocument, setCurrentDocument] = React.useState<File | null>(null);
 
-	const handleEdit = (file: CustomFile) => {
+	const handleEdit = (file: File) => {
+		console.log(`Handling edit. Printing out file: ${file}`)
+		setCurrentDocument(file);
+		setEditorOpen(true);
+	};
+	const handleDownload = (file: File) => {
+		setCurrentDocument(file);
+		setEditorOpen(true);
+	};
+	const handleDelete = (file: File) => {
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
 
 	const table = useReactTable({
 		data,
-		columns: getColumns({ handleEdit }),
+		columns: getColumns({ handleEdit, handleDownload, handleDelete }),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -122,7 +391,7 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 	const handleCloseEditor = () => {
 		setEditorOpen(false);
 	};
-	const columns: ColumnDef<CustomFile>[] = [
+	const columns: ColumnDef<File>[] = [
 		{
 			id: "select",
 			header: ({ table }) => (
@@ -181,9 +450,9 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 
 	return (
 		<div className="min-h-screen bg-white px-8 py-12">
-			<div className="max-w-7xl mx-auto">
+			<div className="max-w-7xl mx-auto min-h-screen">
 				<div className="bg-gray-100 text-black p-8 rounded-lg shadow-lg mb-12 text-center">
-					<h1 className="text-5xl font-bold">Industry Knowledge Upload</h1>
+					<h1 className="text-5xl font-bold">Company Information Upload</h1>
 				</div>
 				{!editorOpen ? (
 					<>
@@ -287,8 +556,22 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 						</div>
 					</>
 				) : currentDocument ? (
-					<TextEditor document={currentDocument} onClose={handleCloseEditor} onSave={handleSave} />
+					<div className="flex flex-col w-full min-h-screen bg-gray-50 p-4">
+						<div className="flex justify-between items-center mb-4">
+							<Button onClick={handleCloseEditor} variant="outline">← Back to Files</Button>
+							<Button onClick={handleSave}>Save All Changes</Button>
+						</div>
+						<div className="flex flex-grow">
+							<div className="flex-1 p-4 h-full">
+								<TextEditor document={currentDocument} onSave={handleSave} />
+							</div>
+							<div className="flex-1 p-4 h-full">
+								<OrgInfoEditor document={currentDocument as OrgInformationFile} onSave={handleSave} />
+							</div>
+						</div>
+					</div>
 				) : null}
+
 
 
 			</div>

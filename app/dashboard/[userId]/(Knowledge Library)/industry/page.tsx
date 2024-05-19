@@ -1,12 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import { createClient } from '@/utils/supabase/client';
-import CategorySelector from '@/components/dashboard/fileManagement/CategorySelector';
-import FileUploadButton from '@/components/dashboard/fileManagement/FileUpload';
+
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
-import FileList from '@/components/dashboard/fileManagement/FileList';
-import MetadataEditor from '@/components/dashboard/fileManagement/MetadataEditor';
-import { CustomFile, getColumns } from "@/components/dashboard/fileManagement/columns";
+
+import { File, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import {
 	ColumnDef,
@@ -34,49 +31,316 @@ import {
 	TableRow,
 } from "@/components/ui/table";
 
-// Initialize Supabase client (configure your Supabase details)
-const supabase = createClient();
 
-const data: CustomFile[] = [
+const data: IndustryFile[] = [
 	{
-		id: "file001",
-		name: "Blockchain-based-gov-primitives",
-		type: "Text File",
-		size: "1.2 MB",
-		lastModified: "2022-09-15",
+		id: "file006",
+		name: "Smart Contract Best Practices",
+
+
+		type: "PDF",
+		size: "950 KB",
+		lastModified: "2023-02-15",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Guidelines and standards for developing robust smart contracts in legal frameworks.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the essential features of a legally compliant smart contract?", "How can smart contracts be used to automate legal processes?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["From our website"],
+		categoryTags: ["Legal Tech", "Smart Contracts"]
 	},
 	{
-		id: "file002",
-		name: "Chatbot Development Best Practices.text",
+		id: "file007",
+		name: "AI Mediation Protocols",
+
+
 		type: "Text File",
-		size: "689 KB",
-		lastModified: "2022-08-20",
+		size: "1.1 MB",
+		lastModified: "2023-03-22",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Exploring the use of AI to conduct unbiased mediations and negotiations.",
+		hypotheticalQuestions: {
+			commonQuestions: ["How does AI mediation work?", "What are the benefits of AI in resolving disputes?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		aboutTheSource: ["Internal document", "Peer Reviewed"],
+		categoryTags: ["AI Ethics", "Dispute Resolution"]
 	},
 	{
-		id: "file003",
-		name: "Machine Learning Algorithms Overview.docx",
+		id: "file008",
+		name: "Blockchain and Privacy Laws",
+
+
 		type: "Document",
-		size: "2.5 MB",
-		lastModified: "2022-07-05",
+		size: "650 KB",
+		lastModified: "2023-01-31",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Analysis of how blockchain technology intersects with global privacy regulations.",
+		hypotheticalQuestions: {
+			commonQuestions: ["How do blockchain technologies comply with GDPR?", "What are the privacy concerns associated with blockchain?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		aboutTheSource: ["Newsletter", "From a prominent professor named X"],
+		categoryTags: ["Crypto", "Privacy Law"]
 	},
 	{
-		id: "file004",
-		name: "Data Privacy in AI Services.md",
-		type: "Markdown",
-		size: "780 KB",
-		lastModified: "2022-10-01",
-	},
-	{
-		id: "file005",
-		name: "AI Ethics and Compliance Regulations.text",
+		id: "file009",
+		name: "AI Legal Engineer Certification Guide",
+
+
 		type: "Text File",
-		size: "465 KB",
-		lastModified: "2022-11-12",
+		size: "500 KB",
+		lastModified: "2023-04-10",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "A comprehensive guide to becoming a certified AI legal engineer at DemoDAO.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What qualifications are needed for AI legal engineer certification?", "What does the certification process involve at DemoDAO?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["From our website"],
+		categoryTags: ["Legal Engineering", "Education"]
 	},
+	{
+		id: "file010",
+		name: "Decentralized Governance Models",
+
+
+		type: "Markdown",
+		size: "820 KB",
+		lastModified: "2023-02-20",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Exploring different models of governance in decentralized systems.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are common decentralized governance structures?", "How do token-based governance models function?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["Combo of many"],
+		categoryTags: ["DAO Governance", "DAO Sociology"]
+	},
+	{
+		id: "file011",
+		name: "Tokenization and Legal Implications",
+
+
+		type: "PDF",
+		size: "740 KB",
+		lastModified: "2023-05-01",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "An exploration of how tokenization affects property rights and contractual obligations under the law.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What legal rights are associated with tokens?", "How does tokenization impact traditional contracts?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["Internal document"],
+		categoryTags: ["Crypto Law", "Token Economics"]
+	},
+	{
+		id: "file012",
+		name: "Regulatory Sandbox Models for Blockchain Innovations",
+
+
+		type: "Document",
+		size: "620 KB",
+		lastModified: "2023-04-18",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Discussion on how regulatory sandboxes are used to foster innovation in blockchain technology while ensuring compliance.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What is a regulatory sandbox?", "How do regulatory sandboxes aid blockchain startups?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		aboutTheSource: ["From our website"],
+		categoryTags: ["Blockchain Applications", "Legal Tech"]
+	},
+	{
+		id: "file013",
+		name: "AI Tools in Due Diligence Processes",
+
+
+		type: "Text File",
+		size: "560 KB",
+		lastModified: "2023-04-11",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "How AI tools are revolutionizing due diligence processes in legal transactions.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What AI tools are available for due diligence?", "How do AI tools improve accuracy and efficiency?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["Newsletter"],
+		categoryTags: ["AI Ethics", "Legal Engineering"]
+	},
+	{
+		id: "file014",
+		name: "Challenges of Implementing AI in Legal Frameworks",
+
+
+		type: "PDF",
+		size: "530 KB",
+		lastModified: "2023-03-07",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Identifying and addressing the major challenges in the integration of AI technologies in legal systems.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the main challenges of using AI in legal systems?", "How can these challenges be mitigated?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		aboutTheSource: ["From a prominent professor named X"],
+		categoryTags: ["AI Legal Frameworks", "Challenges"]
+	},
+	{
+		id: "file015",
+		name: "Ethics of AI in Mediation and Arbitration",
+
+
+		type: "Text File",
+		size: "690 KB",
+		lastModified: "2023-02-24",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Exploring ethical considerations when employing AI in mediation and arbitration settings.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What ethical issues arise with AI in mediation?", "How can fairness be ensured in AI-facilitated arbitration?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["Internal document", "Peer Reviewed"],
+		categoryTags: ["AI Ethics", "Dispute Resolution"]
+	},
+	{
+		id: "file016",
+		name: "Blockchain and Intellectual Property Rights",
+
+
+		type: "Markdown",
+		size: "480 KB",
+		lastModified: "2023-01-29",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Analysis of the impact of blockchain technology on intellectual property rights management.",
+		hypotheticalQuestions: {
+			commonQuestions: ["How does blockchain affect IP rights management?", "What are the benefits of blockchain for creators?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		aboutTheSource: ["Combo of many"],
+		categoryTags: ["Blockchain Applications", "Intellectual Property"]
+	},
+	{
+		id: "file017",
+		name: "Legal Implications of Decentralized Autonomous Organizations",
+
+
+		type: "Document",
+		size: "760 KB",
+		lastModified: "2023-05-15",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "A deep dive into the legal implications and regulatory considerations for DAOs.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What legal structures support DAOs?", "How are DAOs regulated across different jurisdictions?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["From our website"],
+		categoryTags: ["DAOs", "Legal Compliance"]
+	},
+	{
+		id: "file018",
+		name: "Using AI to Enhance Corporate Compliance",
+
+
+		type: "PDF",
+		size: "720 KB",
+		lastModified: "2023-03-14",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "How AI can be leveraged to improve compliance processes in corporate environments.",
+		hypotheticalQuestions: {
+			commonQuestions: ["How can AI enhance compliance monitoring?", "What are the benefits of AI in risk management?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		aboutTheSource: ["Newsletter"],
+		categoryTags: ["AI Applications", "Corporate Law"]
+	},
+	{
+		id: "file019",
+		name: "Fundamentals of Crypto Law",
+
+
+		type: "Text File",
+		size: "820 KB",
+		lastModified: "2023-04-03",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Essential legal concepts and frameworks applicable to cryptocurrency operations and transactions.",
+		hypotheticalQuestions: {
+			commonQuestions: ["What are the foundational legal principles of crypto law?", "How do different countries regulate cryptocurrencies?"],
+			humanPopulated: true,
+			aiSuggested: true
+		},
+		aboutTheSource: ["From our website"],
+		categoryTags: ["Crypto Law", "Regulatory Compliance"]
+	},
+	{
+		id: "file020",
+		name: "AI-Driven Contract Automation",
+
+
+		type: "Markdown",
+		size: "630 KB",
+		lastModified: "2023-02-22",
+
+		rawText: "",
+		textVectorEmbedding: [/* vector data */],
+		summary: "Exploring the use of artificial intelligence to automate and optimize contract creation and management.",
+		hypotheticalQuestions: {
+			commonQuestions: ["How does AI automate contract creation?", "What are the benefits of AI in contract management?"],
+			humanPopulated: true,
+			aiSuggested: false
+		},
+		aboutTheSource: ["Combo of many"],
+		categoryTags: ["AI Applications", "Legal Tech"]
+	}
 ];
 
 
-export default function IndustryKnowledgeDashboardSubpage({ params }: { params: { userId: string } }) {
+
+
+
+
+export default function IndustryKnowledgeDashboardSubpage({ params }: { params: { userId: string; }; }) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]
@@ -85,16 +349,24 @@ export default function IndustryKnowledgeDashboardSubpage({ params }: { params: 
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const [editorOpen, setEditorOpen] = React.useState(false);
-	const [currentDocument, setCurrentDocument] = React.useState<CustomFile | null>(null);
+	const [currentDocument, setCurrentDocument] = React.useState<File | null>(null);
 
-	const handleEdit = (file: CustomFile) => {
+	const handleEdit = (file: File) => {
+		setCurrentDocument(file);
+		setEditorOpen(true);
+	};
+	const handleDownload = (file: File) => {
+		setCurrentDocument(file);
+		setEditorOpen(true);
+	};
+	const handleDelete = (file: File) => {
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
 
 	const table = useReactTable({
 		data,
-		columns: getColumns({ handleEdit }),
+		columns: getColumns({ handleEdit, handleDownload, handleDelete }),
 		onSortingChange: setSorting,
 		onColumnFiltersChange: setColumnFilters,
 		getCoreRowModel: getCoreRowModel(),
@@ -122,7 +394,7 @@ export default function IndustryKnowledgeDashboardSubpage({ params }: { params: 
 	const handleCloseEditor = () => {
 		setEditorOpen(false);
 	};
-	const columns: ColumnDef<CustomFile>[] = [
+	const columns: ColumnDef<File>[] = [
 		{
 			id: "select",
 			header: ({ table }) => (
@@ -143,7 +415,7 @@ export default function IndustryKnowledgeDashboardSubpage({ params }: { params: 
 			enableHiding: false,
 		},
 		{
-			accessorKey: "name",
+			accessorKey: "title",
 			header: "File Name",
 			cell: info => info.getValue(),
 		},
@@ -192,7 +464,7 @@ export default function IndustryKnowledgeDashboardSubpage({ params }: { params: 
 							<div className="flex items-center justify-between py-4">
 								{/* Search input on the left */}
 								<Input
-									placeholder="Filter filename..."
+									placeholder="Filter name..."
 									value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
 									onChange={(event) => table.getColumn("name")?.setFilterValue(event.target.value)}
 									className="max-w-sm"
@@ -287,7 +559,7 @@ export default function IndustryKnowledgeDashboardSubpage({ params }: { params: 
 						</div>
 					</>
 				) : currentDocument ? (
-					<TextEditor document={currentDocument} onClose={handleCloseEditor} onSave={handleSave} />
+					<TextEditor document={currentDocument} onSave={handleSave} />
 				) : null}
 
 

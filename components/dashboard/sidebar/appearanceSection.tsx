@@ -21,7 +21,7 @@ const AppearanceSection: React.FC<{ userId: string, activeMenu: string; }> = ({ 
                     <Link href={`/dashboard/${userId}/appearance`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'appearance' ? 'bg-accent' : ''}`}>
                         Theme Settings
                     </Link>
-                    <Link href={`/dashboard/${userId}/appearance/layout`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
+                    <Link href={`/dashboard/${userId}/layout`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
                         Layout Customization
                     </Link>
                     

@@ -21,10 +21,10 @@ const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ us
                     <Link href={`/dashboard/${userId}/training`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'training' ? 'bg-accent' : ''}`}>
                         Training Models
                     </Link>
-                    <Link href={`/dashboard/${userId}/training/responses`} className="flex items-center py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/responses`} className="flex items-center py-2 text-sm hover:bg-accent">
                         Automated Responses Setup
                     </Link>
-                    <Link href={`/dashboard/${userId}/training/behavior`} className="flex items-center py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/behavior`} className="flex items-center py-2 text-sm hover:bg-accent">
                         Chatbot Behavior Settings
                     </Link>
 

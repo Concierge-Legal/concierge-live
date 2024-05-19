@@ -21,10 +21,10 @@ const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ us
                     <Link href={`/dashboard/${userId}/usage`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'usage' ? 'bg-accent' : ''}`}>
                         Usage
                     </Link>
-                    <Link href={`/dashboard/${userId}/billing/history`} className="flex items-center py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/history`} className="flex items-center py-2 text-sm hover:bg-accent">
                         Billing History
                     </Link>
-                    <Link href={`/dashboard/${userId}/billing/plans`} className="flex items-center py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/plans`} className="flex items-center py-2 text-sm hover:bg-accent">
                         Current Subscription Plan
                     </Link>
 

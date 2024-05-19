@@ -22,10 +22,10 @@ const AnalyticsSection: React.FC<{ userId: string, activeMenu: string }> = ({ us
                     <Link href={`/dashboard/${userId}/analytics`} className={`block py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
                         Analytics Overview
                     </Link>
-                    <Link href={`/dashboard/${userId}/analytics/conversion`} className="block py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/conversion`} className="block py-2 text-sm hover:bg-accent">
                         Conversion Metrics
                     </Link>
-                    <Link href={`/dashboard/${userId}/analytics/engagement`} className="block py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/engagement`} className="block py-2 text-sm hover:bg-accent">
                         Engagement Statistics
                     </Link>
                 </div>
