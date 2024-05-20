@@ -1,5 +1,5 @@
 // Assuming OrgInformationFile is exported from types.ts or a similar file
-import { File, OrgInformationFile } from './columns';
+import { BaseFile, OrgInformationFile } from './columns';
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -10,15 +10,17 @@ import CustomTooltip from "@/components/ui/customTooltip";
 import { TabsList, Tabs, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Label } from "@/components/ui/label";
 import { Accordion } from '@/components/ui/accordion';
-import { Combobox } from '@/components/ui/combobox';
+import { Combobox, typeTags } from '@/components/ui/combobox';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import LabelWithTooltip from '@/components/ui/labelWithTooltip';
 
 interface OrgInfoEditorProps {
     document: OrgInformationFile;
     onSave: (updatedDoc: OrgInformationFile) => void;
 }
 
-const informationTypeTags = [
+
+const informationTypeTags: typeTags[] = [
     { label: "Mission", value: "mission" },
     { label: "Github", value: "github" },
     { label: "Org Chart/ Employee Search", value: "org-chart" },
@@ -38,11 +40,14 @@ const OrgInfoEditor: React.FC<OrgInfoEditorProps> = ({ document, onSave }) => {
     const [hypotheticalQuestions, setHypotheticalQuestions] = useState<string[]>(document.hypotheticalQuestions.commonQuestions);
 
     useEffect(() => {
+        console.log(`Document changed!`)
+        console.log(document.name)
         setName(document.name);
         setRawText(document.rawText);
         setSummary(document.summary);
         setManagingDepartment(document.managingDepartment);
         setHypotheticalQuestions(document.hypotheticalQuestions.commonQuestions);
+        console.log(document.hypotheticalQuestions.commonQuestions)
     }, [document]);
 
     const handleQuestionChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
@@ -62,6 +67,7 @@ const OrgInfoEditor: React.FC<OrgInfoEditorProps> = ({ document, onSave }) => {
         };
         onSave(updatedDocument);
     };
+    console.log('informationTypeTags', informationTypeTags);
 
     return (
         <div className="p-4 bg-white shadow-md rounded-lg">
@@ -82,21 +88,22 @@ const OrgInfoEditor: React.FC<OrgInfoEditorProps> = ({ document, onSave }) => {
                         <CardContent className="space-y-2">
                             <div className="space-y-1">
                                 <div>
-                                    <Label className="px-2">Name</Label>
-                                    <CustomTooltip text='Edit the Name of the Document'></CustomTooltip>
+                                    <LabelWithTooltip labelText='Name' tooltipText='Edit the name of the document.'></LabelWithTooltip>
                                 </div>
-                                <Input value={name} onChange={(e) => setName(e.target.value)} placeholder="name" />
+                                <Input value={name} onChange={(e) => setName(e.target.value)}  />
                                 
                             </div>
                             <div className="space-y-1">
-                                <Textarea value={summary} onChange={(e) => setSummary(e.target.value)} placeholder="Summary" />
+                                <LabelWithTooltip labelText='Summary' tooltipText='A brief summary of the document content.'></LabelWithTooltip>
+                                <Textarea value={summary} onChange={(e) => setSummary(e.target.value)} />
 
-                                <CustomTooltip text='Provide a brief summary of the document'></CustomTooltip>
+                                
                             </div>
-                            <div className="spay-y-1">
-                                <Input value={managingDepartment} onChange={(e) => setManagingDepartment(e.target.value)} placeholder="Managing Department" />
-
-                                <CustomTooltip text='Add the deparment managing this document'></CustomTooltip>
+                            <div className="space-y-1">
+                                <LabelWithTooltip labelText='Department' tooltipText='The department which this document most belongs to.'></LabelWithTooltip>
+                                <Input value={managingDepartment} onChange={(e) => setManagingDepartment(e.target.value)} />
+                                
+                                
                             </div>
 
                         </CardContent>
@@ -117,12 +124,13 @@ const OrgInfoEditor: React.FC<OrgInfoEditorProps> = ({ document, onSave }) => {
                         </CardHeader>
                         <CardContent className="space-y-2">
                             <div className="space-y-1">
+                                <LabelWithTooltip labelText='Information Type' tooltipText='Information Type: Description.'></LabelWithTooltip>
                                 <Combobox
-                                    frameworks={informationTypeTags}
+                                    typeTags={informationTypeTags}
                                     inputMessage="Select an Information Type..."
                                     emptyMessage="No information types found."
                                 />
-                                <CustomTooltip text='Information Type: Description'></CustomTooltip>
+                                
                             </div>
                         </CardContent>
                         <CardFooter>

@@ -9,44 +9,16 @@
 import * as React from "react"
 import {
   ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
 } from "@tanstack/react-table" 
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
 import { Checkbox } from "@/components/ui/checkbox"
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+
 
 
 
 
 // Basic File type definition
-export type File = {
+export type BaseFile = {
   id: string;
   name: string;
   type: string; // e.g., "PDF", "Text File"
@@ -55,7 +27,7 @@ export type File = {
 }
 
 // Extended IndustryFile type definition
-export type IndustryFile = File & {
+export type IndustryFile = BaseFile & {
   rawText: string;
   summary: string;
   textVectorEmbedding: number[]; // Assuming an array of numbers for simplicity
@@ -67,7 +39,7 @@ export type IndustryFile = File & {
   aboutTheSource: string[];
   categoryTags: string[];
 }
-export type OrgInformationFile = File & {
+export type OrgInformationFile = BaseFile & {
   
   rawText: string;
   categoryTags: string[]; // Example values: "Mission", "Github", etc.
@@ -88,7 +60,7 @@ export type ProductOffering = {
 }
 
 // Define the ProductFile type for products and services database
-export type ProductFile = File & {
+export type ProductFile =BaseFile & {
   fullName: string; // Name/Title of the legal professional
   contactInformation: {
     email: string;
@@ -110,13 +82,13 @@ export type ProductFile = File & {
 
 // Actions type adjusted to handle the unified File type
 type ColumnActions = {
-  handleEdit: (file: File) => void;
-  handleDownload: (file: File) => void;
-  handleDelete: (file: File) => void;
+  handleEdit: (file: BaseFile) => void;
+  handleDownload: (file: BaseFile) => void;
+  handleDelete: (file: BaseFile) => void;
 };
 
 // Adjusted column definitions to accept actions and handle both file types
-export const getColumns = (actions: ColumnActions): ColumnDef<File>[] => [
+export const getColumns = (actions: ColumnActions): ColumnDef<BaseFile>[] => [
   {
     id: "select",
     header: ({ table }) => (
@@ -137,25 +109,25 @@ export const getColumns = (actions: ColumnActions): ColumnDef<File>[] => [
     enableHiding: false,
   },
   {
-    accessorFn: (row: File) => row.name,
+    accessorFn: (row: BaseFile) => row.name,
     id: 'name',
     header: "File Name",
     cell: info => info.getValue(),
   },
   {
-    accessorFn: (row: File) => row.type,
+    accessorFn: (row: BaseFile) => row.type,
     id: 'type',
     header: "File Type",
     cell: info => info.getValue(),
   },
   {
-    accessorFn: (row: File) => row.size,
+    accessorFn: (row: BaseFile) => row.size,
     id: 'size',
     header: "Size (KB)",
     cell: info => info.getValue(),
   },
   {
-    accessorFn: (row: File) => row.lastModified,
+    accessorFn: (row: BaseFile) => row.lastModified,
     id: 'lastModified',
     header: "Last Modified",
     cell: info => info.getValue(),

@@ -36,8 +36,6 @@ const data: IndustryFile[] = [
 	{
 		id: "file006",
 		name: "Smart Contract Best Practices",
-
-
 		type: "PDF",
 		size: "950 KB",
 		lastModified: "2023-02-15",
