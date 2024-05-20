@@ -33,7 +33,7 @@ export async function signup(formData: FormData) {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
     options: {
-      emailRedirectTo: `${origin}/auth/callback`,
+      emailRedirectTo: `${process.env.VERCEL_URL}/auth/callback`,
     },
   });
   
