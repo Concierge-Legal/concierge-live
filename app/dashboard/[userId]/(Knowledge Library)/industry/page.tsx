@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
 
-import { File, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
+import { BaseFile, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import {
 	ColumnDef,
@@ -347,17 +347,17 @@ export default function IndustryKnowledgeDashboardSubpage({ params }: { params: 
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const [editorOpen, setEditorOpen] = React.useState(false);
-	const [currentDocument, setCurrentDocument] = React.useState<File | null>(null);
+	const [currentDocument, setCurrentDocument] = React.useState<BaseFile | null>(null);
 
-	const handleEdit = (file: File) => {
+	const handleEdit = (file: BaseFile) => {
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
-	const handleDownload = (file: File) => {
+	const handleDownload = (file: BaseFile) => {
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
-	const handleDelete = (file: File) => {
+	const handleDelete = (file: BaseFile) => {
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
@@ -392,7 +392,7 @@ export default function IndustryKnowledgeDashboardSubpage({ params }: { params: 
 	const handleCloseEditor = () => {
 		setEditorOpen(false);
 	};
-	const columns: ColumnDef<File>[] = [
+	const columns: ColumnDef<BaseFile>[] = [
 		{
 			id: "select",
 			header: ({ table }) => (
