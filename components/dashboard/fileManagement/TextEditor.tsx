@@ -1,11 +1,11 @@
 import React from "react";
-import { File } from "./columns";
+import { BaseFile } from "./columns";
 import { Button } from "@/components/ui/button";
 import ReactQuill from 'react-quill';  // Import ReactQuill
 import 'react-quill/dist/quill.snow.css'; // Import Quill stylesheet
 
 interface TextEditorProps {
-  document: File;
+  document: BaseFile;
   onSave: (content: string) => void;
 }
 
