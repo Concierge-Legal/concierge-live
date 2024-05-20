@@ -4,10 +4,10 @@ import { createClient } from '@/utils/supabase/client';
 import CategorySelector from '@/components/dashboard/fileManagement/CategorySelector';
 import FileUploadButton from '@/components/dashboard/fileManagement/FileUpload';
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
-import { File, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
+import { BaseFile, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
 import FileList from '@/components/dashboard/fileManagement/FileList';
 import MetadataEditor from '@/components/dashboard/fileManagement/MetadataEditor';
-
+import { Label } from '@/components/ui/label';
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import {
 	ColumnDef,
@@ -345,18 +345,18 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 		React.useState<VisibilityState>({});
 	const [rowSelection, setRowSelection] = React.useState({});
 	const [editorOpen, setEditorOpen] = React.useState(false);
-	const [currentDocument, setCurrentDocument] = React.useState<File | null>(null);
+	const [currentDocument, setCurrentDocument] = React.useState<BaseFile | null>(null);
 
-	const handleEdit = (file: File) => {
+	const handleEdit = (file: BaseFile) => {
 		console.log(`Handling edit. Printing out file: ${file}`)
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
-	const handleDownload = (file: File) => {
+	const handleDownload = (file: BaseFile) => {
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
-	const handleDelete = (file: File) => {
+	const handleDelete = (file: BaseFile) => {
 		setCurrentDocument(file);
 		setEditorOpen(true);
 	};
@@ -380,9 +380,24 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 		},
 	});
 
-	const handleFileUpload = () => {
-		alert(`Fake upload`);
-	};
+	const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement> ) => {
+		console.log(`Handling upload.`)
+		const file = event.target.files![0];
+
+		const { data, error } = await supabase.storage
+		.from('demodao')
+		.upload(`company/${file.name}`, file, {
+			upsert: true
+		})
+		if (error) {
+			alert(`Error uploading file! ${error}`)
+		} else {
+			console.log(`Succesfully uploaded file!`)
+		}
+		
+
+		
+	}
 
 	const handleSave = () => {
 		alert(`Fake saving!`);  // Implement the save logic
@@ -391,7 +406,7 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 	const handleCloseEditor = () => {
 		setEditorOpen(false);
 	};
-	const columns: ColumnDef<File>[] = [
+	const columns: ColumnDef<BaseFile>[] = [
 		{
 			id: "select",
 			header: ({ table }) => (
@@ -468,13 +483,14 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 								/>
 
 								{/* Upload button on the right */}
+								
 								<div>
 									<label className="cursor-pointer">
-										<input type="file" className="hidden" onChange={handleFileUpload} />
-										<Button variant="outline">
+										<input type="file" onChange={handleFileUpload} />
+										{/* <Button variant="outline">
 											<ArrowUpTrayIcon className="h-6 w-6 mr-2" aria-hidden="true" />
 											Upload File
-										</Button>
+										</Button> */}
 									</label>
 								</div>
 							</div>

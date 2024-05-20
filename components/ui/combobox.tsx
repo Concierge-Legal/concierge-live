@@ -18,14 +18,17 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-
+export interface typeTags  {
+  value: string
+  label: string
+}
 interface ComboboxProps {
-    frameworks: { value: string; label: string }[];
+    typeTags: typeTags[];
     inputMessage: string;
     emptyMessage: string;
 }
 
-export const Combobox: React.FC<ComboboxProps> = ({ frameworks, inputMessage, emptyMessage }) => {
+export const Combobox: React.FC<ComboboxProps> = ({ typeTags, inputMessage, emptyMessage }) => {
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
 
@@ -39,8 +42,8 @@ export const Combobox: React.FC<ComboboxProps> = ({ frameworks, inputMessage, em
           className="w-[200px] justify-between"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
-            : "Select framework..."}
+            ? typeTags.find((tag) => tag.value === value)?.label
+            : "Select tag..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
@@ -49,10 +52,10 @@ export const Combobox: React.FC<ComboboxProps> = ({ frameworks, inputMessage, em
           <CommandInput placeholder={inputMessage} />
           <CommandEmpty>{emptyMessage}</CommandEmpty>
           <CommandGroup>
-            {frameworks.map((framework) => (
+            {typeTags.map((tag) => (
               <CommandItem
-                key={framework.value}
-                value={framework.value}
+                key={tag.value}
+                value={tag.value}
                 onSelect={(currentValue) => {
                   setValue(currentValue === value ? "" : currentValue)
                   setOpen(false)
@@ -61,10 +64,10 @@ export const Combobox: React.FC<ComboboxProps> = ({ frameworks, inputMessage, em
                 <Check
                   className={cn(
                     "mr-2 h-4 w-4",
-                    value === framework.value ? "opacity-100" : "opacity-0"
+                    value === tag.value ? "opacity-100" : "opacity-0"
                   )}
                 />
-                {framework.label}
+                {tag.label}
               </CommandItem>
             ))}
           </CommandGroup>
