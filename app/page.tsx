@@ -111,7 +111,7 @@ export default function Home() {
   <div className="relative z-10 flex flex-col items-center w-full px-10 py-20 max-md:px-5">
     <div className="flex flex-col md:w-11/12 px-20 py-20  max-md:px-5 max-md:w-full">
       <h1 className="text-6xl font-nunitosans text-center text-black leading-[67px] max-md:text-4xl max-md:leading-[54px]">
-        More than just a chatbot, Concierge is the future of legal customer service
+        More than just a chatbot, the future of legal customer service
       </h1>
       <p className="mt-6 font-opensans text-center text-2xl leading-7 text-black">
       Your Concierge acts as your users first point of contact, welcoming and guiding them through your website, products, services, and anything else you would like your customers to know about your business. 
@@ -145,10 +145,10 @@ export default function Home() {
                 <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                   <div className="flex flex-col grow text-base text-black max-md:mt-10 max-md:max-w-full">
                     <div className="text-4xl font-bold leading-10 text-center max-md:max-w-full">
-                    Industry-leading Legal API Infrastructure
+                    Boost your Revenue
                     </div>
                     <div className="mt-6 leading-6 text-center max-md:max-w-full">
-                    Gives users unparalleled access to law-firm level legislative information
+                    Help your customers find exactly what they need with precision and efficiency.
                     </div>
                   </div>
                 </div>
