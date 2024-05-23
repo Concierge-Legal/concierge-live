@@ -18,7 +18,7 @@ export default function Features() {
 
   return (
     <main>
-      <NavBar></NavBar>
+        
 
       <div className="flex flex-col">
         <section className="relative flex justify-center items-center bg-white text-black">
@@ -155,7 +155,7 @@ export default function Features() {
             </div>
             <div className="flex flex-col  w-full px-16 py-20 max-md:px-5 mt-10 bg-white bg-opacity-80 rounded-lg shadow-lg">
               <div className="text-6xl font-bold font-nunitosans leading-10 text-[#32CD32]">
-                Powerful Functionaility
+                Powerful Functionality
               </div>
             </div>
             <div className="flex flex-col  w-full px-16 py-20 max-md:px-5 mt-10 bg-white bg-opacity-80 rounded-lg shadow-lg">
