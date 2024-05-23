@@ -90,7 +90,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ member }) => {
                             <Card className="w-full h-full">
                                 <CardHeader>
                                     <CardTitle>About {member.fullName}</CardTitle>
-                                    <CardDescription>Make Changes to Each Member's General Information here.</CardDescription>
+                                    <CardDescription>Make Changes to Each Member&apos;s General Information here.</CardDescription>
                                 </CardHeader>
                                 <CardContent className="w-full h-full">
                                     <form>
