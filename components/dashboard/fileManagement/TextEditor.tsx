@@ -1,5 +1,5 @@
 import React from "react";
-import { BaseFile } from "./columns";
+import { BaseFile } from "@/utils/types";
 import { Button } from "@/components/ui/button";
 import ReactQuill from 'react-quill';  // Import ReactQuill
 import 'react-quill/dist/quill.snow.css'; // Import Quill stylesheet

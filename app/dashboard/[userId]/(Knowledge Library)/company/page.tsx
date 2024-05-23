@@ -4,7 +4,8 @@ import { createClient } from '@/utils/supabase/client';
 import CategorySelector from '@/components/dashboard/fileManagement/CategorySelector';
 import FileUploadButton from '@/components/dashboard/fileManagement/FileUpload';
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
-import { BaseFile, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
+import { getColumns } from "@/components/dashboard/fileManagement/columns";
+import { BaseFile, IndustryFile, CompanyFile, ProductFile } from "@/utils/types";
 import FileList from '@/components/dashboard/fileManagement/FileList';
 import MetadataEditor from '@/components/dashboard/fileManagement/MetadataEditor';
 import { Label } from '@/components/ui/label';
@@ -38,7 +39,7 @@ import OrgInfoEditor from '@/components/dashboard/fileManagement/OrgInfoEditor';
 // Initialize Supabase client (configure your Supabase details)
 const supabase = createClient();
 
-const data: OrgInformationFile[] = [
+const data: CompanyFile[] = [
 	// Governance Documents
 	{
 		id: "doc001",
@@ -582,7 +583,7 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 								<TextEditor document={currentDocument} onSave={handleSave} />
 							</div>
 							<div className="flex-1 p-4 h-full">
-								<OrgInfoEditor document={currentDocument as OrgInformationFile} onSave={handleSave} />
+								<OrgInfoEditor document={currentDocument as CompanyFile} onSave={handleSave} />
 							</div>
 						</div>
 					</div>

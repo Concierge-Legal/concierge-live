@@ -1,5 +1,5 @@
-// Assuming OrgInformationFile is exported from types.ts or a similar file
-import { BaseFile, OrgInformationFile } from './columns';
+// Assuming CompanyFile is exported from types.ts or a similar file
+import { BaseFile, CompanyFile } from '@/utils/types';
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
@@ -15,8 +15,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import LabelWithTooltip from '@/components/ui/labelWithTooltip';
 
 interface OrgInfoEditorProps {
-    document: OrgInformationFile;
-    onSave: (updatedDoc: OrgInformationFile) => void;
+    document: CompanyFile;
+    onSave: (updatedDoc: CompanyFile) => void;
 }
 
 
