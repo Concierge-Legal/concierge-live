@@ -1,3 +1,4 @@
+"use client";
 import React, { useEffect } from 'react';
 import ProductCard from '@/components/ui/productCard';
 import { useProduct } from '@/app/lib/hooks/useProduct'; // Import the context hook
@@ -7,17 +8,37 @@ export default function ProductsDashboardSubpage({ params }: { params: { userId:
     const { state, dispatch } = useProduct(); // Use the context
 
     useEffect(() => {
-        // Fetch initial data from the database and populate it
+        console.log('Fetching data from the database!');
+
         const fetchData = async () => {
-            const response = await fetch('/api/members'); // Modify this according to your API
-            const members: Member[] = await response.json(); // Cast the response to Member[]
-            members.forEach(member => {
-                dispatch({ type: 'ADD_MEMBER', payload: member });
-            });
-        };
+			try {
+				const requestBody = {
+					userId: params.userId
+				};
+				const response = await fetch("/api/members", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(requestBody),
+				});
+		
+				if (!response.ok) {
+					throw new Error('Failed to fetch data');
+				}
+				const members: Member[] = await response.json();
+				console.log('Response:', members);
+				members.forEach(member => {
+					dispatch({ type: 'ADD_MEMBER', payload: member });
+				});
+			} catch (error) {
+				console.error('Error fetching members:', error);
+			}
+		};
+		
 
         fetchData();
-    }, [dispatch]);
+    }, [dispatch, params.userId]); // Include params.userId in the dependency array
 
     const addNewMember = () => {
         const newMember: Member = { // Explicitly state the type here

@@ -3,9 +3,6 @@ import React, { createContext, useContext, useReducer, ReactNode } from 'react';
 
 import { Service, Jurisdiction, Member } from '@/utils/types';
 
-// Define types for your state for better TypeScript support
-
-
 interface ProductState {
   members: Member[];
 }
