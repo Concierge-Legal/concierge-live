@@ -1,49 +1,41 @@
-"use client";
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Service } from "@/utils/types";
-import { useProduct } from "@/app/lib/hooks/useProduct"; 
+import { Service } from '@/utils/types';
+import { ProductContext } from "@/app/lib/hooks/useProduct";
 
 interface ServicesCardProps {
-  services: Service[];
   memberId: string;
 }
 
-export const ServicesCard: React.FC<ServicesCardProps> = ({ services: initialServices, memberId }) => {
-  const [services, setServices] = useState<Service[]>(initialServices);
-  const { dispatch } = useProduct();
+export const ServicesCard: React.FC<ServicesCardProps> = ({ memberId }) => {
+  const { state, dispatch } = useContext(ProductContext);
+
+  // Retrieves services directly from the context state
+  const services = state.members.find(member => member.id === memberId)?.services || [];
 
   const handleAddService = () => {
-    const newService: Service = {
-      id: Date.now(), // Simple unique id generation (this should eventually be handled by the backend)
-      name: "",
-      price: 0,
-      pricingMethod: "",
-      retainer: false
-    };
-    setServices([...services, newService]);
+    dispatch({
+      type: 'ADD_SERVICE',
+      payload: {
+        memberId,
+        service: { id: Date.now(), name: "", price: 0, pricingMethod: "", retainer: false }
+      }
+    });
   };
 
   const handleRemoveService = (id: number) => {
-    setServices(services.filter(service => service.id !== id));
-    // Dispatch an action to update global state
     dispatch({ type: 'REMOVE_SERVICE', payload: { memberId, serviceId: id } });
   };
 
   const updateService = (id: number, field: keyof Service, value: any) => {
-    const updatedServices = services.map(service => service.id === id ? { ...service, [field]: value } : service);
-    setServices(updatedServices);
-    // Optionally dispatch to global state if immediate saving is required
-    // dispatch({ type: 'UPDATE_SERVICE', payload: { memberId, serviceId: id, updates: { [field]: value } } });
-  };
-
-  const saveServices = () => {
-    // Dispatch save all changes to global state or backend
-    dispatch({ type: 'UPDATE_MEMBER_SERVICES', payload: { memberId, services } });
+    dispatch({
+      type: 'UPDATE_SERVICE',
+      payload: { memberId, serviceId: id, updates: { [field]: value } }
+    });
   };
 
   return (
@@ -68,8 +60,8 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({ services: initialSer
               <Label htmlFor={`service-price-${service.id}`}>Price</Label>
               <Input
                 id={`service-price-${service.id}`}
-                placeholder="Enter price..."
                 type="number"
+                placeholder="Enter price..."
                 value={service.price}
                 onChange={e => updateService(service.id, 'price', parseFloat(e.target.value))}
               />
@@ -96,7 +88,6 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({ services: initialSer
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button variant="outline">Cancel</Button>
-        <Button onClick={saveServices}>Save All</Button>
       </CardFooter>
     </Card>
   );

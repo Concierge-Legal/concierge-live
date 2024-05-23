@@ -60,10 +60,10 @@ const ProductCard: React.FC<ProductCardProps> = ({ member }) => {
         </Card>
       </TabsContent>
       <TabsContent value="services">
-        <ServicesCard services={member.services} memberId={member.id} />
+        <ServicesCard memberId={member.id} />
       </TabsContent>
       <TabsContent value="jurisdictions">
-        <JurisdictionsCard jurisdictions={member.jurisdictions} memberId={member.id} />
+        <JurisdictionsCard memberId={member.id} />
       </TabsContent>
     </Tabs>
   );

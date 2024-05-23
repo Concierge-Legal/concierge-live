@@ -1,55 +1,47 @@
-"use client";
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { ProductContext } from "@/app/lib/hooks/useProduct";
 import { Jurisdiction } from '@/utils/types';
-import { useProduct } from "@/app/lib/hooks/useProduct";
+
+
 
 interface JurisdictionsCardProps {
-  jurisdictions: Jurisdiction[];
   memberId: string;
 }
 
-export const JurisdictionsCard: React.FC<JurisdictionsCardProps> = ({ jurisdictions: initialJurisdictions, memberId }) => {
-  const [jurisdictions, setJurisdictions] = useState<Jurisdiction[]>(initialJurisdictions);
-  const { dispatch } = useProduct();
+export const JurisdictionsCard: React.FC<JurisdictionsCardProps> = ({ memberId }) => {
+  const { state, dispatch } = useContext(ProductContext);
+
+  // Retrieves jurisdictions directly from the context state
+  const jurisdictions = state.members.find(member => member.id === memberId)?.jurisdictions || [];
 
   const handleAddJurisdiction = () => {
-    const newJurisdiction = {
-      id: Date.now(), // This should ideally be handled by your backend to ensure uniqueness
-      name: "",
-      type: ""
-    };
-    setJurisdictions([...jurisdictions, newJurisdiction]);
+    dispatch({
+      type: 'ADD_JURISDICTION',
+      payload: { memberId, jurisdiction: { id: Date.now(), name: "", type: "" } }
+    });
   };
 
   const handleRemoveJurisdiction = (id: number) => {
-    setJurisdictions(jurisdictions.filter(jurisdiction => jurisdiction.id !== id));
     dispatch({ type: 'REMOVE_JURISDICTION', payload: { memberId, jurisdictionId: id } });
   };
 
   const updateJurisdiction = (id: number, field: keyof Jurisdiction, value: string) => {
-    const updatedJurisdictions = jurisdictions.map(jurisdiction => 
-      jurisdiction.id === id ? { ...jurisdiction, [field]: value } : jurisdiction
-    );
-    setJurisdictions(updatedJurisdictions);
-    // Optionally dispatch to global state if immediate saving is required
-    // dispatch({ type: 'UPDATE_JURISDICTION', payload: { memberId, jurisdictionId: id, updates: { [field]: value } } });
-  };
-
-  const saveJurisdictions = () => {
-    // Dispatch save all changes to global state or backend
-    dispatch({ type: 'UPDATE_MEMBER_JURISDICTIONS', payload: { memberId, jurisdictions } });
+    dispatch({
+      type: 'UPDATE_JURISDICTION',
+      payload: { memberId, jurisdictionId: id, updates: { [field]: value } }
+    });
   };
 
   return (
     <Card className="w-full h-full">
       <CardHeader>
         <CardTitle>Authorized Jurisdictions</CardTitle>
-        <CardDescription>Add information on this member's specialty or authorized jurisdictions.</CardDescription>
+        <CardDescription>Add or modify jurisdictions.</CardDescription>
       </CardHeader>
       <CardContent>
         {jurisdictions.map((jurisdiction, index) => (
@@ -64,28 +56,26 @@ export const JurisdictionsCard: React.FC<JurisdictionsCardProps> = ({ jurisdicti
               />
             </div>
             <div className="flex flex-col space-y-1.5">
-              <Label htmlFor={`jurisdiction-type-${jurisdiction.id}`}>Jurisdiction Type</Label>
+              <Label htmlFor={`jurisdiction-type-${jurisdiction.id}`}>Type</Label>
               <Select>
                 <SelectTrigger id={`jurisdiction-type-${jurisdiction.id}`}>
-                  <SelectValue placeholder="Select" />
+                  <SelectValue>{jurisdiction.type || "Select"}</SelectValue>
                 </SelectTrigger>
                 <SelectContent position="popper">
-                  <SelectItem value="federal" onClick={() => updateJurisdiction(jurisdiction.id, 'type', 'federal')}>Federal</SelectItem>
-                  <SelectItem value="state" onClick={() => updateJurisdiction(jurisdiction.id, 'type', 'state')}>State</SelectItem>
-                  <SelectItem value="special" onClick={() => updateJurisdiction(jurisdiction.id, 'type', 'special')}>Special</SelectItem>
+                  <SelectItem value="federal">Federal</SelectItem>
+                  <SelectItem value="state">State</SelectItem>
+                  <SelectItem value="special">Special</SelectItem>
                 </SelectContent>
               </Select>
             </div>
-            {index !== 0 && (
-              <Button variant="outline" onClick={() => handleRemoveJurisdiction(jurisdiction.id)}>Remove</Button>
-            )}
+            <Button variant="outline" onClick={() => handleRemoveJurisdiction(jurisdiction.id)}>Remove</Button>
           </div>
         ))}
         <Button onClick={handleAddJurisdiction}>Add Jurisdiction</Button>
       </CardContent>
-      <CardFooter className="flex justify-between">
+      <CardFooter>
         <Button variant="outline">Cancel</Button>
-        <Button onClick={saveJurisdictions}>Save All</Button>
+        {/* Save handled by individual updates */}
       </CardFooter>
     </Card>
   );
