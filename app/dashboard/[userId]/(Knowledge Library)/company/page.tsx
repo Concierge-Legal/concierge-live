@@ -597,4 +597,3 @@ export default function CompanyKnowledgeDashboardSubpage({ params }: { params: {
 	);
 };
 
-

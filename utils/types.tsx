@@ -74,4 +74,5 @@ export interface Member {
     description: string;
     services: Service[];
     jurisdictions: Jurisdiction[];
+    isNew?: boolean;
   }
