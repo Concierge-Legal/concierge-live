@@ -12,72 +12,7 @@ import {
 } from "@tanstack/react-table" 
 
 import { Checkbox } from "@/components/ui/checkbox"
-
-
-
-
-
-// Basic File type definition
-export type BaseFile = {
-  id: string;
-  name: string;
-  type: string; // e.g., "PDF", "Text File"
-  size: string; // e.g., "1.2 MB"
-  lastModified: string; // e.g., "2023-01-01"
-}
-
-// Extended IndustryFile type definition
-export type IndustryFile = BaseFile & {
-  rawText: string;
-  summary: string;
-  textVectorEmbedding: number[]; // Assuming an array of numbers for simplicity
-  hypotheticalQuestions: {
-    commonQuestions: string[];
-    humanPopulated: boolean;
-    aiSuggested: boolean;
-  };
-  aboutTheSource: string[];
-  categoryTags: string[];
-}
-export type OrgInformationFile = BaseFile & {
-  
-  rawText: string;
-  categoryTags: string[]; // Example values: "Mission", "Github", etc.
-  summary: string;
-  hypotheticalQuestions: {
-    commonQuestions: string[];
-    humanPopulated: boolean;
-    aiSuggested: boolean;
-  };
-  managingDepartment: string; // Department responsible for the file
-};
-
-export type ProductOffering = {
-  name: string;
-  price: string;
-  pricingMethod: "Flat" | "Hourly";
-  retainer: boolean;
-}
-
-// Define the ProductFile type for products and services database
-export type ProductFile =BaseFile & {
-  fullName: string; // Name/Title of the legal professional
-  contactInformation: {
-    email: string;
-    discord: string;
-    website?: string;
-    profilePictureUrl?: string;
-  };
-  parentOrganization: {
-    title: string;
-    entityType: string;
-    purpose: string;
-  };
-  authorizedJurisdictions: string[];
-  description: string;
-  servicesOffered: ProductOffering[];
-}
-
+import { BaseFile, IndustryFile, CompanyFile, ProductOffering, AuthorizedJurisdiction, ProductFile } from '@/utils/types';
 
 
 // Actions type adjusted to handle the unified File type
