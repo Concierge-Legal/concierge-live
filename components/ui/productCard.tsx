@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LabelWithTooltip from "./labelWithTooltip";
 import { JurisdictionsCard } from "./jurisdictionInputCard";
 import { ServicesCard } from "./serviceInputCard";
-import { useProduct } from "@/app/lib/hooks/useProduct"; // Import the context hook
+import { ProductContext } from "@/app/lib/hooks/useProduct"; // Import the context hook
 import { Member, Service, Jurisdiction } from '@/utils/types'; // Importing types
 
 interface ProductCardProps {
@@ -16,7 +16,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ member }) => {
-  const { dispatch } = useProduct(); // Use the context for dispatching actions
+  const { state, dispatch } = useContext(ProductContext); // Use the context for dispatching actions
 
   const handleChange = (field: keyof Member, value: string) => {
     dispatch({

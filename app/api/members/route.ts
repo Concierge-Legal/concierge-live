@@ -2,19 +2,21 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 import { Member } from '@/utils/types';
+import { NextResponse } from 'next/server';
 
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-    console.log(`POST request received`)
-    const { userId } = req.body;
-
+export async function POST(req: Request) {
+    
+    const request = await req.json();
+    console.log(`POST request received.`)
+    const userId: string = request.userId;
+    console.log(`UserId: ${userId}`)
     if (!userId || typeof userId !== 'string') {
-        res.status(400).json({ error: 'UserId is required and must be a string' });
-        return;
+        return NextResponse.json({ error: 'UserId is required and must be a string', status: 400 });
     }
 
     try {
         const tableName = `${userId}_products`;
-        const supabase = createClient(process.env.supabaseUrl!, process.env.supabaseKey!);
+        const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
         const { data, error } = await supabase
             .from(tableName) // Removing the generic parameter to see if it resolves the issue.
             .select(`
@@ -28,13 +30,15 @@ export async function POST(req: NextApiRequest, res: NextApiResponse) {
 
         if (error) throw error;
 
-        res.status(200).json(data);
+        return NextResponse.json({'members': data, 'status': 200})
     } catch (err) {
         if (err instanceof Error) {
-            res.status(500).json({ error: 'Failed to fetch data', details: err.message });
+            return NextResponse.json({'error': 'Failed to fetch data', 'details': err.message, 'status': 500})
+
         } else {
             // If it's not an Error instance, just return a generic error message
-            res.status(500).json({ error: 'Failed to fetch data', details: "An unknown error occurred" });
+            return NextResponse.json({'error': 'Failed to fetch data', 'details': 'An unknown error occurred', 'status': 500})
+            
         }
     }
 
