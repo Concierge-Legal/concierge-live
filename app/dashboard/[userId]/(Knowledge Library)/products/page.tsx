@@ -1,83 +1,48 @@
+import React, { useEffect } from 'react';
 import ProductCard from '@/components/ui/productCard';
-import { BaseFile, IndustryFile, CompanyFile, ProductOffering, AuthorizedJurisdiction, ProductFile } from '@/utils/types';
+import { useProduct } from '@/app/lib/hooks/useProduct'; // Import the context hook
+import { Member } from '@/utils/types'; // Ensure this import path is correct
 
+export default function ProductsDashboardSubpage({ params }: { params: { userId: string } }) {
+    const { state, dispatch } = useProduct(); // Use the context
 
-export default function ProductsKnowledgeDashboardSubpage({ params }: { params: { userId: string } }) {
-	const productFiles: ProductFile[] = [
-		{
-		  id: "zxk123",
-		  name: "John Doe Legal Services",
-		  type: "Card",
-		  size: "N/A", // Not applicable for service entities
-		  lastModified: "2023-05-01",
-		  fullName: "John Doe Legal Services LLC",
-		  contactInformation: {
-			email: "john.doe@example.com",
-			discord: "johnDoe#1234",
-			website: "www.johndoelaw.com",
-			profilePictureUrl: "http://example.com/pfp/johndoe.jpg"
-		  },
-		  authorizedJurisdictions: [
-			{jurisdiction: "California", jurisdictionType: "State"}, {jurisdiction: "Marshall Islands", jurisdictionType: "Federal"}],
-		  description: "Experienced legal professional specializing in tech and web3.",
-		  servicesOffered: [
-			{
-			  name: "Contract Review",
-			  price: 200,
-			  pricingMethod: "Hourly",
-			  retainer: true
-			},
-			{
-			  name: "Legal Consultation",
-			  price: 150,
-			  pricingMethod: "Hourly",
-			  retainer: false
-			}
-		  ]
-		},
-		// Additional product files can be similarly defined
-	  ];
-	//   const member: ProductFile = 
-	// 	{
-	// 	  fullName: "John Doe Legal Services LLC",
-	// 	  contactInformation: {
-	// 		email: "john.doe@example.com",
-	// 		discord: "johnDoe#1234",
-	// 		website: "www.johndoelaw.com",
-	// 		profilePictureUrl: "http://example.com/pfp/johndoe.jpg"
-	// 	  },
-	// 	  authorizedJurisdictions: [
-	// 		{jurisdiction: "California", jurisdictionType: "State"}, {jurisdiction: "Nevada", jurisdictionType: "State"}],
-	// 	  description: "Experienced legal professional specializing in tech and web3.",
-	// 	  servicesOffered: [
-	// 		{
-	// 		  name: "Contract Review",
-	// 		  price: 200,
-	// 		  pricingMethod: "Hourly",
-	// 		  retainer: true
-	// 		},
-	// 		{
-	// 		  name: "Legal Consultation",
-	// 		  price: 150,
-	// 		  pricingMethod: "Hourly",
-	// 		  retainer: false
-	// 		}
-	// 	  ]
-	// 	}
-	
-	  
-	return (
-		<div className="min-h-screen bg-white px-8 py-12">
-			<div className="max-w-7xl mx-auto">
-				<div className="bg-gray-100 text-black p-8 rounded-lg shadow-lg mb-12 text-center">
-					<h1 className="text-5xl font-bold">Products and Services Knowledge Upload</h1>
-				</div>
-				<ProductCard></ProductCard>
+    useEffect(() => {
+        // Fetch initial data from the database and populate it
+        const fetchData = async () => {
+            const response = await fetch('/api/members'); // Modify this according to your API
+            const members: Member[] = await response.json(); // Cast the response to Member[]
+            members.forEach(member => {
+                dispatch({ type: 'ADD_MEMBER', payload: member });
+            });
+        };
 
+        fetchData();
+    }, [dispatch]);
 
-			</div>
-		</div>
+    const addNewMember = () => {
+        const newMember: Member = { // Explicitly state the type here
+            id: `new_${Date.now()}`, // Simple unique ID for example
+            fullName: '',
+            description: '',
+            services: [],
+            jurisdictions: []
+        };
+        dispatch({ type: 'ADD_MEMBER', payload: newMember });
+    };
 
-	);
+    return (
+        <div className="min-h-screen bg-white px-8 py-12">
+            <div className="max-w-7xl mx-auto">
+                <div className="bg-gray-100 text-black p-8 rounded-lg shadow-lg mb-12 text-center">
+                    <h1 className="text-5xl font-bold">Products and Services Knowledge Upload</h1>
+                </div>
+                {state.members.map((member: Member) => (
+                    <ProductCard key={member.id} member={member} />
+                ))}
+                <button onClick={addNewMember} className="mt-4 p-2 bg-blue-500 text-white rounded">
+                    Add New Member
+                </button>
+            </div>
+        </div>
+    );
 };
-

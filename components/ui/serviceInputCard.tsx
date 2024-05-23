@@ -1,33 +1,25 @@
-import * as React from 'react';
-import { useState } from 'react';
-
+"use client";
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
+import { Service } from "@/utils/types";
+import { useProduct } from "@/app/lib/hooks/useProduct"; 
 
-interface Service {
-  id: number;
-  name: string;
-  price: number;
-  pricingMethod: string;
-  retainer: boolean;
+interface ServicesCardProps {
+  services: Service[];
+  memberId: string;
 }
 
-export function ServicesCard() {
-  const [services, setServices] = useState<Service[]>([]);
+export const ServicesCard: React.FC<ServicesCardProps> = ({ services: initialServices, memberId }) => {
+  const [services, setServices] = useState<Service[]>(initialServices);
+  const { dispatch } = useProduct();
 
   const handleAddService = () => {
-    const newService = {
-      id: Date.now(), // simple unique id generation
+    const newService: Service = {
+      id: Date.now(), // Simple unique id generation (this should eventually be handled by the backend)
       name: "",
       price: 0,
       pricingMethod: "",
@@ -38,19 +30,24 @@ export function ServicesCard() {
 
   const handleRemoveService = (id: number) => {
     setServices(services.filter(service => service.id !== id));
+    // Dispatch an action to update global state
+    dispatch({ type: 'REMOVE_SERVICE', payload: { memberId, serviceId: id } });
   };
 
   const updateService = (id: number, field: keyof Service, value: any) => {
-    setServices(services.map(service => {
-      if (service.id === id) {
-        return { ...service, [field]: value };
-      }
-      return service;
-    }));
+    const updatedServices = services.map(service => service.id === id ? { ...service, [field]: value } : service);
+    setServices(updatedServices);
+    // Optionally dispatch to global state if immediate saving is required
+    // dispatch({ type: 'UPDATE_SERVICE', payload: { memberId, serviceId: id, updates: { [field]: value } } });
+  };
+
+  const saveServices = () => {
+    // Dispatch save all changes to global state or backend
+    dispatch({ type: 'UPDATE_MEMBER_SERVICES', payload: { memberId, services } });
   };
 
   return (
-    <Card className="w-[350px]">
+    <Card className="w-full h-full">
       <CardHeader>
         <CardTitle>Services Offered</CardTitle>
         <CardDescription>Add new products and services this member offers.</CardDescription>
@@ -64,7 +61,7 @@ export function ServicesCard() {
                 id={`service-name-${service.id}`}
                 placeholder="Enter service name..."
                 value={service.name}
-                onChange={(e) => updateService(service.id, 'name', e.target.value)}
+                onChange={e => updateService(service.id, 'name', e.target.value)}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -74,7 +71,7 @@ export function ServicesCard() {
                 placeholder="Enter price..."
                 type="number"
                 value={service.price}
-                onChange={(e) => updateService(service.id, 'price', parseFloat(e.target.value))}
+                onChange={e => updateService(service.id, 'price', parseFloat(e.target.value))}
               />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -83,12 +80,12 @@ export function ServicesCard() {
                 id={`pricing-method-${service.id}`}
                 placeholder="Enter pricing method..."
                 value={service.pricingMethod}
-                onChange={(e) => updateService(service.id, 'pricingMethod', e.target.value)}
+                onChange={e => updateService(service.id, 'pricingMethod', e.target.value)}
               />
             </div>
             <Switch
               checked={service.retainer}
-              onChange={(e) => updateService(service.id, 'retainer', !service.retainer)}
+              onChange={() => updateService(service.id, 'retainer', !service.retainer)}
             >Needs Retainer</Switch>
             {index !== 0 && (
               <Button variant="outline" onClick={() => handleRemoveService(service.id)}>Remove</Button>
@@ -99,7 +96,7 @@ export function ServicesCard() {
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button variant="outline">Cancel</Button>
-        <Button>Save All</Button>
+        <Button onClick={saveServices}>Save All</Button>
       </CardFooter>
     </Card>
   );

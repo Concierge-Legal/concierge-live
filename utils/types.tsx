@@ -56,3 +56,22 @@ export type ProductFile = BaseFile & {
     description: string;
     servicesOffered: ProductOffering[];
 }
+export interface Service {
+    id: number;
+    name: string;
+    price: number;
+    pricingMethod: string;
+    retainer: boolean;
+  }
+export interface Jurisdiction {
+    id: number;
+    name: string;
+    type: string;
+  }
+export interface Member {
+    id: string;
+    fullName: string;
+    description: string;
+    services: Service[];
+    jurisdictions: Jurisdiction[];
+  }
