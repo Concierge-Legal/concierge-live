@@ -5,6 +5,7 @@ import { Nunito_Sans } from "next/font/google";
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 
+
 import Footer from "../components/footer";
 import NavBar from "@/components/navBar";
 export default function Home() {
@@ -47,81 +48,73 @@ export default function Home() {
 
         <section className="relative flex justify-center items-center bg-white text-black">
           <div className="relative z-10 flex flex-col w-full px-10 py-20 ">
-            <h1 className="text-5xl text-[#082462]">
+            <h1 className="text-5xl font-bold text-mediumBlue">
               More Than Just a Chatbot
-              <p className="text-6xl text-end mt-2">
+              <p className="text-6xl text-end font-bold text-mediumBlue mt-2">
                 the Future of Legal Customer Service
               </p>
             </h1>
 
-            <p className="mt-4 py-6 pl-96 font-xl text-end text-3xl leading-7 text-black">
-              Your Concierge acts as your users first point of contact,
+            <p className="mt-4 pt-6 pl-96 text-xl text-middle leading-7 text-black">
+              Concierge acts as your users first point of contact,
               welcoming and guiding them through your website, products,
               services, and anything else you would like your customers to know
               about your business.
             </p>
 
-            <div className="flex flex-col items-center justify-center px-16 py-10 w-9/12 max-md:px-5 mt-10">
+            <div className="flex justify-center w-full mt-10">
               <video
-                className="rounded-lg shadow-lg"
+                className="rounded-lg shadow-lg w-full max-w-4xl"
                 autoPlay
                 loop
                 muted
                 playsInline
-                src="/demoplaceholder.mp4"
+                src="/CONCIERGE.mp4"
               >
                 Your browser does not support the video tag.
               </video>
             </div>
-
-            <div className="flex flex-col items-center w-full px-16 py-20 max-md:px-5 mt-10 bg-white bg-opacity-80 rounded-lg shadow-lg">
-              <div className="text-6xl font-bold leading-10 text-[#2E5181]">
-                ADVANCED LEGAL AI TECHNOLOGY
-              </div>
-
-              <div className="flex flex-col justify-center px-16 py-20 w-full  max-md:px-5 max-md:max-w-full">
-                <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
-                  <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                    <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-base text-black max-md:mt-10 max-md:max-w-full">
-                        <div className="text-4xl font-bold leading-10 text-center max-md:max-w-full">
-                          Boost your Revenue
-                        </div>
-                        <div className="mt-6 leading-6 text-center max-md:max-w-full">
-                          Help your customers find exactly what they need with
-                          precision and efficiency.
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-base text-black max-md:mt-10 max-md:max-w-full">
-                        <div className="text-4xl font-bold leading-10 text-center max-md:max-w-full">
-                          Modernize Your UX
-                        </div>
-                        <div className="mt-6 leading-6 text-center max-md:max-w-full">
-                          Transform your user experience with cutting-edge AI
-                          technology.
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-base text-black max-md:mt-10 max-md:max-w-full">
-                        <div className="text-4xl font-bold leading-10 text-center max-md:max-w-full">
-                          Automated Data Analytics
-                        </div>
-                        <div className="mt-6 leading-6 text-center max-md:max-w-full">
-                          Leverage real-time insights through an intuitive
-                          business dashboard.
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
-          </div>
         </section>
+            <section className="text-black py-16">
+      <div className="">
+        <div className="text-center mb-8">
+          <div className="text-6xl font-bold leading-10 text-mediumBlue">
+            ADVANCED LEGAL AI TECHNOLOGY
+          </div>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-0">
+          
+          <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-blue-900 text-center shadow-lg">
+            <div className="mb-4">
+              <Image src="/increase.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Boost your Revenue</h3>
+            <p className="mb-4">Help your customers find exactly what they need with precision and efficiency.</p>
+           
+          </div>
+          <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-black text-center shadow-lg">
+            <div className="mb-4">
+              <Image src="/ui.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Modernize Your UX</h3>
+            <p className="mb-4">Transform your user experience with cutting-edge AI technology.</p>
+           
+          </div>
+          <div className="flex-1 text-darkestBlue py-36 px-12 text-center shadow-lg">
+            <div className="mb-4">
+              <Image src="/analytics.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+            </div>
+            <h3 className="text-xl font-bold mb-2">Automated Data Analytics</h3>
+            <p className="mb-4">Leverage real-time insights through an intuitive business dashboard.</p>
+          
+          </div>
+        </div>
+      </div>
+    </section>
 
+            
+     
         <div className="flex flex-col"></div>
       </div>
       <Footer />
