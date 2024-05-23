@@ -3,7 +3,8 @@ import React, { useState, useEffect } from 'react';
 
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
 
-import { BaseFile, IndustryFile, OrgInformationFile, ProductFile, getColumns } from "@/components/dashboard/fileManagement/columns";
+import { getColumns } from "@/components/dashboard/fileManagement/columns";
+import { BaseFile, IndustryFile, CompanyFile, ProductFile } from "@/utils/types";
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import {
 	ColumnDef,
