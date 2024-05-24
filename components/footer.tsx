@@ -6,7 +6,7 @@ const links = ["Home", "Chat", "About", "Contact Us"];
 const Footer: React.FC = () => {
   return (
     <footer className="flex flex-col items-center px-16 py-20 bg-background text-foreground leading-relaxed max-md:px-5">
-      <div className="text-4xl font-bold text-accent">
+      <div className="text-4xl font-bold text-mediumBlue">
         Concierge
       </div>
       <nav className="flex gap-5 justify-center mt-8 text-base font-semibold max-md:flex-wrap">
