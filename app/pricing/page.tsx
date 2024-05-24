@@ -8,7 +8,7 @@ export default function Pricing() {
 
   return (
     <main>
-
+    <NavBar></NavBar>
     <div className="flex flex-col">
  
       

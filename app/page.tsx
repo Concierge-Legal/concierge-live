@@ -1,31 +1,14 @@
-"use client";
 import Image from "next/image";
-import Link from "next/link";
-import { Nunito_Sans } from "next/font/google";
-import React, { useEffect, useState } from "react";
-import { useInView } from "react-intersection-observer";
-
-
+import React from "react";
 import Footer from "../components/footer";
 import NavBar from "@/components/navBar";
+
+
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   return (
     <main>
-      <NavBar isScrolled={isScrolled} />
+      <NavBar />
       <div className="flex flex-col">
         <div className="flex overflow-hidden relative flex-col items-start px-16 py-20 w-full text-white min-h-[900px] max-md:px-5 max-md:max-w-full">
           <video
@@ -74,47 +57,47 @@ export default function Home() {
                 Your browser does not support the video tag.
               </video>
             </div>
-            </div>
+          </div>
         </section>
-            <section className="text-black py-16">
-      <div className="">
-        <div className="text-center mb-8">
-          <div className="text-6xl font-bold leading-10 text-mediumBlue">
-            ADVANCED LEGAL AI TECHNOLOGY
-          </div>
-        </div>
-        <div className="flex flex-col lg:flex-row gap-0">
-          
-          <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-blue-900 text-center shadow-lg">
-            <div className="mb-4">
-              <Image src="/increase.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+        <section className="text-black py-16">
+          <div className="">
+            <div className="text-center mb-8">
+              <div className="text-6xl font-bold leading-10 text-mediumBlue">
+                ADVANCED LEGAL AI TECHNOLOGY
+              </div>
             </div>
-            <h3 className="text-xl font-bold mb-2">Boost your Revenue</h3>
-            <p className="mb-4">Help your customers find exactly what they need with precision and efficiency.</p>
-           
-          </div>
-          <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-black text-center shadow-lg">
-            <div className="mb-4">
-              <Image src="/ui.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Modernize Your UX</h3>
-            <p className="mb-4">Transform your user experience with cutting-edge AI technology.</p>
-           
-          </div>
-          <div className="flex-1 text-darkestBlue py-36 px-12 text-center shadow-lg">
-            <div className="mb-4">
-              <Image src="/analytics.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
-            </div>
-            <h3 className="text-xl font-bold mb-2">Automated Data Analytics</h3>
-            <p className="mb-4">Leverage real-time insights through an intuitive business dashboard.</p>
-          
-          </div>
-        </div>
-      </div>
-    </section>
+            <div className="flex flex-col lg:flex-row gap-0">
 
-            
-     
+              <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-blue-900 text-center shadow-lg">
+                <div className="mb-4">
+                  <Image src="/increase.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Boost your Revenue</h3>
+                <p className="mb-4">Help your customers find exactly what they need with precision and efficiency.</p>
+
+              </div>
+              <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-black text-center shadow-lg">
+                <div className="mb-4">
+                  <Image src="/ui.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Modernize Your UX</h3>
+                <p className="mb-4">Transform your user experience with cutting-edge AI technology.</p>
+
+              </div>
+              <div className="flex-1 text-darkestBlue py-36 px-12 text-center shadow-lg">
+                <div className="mb-4">
+                  <Image src="/analytics.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+                </div>
+                <h3 className="text-xl font-bold mb-2">Automated Data Analytics</h3>
+                <p className="mb-4">Leverage real-time insights through an intuitive business dashboard.</p>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+
         <div className="flex flex-col"></div>
       </div>
       <Footer />
