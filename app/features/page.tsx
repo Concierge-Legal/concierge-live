@@ -19,14 +19,12 @@ export default function Features() {
 
   return (
     <main>
-        
-
       <div className="flex flex-col">
-        <section className="relative flex justify-center items-center bg-white text-black">
+        <section className="relative flex justify-center items-center bg-white text-darkestBlue">
           <div className="absolute top-0 left-0 w-full h-full">
             <Image
               loading="lazy"
-              src=""
+              src="/bluebackground.jpg"
               className="w-full h-full object-cover"
               width={576}
               height={400}
@@ -36,13 +34,13 @@ export default function Features() {
 
           <div className="relative z-10 flex flex-col items-center w-full px-10 py-20 max-md:px-5">
             <div className="flex flex-col md:w-11/12 px-20 py-20  max-md:px-5 max-md:w-full">
-              <h1 className="text-8xl font-nunitosans text-center text-black leading-[67px] max-md:text-4xl max-md:leading-[54px]">
+              <h1 className="text-8xl font-nunitosans text-center text-darkestBlue leading-[67px] max-md:text-4xl max-md:leading-[54px]">
                 FEATURES
               </h1>
             </div>
 
             <div className="flex flex-col  w-full px-16 py-20 max-md:px-5 mt-10 bg-white bg-opacity-80 rounded-lg shadow-lg">
-              <div className="text-6xl font-bold font-nunitosans leading-10 text-[#32CD32]">
+              <div className="text-6xl font-bold font-nunitosans leading-10 text-mediumBlue">
                 State of the Art Customer Service AI
               </div>
             </div>
@@ -50,7 +48,7 @@ export default function Features() {
               <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                   <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col self-stretch my-auto text-black max-md:mt-10 max-md:max-w-full">
+                    <div className="flex flex-col self-stretch my-auto text-darkestBlue max-md:mt-10 max-md:max-w-full">
                       <div className="flex flex-col justify-center pl-8 max-md:pl-5 max-md:max-w-full">
                         <div className="text-3xl font-bold leading-10 max-md:max-w-full">
                           {" "}
@@ -116,15 +114,15 @@ export default function Features() {
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                       <div className="flex flex-col self-stretch my-auto max-md:mt-10 max-md:max-w-full">
-                        <div className="text-base font-semibold leading-6 text-black max-md:max-w-full">
+                        <div className="text-base font-semibold leading-6 text-darkestBlue max-md:max-w-full">
                           {" "}
                           Powered by Ask Abe Technology{" "}
                         </div>
-                        <div className="mt-4 text-4xl  font-bold text-black leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+                        <div className="mt-4 text-4xl  font-bold text-darkestBlue leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
                           {" "}
                           Primary Source Legislation{" "}
                 </div>
-                        <div className="mt-6 text-lg leading-7 text-black max-md:max-w-full">
+                        <div className="mt-6 text-lg leading-7 text-darkestBlue max-md:max-w-full">
                           {" "}
                           Provides accurate and up-to-date legal information
                           taken from primary legislative sources, like our
@@ -133,7 +131,7 @@ export default function Features() {
                           usually reserved solely for legal professionals.{" "}
                         </div>
 
-                        <div className="flex gap-5 justify-between items-start self-start pt-4 mt-6 text-base leading-6 text-black whitespace-nowrap">
+                        <div className="flex gap-5 justify-between items-start self-start pt-4 mt-6 text-base leading-6 text-darkestBlue whitespace-nowrap">
                           <div className="justify-center px-6 py-3 border border-black border-solid max-md:px-5">
                             {" "}
                             Button{" "}
@@ -155,19 +153,19 @@ export default function Features() {
               </div>
             </div>
             <div className="flex flex-col  w-full px-16 py-20 max-md:px-5 mt-10 bg-white bg-opacity-80 rounded-lg shadow-lg">
-              <div className="text-6xl font-bold font-nunitosans leading-10 text-[#32CD32]">
+              <div className="text-6xl font-bold font-nunitosans leading-10 text-mediumBlue">
                 Powerful Functionality
               </div>
             </div>
             <div className="flex flex-col  w-full px-16 py-20 max-md:px-5 mt-10 bg-white bg-opacity-80 rounded-lg shadow-lg">
-              <div className="text-6xl font-bold font-nunitosans leading-10 text-[#32CD32]">
+              <div className="text-6xl font-bold font-nunitosans leading-10 text-mediumBlue">
                 Full Customization
               </div>
               <div className="flex flex-col justify-center px-16 max-md:px-5">
                 <div className="mt-8 max-md:mr-1 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col self-stretch pb-2 my-auto text-base leading-6 text-black max-md:mt-10 max-md:max-w-full">
+                      <div className="flex flex-col self-stretch pb-2 my-auto text-base leading-6 text-darkestBlue max-md:mt-10 max-md:max-w-full">
                         <div className="text-lg leading-7 max-md:max-w-full">
                           Designed to adapt fully to your specific needs and
                           preferences, Concierge offers a tailored experience,
@@ -185,7 +183,7 @@ export default function Features() {
                 <div className="justify-center mt-20 max-md:mt-10 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex flex-col w-3/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-base text-black max-md:mt-8">
+                      <div className="flex flex-col grow text-base text-darkestBlue max-md:mt-8">
                         <div className="mt-6 text-2xl font-bold leading-9 text-center">
                           Appearance
                         </div>
@@ -195,7 +193,7 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-base text-black max-md:mt-8">
+                      <div className="flex flex-col grow text-base text-darkestBlue max-md:mt-8">
                         <div className="mt-6 text-2xl font-bold leading-9 text-center">
                           Personality
                         </div>
@@ -206,7 +204,7 @@ export default function Features() {
                       </div>
                     </div>
                     <div className="flex flex-col ml-5 w-3/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-base text-black max-md:mt-8">
+                      <div className="flex flex-col grow text-base text-darkestBlue max-md:mt-8">
                         <div className="mt-6 text-2xl font-bold leading-9 text-center">
                           Interactions
                         </div>
@@ -222,21 +220,21 @@ export default function Features() {
               
 
             <div className="flex flex-col  w-full px-16 py-20 max-md:px-5 mt-10 bg-white bg-opacity-80 rounded-lg shadow-lg">
-              <div className="text-6xl font-bold font-nunitosans leading-10 text-[#32CD32]">
+              <div className="text-6xl font-bold font-nunitosans leading-10 text-mediumBlue">
                 Automated Data Analytics
               </div>
               <div className="flex flex-col px-16 max-md:px-5">
                 <div className="mt-8 max-md:max-w-full">
                   <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                     <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col text-black max-md:mt-10 max-md:max-w-full">
+                      <div className="flex flex-col text-darkestBlue max-md:mt-10 max-md:max-w-full">
                         <div className="mt-4 text-5xl font-bold leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
                           with personalized business dashboard
                         </div>
                       </div>
                     </div>
                     <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                      <div className="flex flex-col grow text-black max-md:mt-10 max-md:max-w-full">
+                      <div className="flex flex-col grow text-darkestBlue max-md:mt-10 max-md:max-w-full">
                         <div className="text-lg leading-7 max-md:max-w-full"></div>
                       </div>
                     </div>
