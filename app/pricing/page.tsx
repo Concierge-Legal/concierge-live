@@ -3,7 +3,7 @@ import React from "react";
 import ContactForm from "@/components/contactSales";
 import NavBar from "@/components/navBar";
 
-export function Pricing() {
+export default function Pricing() {
  
 
   return (
@@ -21,4 +21,4 @@ export function Pricing() {
   );
 }
 
-export default Pricing;
+
