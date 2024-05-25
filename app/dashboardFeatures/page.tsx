@@ -89,7 +89,7 @@ export default function DashboardFeatures() {
                   Real-Time Analytics and Reporting for Better Decision Making
                 </div>
                 <div className="mt-6 leading-6 max-md:max-w-full">
-                  Gain valuable insights into your Web3 Legal information with Concierge's real-time analytics and reporting capabilities. Make data-driven decisions to optimize your legal services and improve customer satisfaction.
+                  Gain valuable insights into your Web3 Legal information with Concierge&apos;s real-time analytics and reporting capabilities. Make data-driven decisions to optimize your legal services and improve customer satisfaction.
                 </div>
                 <div className="flex gap-5 pr-20 mt-8 max-md:flex-wrap max-md:pr-5">
                   <div className="justify-center px-6 py-3 border border-black border-solid max-md:px-5">
