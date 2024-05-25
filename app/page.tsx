@@ -8,7 +8,6 @@ export default function Home() {
 
   return (
     <main>
-      <NavBar />
       <div className="flex flex-col">
         <div className="flex overflow-hidden relative flex-col items-start px-16 py-20 w-full text-white min-h-[900px] max-md:px-5 max-md:max-w-full">
           <video

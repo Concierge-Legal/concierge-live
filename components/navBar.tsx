@@ -13,9 +13,47 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   NavigationMenuViewport,
+  navigationMenuTriggerStyle
 } from "@/components/ui/navigationMenu";
 import { cn } from "@/utils/cn";
 
+const featureComponents: { title: string; href: string; description: string; }[] = [
+  {
+    title: "Industry Knowledge",
+    href: "/chatbotFeatures#industryKnowledge",
+    description:
+      "Concierge understands everything about your specific industry.",
+  },
+  {
+    title: "Product Knowledge",
+    href: "/chatbotFeatures#productKnowledge",
+    description:
+      "Concierge can connect users directly with all of your products and services.",
+  },
+  {
+    title: "Company Knowledge",
+    href: "/chatbotFeatures#companyKnowledge",
+    description:
+      "Concierge understands deeply about your company, and can help your users understand too.",
+  },
+  {
+    title: "Legal Information",
+    href: "/chatbotFeatures#legalInformation",
+    description: "Integration with Ask Abe for revolultionary legal information requests.",
+  },
+  {
+    title: "Direct Integration on Your Site",
+    href: "/chatbotFeatures#directIntegration",
+    description:
+      "We can directly integrate Concierge seamlessly onto your existing website.",
+  },
+  {
+    title: "Privacy (Remove This)",
+    href: "/chatbotFeatures#privacy",
+    description:
+      "To be removed. Blah blah blah blah blah.",
+  },
+];
 
 
 const NavBar = () => {
@@ -33,46 +71,83 @@ const NavBar = () => {
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
+           
             <NavigationMenuItem>
               <NavigationMenuTrigger>Features</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  {featureComponents.map((component) => (
+                    <ListItem
+                      key={component.title}
+                      title={component.title}
+                      href={component.href}
+                    >
+                      {component.description}
+                    </ListItem>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger>Dashboard Features</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
                   <li className="row-span-3">
                     <NavigationMenuLink asChild>
                       <a
                         className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                        href="/"
+                        href="/dashboardFeatures"
                       >
 
                         <div className="mb-2 mt-4 text-lg font-medium">
-                          Concierge is cool
+                          Admin Dashboard
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          Many features that makes you more money, cool text explanation here.
+                          Monitor: blah blah blah blah blah blah blah blah,
+                        </p>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          Control: blah blah blah blah blah blah blah blah,
                         </p>
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/chatbotFeatures" title="Chat Features">
-                    Understands the nuances and specifics of your industry.
+                  <ListItem href="/dashboardFeatures#intro" title="Introduction">
+                   TODO blah blah blah blah blah
 
                   </ListItem>
-                  <ListItem href="/dashboardFeatures" title="Dashboard Features">
-                    Deeply integrates with your existing UI and UX.
+                  <ListItem href="/dashboardFeatures#analytics" title="Analytics">
+                    Get in depth analytics on everything you need. 
                   </ListItem>
-                  <ListItem href="/features#userAid" title="Aid Your Users">
-                    Help Your Users Get to Know You
+                  <ListItem href="/dashboardFeatures#appearance" title="Customize Appearance">
+                    Customize the appearance of your concierge instance.
                   </ListItem>
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <StyledLink href="/chat">Demo</StyledLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <StyledLink href="/pricing">Pricing</StyledLink>
+              <Link href="/chat" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Demo
+                </NavigationMenuLink>
+              </Link>
             </NavigationMenuItem>
             
+            <NavigationMenuItem>
+              <Link href="/pricing" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Pricing
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/documentation" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                  Documentation
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+
+
 
           </NavigationMenuList>
         </NavigationMenu>
