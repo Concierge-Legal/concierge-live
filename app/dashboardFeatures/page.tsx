@@ -29,12 +29,12 @@ export default function DashboardFeatures() {
             </div>
             <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
               <div className="self-stretch text-lg leading-7 text-black max-md:mt-10 max-md:max-w-full">
-                Concierge's dashboard features an intuitive user interface that makes it easy for users to navigate and access the information they need. With a clean and organized layout, users can quickly find the tools and resources they require to manage their legal information. The dashboard is designed to be user-friendly, with clear labels and intuitive icons that guide users through the various features and functionalities. Whether it's searching for legal documents, connecting with lawyers, or accessing customer support, the dashboard provides a seamless and efficient experience for users.
+                Concierge&apos;s dashboard features an intuitive user interface that makes it easy for users to navigate and access the information they need. With a clean and organized layout, users can quickly find the tools and resources they require to manage their legal information. The dashboard is designed to be user-friendly, with clear labels and intuitive icons that guide users through the various features and functionalities. Whether it&apos;s searching for legal documents, connecting with lawyers, or accessing customer support, the dashboard provides a seamless and efficient experience for users.
               </div>
             </div>
           </div>
         </div>
-        <Image src="/bulb.png" alt="Dashboard Interface" layout="responsive" width={1920} height={1080} className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full" />
+        <Image src="/dashboard_features.jpg" alt="Dashboard Interface" layout="responsive" width={1920} height={1080} className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full" />
       </div>
       <div className="flex flex-col px-16 py-20 w-full bg-white max-md:px-5 max-md:max-w-full">
         <div className="self-center mt-8 text-base font-semibold leading-6 text-center text-black">
@@ -57,7 +57,7 @@ export default function DashboardFeatures() {
                   Real-Time Analytics and Reporting for Better Decision Making
                 </div>
                 <div className="mt-6 leading-6 max-md:max-w-full">
-                  Get valuable insights into your Web3 Legal information with Concierge's real-time analytics and reporting capabilities. Monitor key metrics, track user behavior, and make data-driven decisions to optimize your legal services.
+                  Get valuable insights into your Web3 Legal information with Concierge&apos;s real-time analytics and reporting capabilities. Monitor key metrics, track user behavior, and make data-driven decisions to optimize your legal services.
                 </div>
                 <div className="flex gap-5 pr-20 mt-8 max-md:flex-wrap max-md:pr-5">
                   <div className="justify-center px-6 py-3 border border-black border-solid max-md:px-5">
@@ -89,7 +89,7 @@ export default function DashboardFeatures() {
                   Real-Time Analytics and Reporting for Better Decision Making
                 </div>
                 <div className="mt-6 leading-6 max-md:max-w-full">
-                  Gain valuable insights into your Web3 Legal information with Concierge's real-time analytics and reporting capabilities. Make data-driven decisions to optimize your legal services and improve customer satisfaction.
+                  Gain valuable insights into your Web3 Legal information with Concierge&apos;s real-time analytics and reporting capabilities. Make data-driven decisions to optimize your legal services and improve customer satisfaction.
                 </div>
                 <div className="flex gap-5 pr-20 mt-8 max-md:flex-wrap max-md:pr-5">
                   <div className="justify-center px-6 py-3 border border-black border-solid max-md:px-5">

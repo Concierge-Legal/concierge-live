@@ -53,7 +53,7 @@ export default function ChatbotFeatures() {
             <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
               <div className="flex flex-col grow max-md:mt-10 max-md:max-w-full">
                 <div className="text-lg leading-7 text-black max-md:max-w-full">
-                  Concierge's conversational AI is equipped with industry-specific legal knowledge search capabilities,
+                  Concierge&apos;s conversational AI is equipped with industry-specific legal knowledge search capabilities,
                   allowing it to provide accurate answers to your legal inquiries.
                 </div>
                 <div className="py-2 mt-8 max-md:max-w-full">
@@ -63,7 +63,7 @@ export default function ChatbotFeatures() {
                  
                         <div className="mt-4 text-xl font-bold leading-7">Search</div>
                         <div className="mt-4 text-base leading-6">
-                          Find answers to your legal questions quickly and accurately with Concierge's industry
+                          Find answers to your legal questions quickly and accurately with Concierge&apos;s industry
                           knowledge search.
                         </div>
                       </div>
@@ -73,7 +73,7 @@ export default function ChatbotFeatures() {
                         
                         <div className="mt-4 text-xl font-bold leading-7">Connect</div>
                         <div className="mt-4 text-base leading-6">
-                          Connect with industry-specific legal information and resources through Concierge's intelligent
+                          Connect with industry-specific legal information and resources through Concierge&apos;s intelligent
                           search capabilities.
                         </div>
                       </div>
@@ -156,7 +156,7 @@ export default function ChatbotFeatures() {
                                 </div>
                                 <div className="flex flex-col justify-center pl-8 mt-10 max-md:pl-5 max-md:max-w-full">
                                     <div className="text-3xl font-bold leading-10 max-md:max-w-full">Conversation Archiving</div>
-                                    <div className="mt-4 text-base leading-6 max-md:max-w-full">Concierge's conversation archiving feature allows users to easily store and retrieve past conversations for future reference. This ensures that important information and discussions are never lost.</div>
+                                    <div className="mt-4 text-base leading-6 max-md:max-w-full">Concierge&apos;s conversation archiving feature allows users to easily store and retrieve past conversations for future reference. This ensures that important information and discussions are never lost.</div>
                                 </div>
                                 <div className="flex flex-col justify-center pl-8 mt-10 max-md:pl-5 max-md:max-w-full">
                                     <div className="text-3xl font-bold leading-10 max-md:max-w-full">Dynamic Website Routing</div>

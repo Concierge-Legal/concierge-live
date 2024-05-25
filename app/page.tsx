@@ -17,7 +17,7 @@ export default function Home() {
             loop
             muted
             playsInline
-            src="/landing.mp4"
+            src="/homepage/landing.mp4"
           >
             Your browser does not support the video tag.
           </video>
@@ -52,7 +52,7 @@ export default function Home() {
                 loop
                 muted
                 playsInline
-                src="/CONCIERGE.mp4"
+                src="/homepage/CONCIERGE.mp4"
               >
                 Your browser does not support the video tag.
               </video>
