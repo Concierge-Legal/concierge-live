@@ -24,7 +24,7 @@ const NavBar = () => {
       <div className="flex gap-5 justify-between w-full align-bottom max-md:flex-wrap max-md:mr-1 max-md:max-w-full">
         <Link href="/">
           <Image
-            src={'/blacklogo.png'}
+            src={'/logo/blacklogo.png'}
             // src={isScrolled ? '/blacklogo.png' : '/logo.png'}
             alt="Logo"
             width={50}

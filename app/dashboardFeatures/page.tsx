@@ -34,7 +34,7 @@ export default function DashboardFeatures() {
             </div>
           </div>
         </div>
-        <Image src="/dashboard_features.jpg" alt="Dashboard Interface" layout="responsive" width={1920} height={1080} className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full" />
+        <Image src="/features/dashboard_features.jpg" alt="Dashboard Interface" layout="responsive" width={1920} height={1080} className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full" />
       </div>
       <div className="flex flex-col px-16 py-20 w-full bg-white max-md:px-5 max-md:max-w-full">
         <div className="self-center mt-8 text-base font-semibold leading-6 text-center text-black">

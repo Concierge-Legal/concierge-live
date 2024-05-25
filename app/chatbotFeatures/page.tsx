@@ -85,7 +85,7 @@ export default function ChatbotFeatures() {
             </div>
           </div>
         </div>
-        <Image src="/infobooth2.jpg" alt="AI Graphic" width={1920} height={1080} className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full" />
+        <Image src="/features/infobooth2.jpg" alt="AI Graphic" width={1920} height={1080} className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full" />
       </div>
       <div className="flex flex-col justify-center px-16 py-20 w-full bg-white max-md:px-5 max-md:max-w-full">
         <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
@@ -99,21 +99,21 @@ export default function ChatbotFeatures() {
                 Our Intelligent Product/Service Search feature ensures your users find the exact products or services they need based on their questions. Concierge directs users to the most relevant and accurate options, saving you time and effort.
                 </div>
                 <div className="flex gap-4 mt-10 max-md:flex-wrap">
-                  <Image src="/bulb.png" alt="Accurate Results" width={16} height={16} className="shrink-0 my-auto w-4 aspect-square" />
+                  <Image src="/icons/bulb.png" alt="Accurate Results" width={16} height={16} className="shrink-0 my-auto w-4 aspect-square" />
                   <div className="flex-1 max-md:max-w-full">Search and weight products/services according to customer prompts.</div>
                 </div>
                 <div className="flex gap-4 mt-4 max-md:flex-wrap">
-                  <Image src="/bulb.png" alt="Algorithms" width={16} height={16} className="shrink-0 my-auto w-4 aspect-square" />
+                  <Image src="/icons/bulb.png" alt="Algorithms" width={16} height={16} className="shrink-0 my-auto w-4 aspect-square" />
                   <div className="flex-1 max-md:max-w-full">Utilize advanced algorithms to match customer needs with the best options available.</div>
                 </div>
                 <div className="flex gap-4 mt-4 max-md:flex-wrap">
-                  <Image src="/bulb.png" alt="Save Time" width={16} height={16} className="shrink-0 my-auto w-4 aspect-square" />
+                  <Image src="/icons/bulb.png" alt="Save Time" width={16} height={16} className="shrink-0 my-auto w-4 aspect-square" />
                   <div className="flex-1 max-md:max-w-full">Save Time and Effort in Helping Users Find Legal Solutions</div>
                 </div>
               </div>
             </div>
             <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-              <Image src="/services.jpg" alt="Search Illustration" width={480} height={500} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
+              <Image src="/features/services.jpg" alt="Search Illustration" width={480} height={500} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
             </div>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function ChatbotFeatures() {
         <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
           <div className="flex gap-5 max-md:flex-col max-md:gap-0">
             <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-              <Image src="/legalTech.jpg" alt="Enhance Graphic" width={480} height={500} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
+              <Image src="/features/legalTech.jpg" alt="Enhance Graphic" width={480} height={500} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
             </div>
             <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
               <div className="flex flex-col self-stretch my-auto text-base leading-6 text-black max-md:mt-10 max-md:max-w-full">
@@ -146,7 +146,7 @@ export default function ChatbotFeatures() {
                 <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
                     <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                         <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                            <Image loading="lazy" src="/books.jpg" alt="Legal Information" width={1000} height={960} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
+                            <Image loading="lazy" src="/features/books.jpg" alt="Legal Information" width={1000} height={960} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
                         </div>
                         <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                             <div className="flex flex-col self-stretch my-auto text-black max-md:mt-10 max-md:max-w-full">
@@ -177,7 +177,7 @@ export default function ChatbotFeatures() {
                             </div>
                         </div>
                         <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                            <Image loading="lazy" src="/datasecurity.jpg" alt="Data Security" width={1000} height={960} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
+                            <Image loading="lazy" src="/features/datasecurity.jpg" alt="Data Security" width={1000} height={960} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
                         </div>
                     </div>
                 </div>
@@ -193,7 +193,7 @@ export default function ChatbotFeatures() {
                             </div>
                         </div>
                         <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                            <Image loading="lazy" src="/integration.jpg" alt="Seamless Workflow" width={1000} height={960} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
+                            <Image loading="lazy" src="/features/integration.jpg" alt="Seamless Workflow" width={1000} height={960} className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full" />
                         </div>
                     </div>
                 </div>
