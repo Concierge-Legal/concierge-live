@@ -22,6 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
         {/* Wrapper div for content, adding top padding */}
+        <NavBar></NavBar>
         <div className="flex-grow "> {/* Update pt-16 to the height of your NavBar */}
           {children}
         </div>
