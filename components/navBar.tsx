@@ -53,11 +53,11 @@ const NavBar = () => {
                       </a>
                     </NavigationMenuLink>
                   </li>
-                  <ListItem href="/features#industryExpertise" title="Industry Expertise">
+                  <ListItem href="/chatbotFeatures" title="Chat Features">
                     Understands the nuances and specifics of your industry.
 
                   </ListItem>
-                  <ListItem href="/features#websiteUX" title="Deep UX Integration">
+                  <ListItem href="/dashboardFeatures" title="Dashboard Features">
                     Deeply integrates with your existing UI and UX.
                   </ListItem>
                   <ListItem href="/features#userAid" title="Aid Your Users">
