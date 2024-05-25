@@ -4,6 +4,25 @@ import NavBar from "@/components/navBar";
 
 export default function DashboardFeatures() {
 
+// Analytics
+	// User Engagement Analytics
+	// Response Metrics
+	// Customer Insights
+	// Resolution Metrics
+	// User Satisfaction
+// Knowledge Library
+	// Curate Industry Knowledge
+	// Curate Company Knowledge
+	// Curate Products/Services Knowledge
+// Behavior
+	// Train User Interaction
+	// Tool Usage
+	// Escalation Behavior
+// Appearance
+	// Customize Concierge Appearance
+	// Custome Website Integration
+// Usage and Billing
+	// Cost Tracking
 
 
   return (
@@ -12,10 +31,10 @@ export default function DashboardFeatures() {
       <div className="flex flex-col">
         <div className="flex flex-col items-center px-16 py-20 w-full text-center text-black bg-white max-md:px-5 max-md:max-w-full">
           <div className="mt-8 text-6xl font-bold leading-[67.2px] max-md:max-w-full max-md:text-4xl">
-            Enhanced Dashboard Features
+		  	Complete Control, Centralized
           </div>
           <div className="mt-6 mb-2.5 text-lg leading-7 max-md:max-w-full">
-            Discover new tools and insights to optimize your workflow on the dashboard.
+		  	Configure, Monitor, and Analyze Directly From The Dashboard
           </div>
         </div>
         <div className="flex flex-col px-16 py-20 w-full bg-white max-md:px-5 max-md:max-w-full">
@@ -23,7 +42,7 @@ export default function DashboardFeatures() {
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
               <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                 <div id="intro" className="self-stretch text-4xl font-bold leading-10 text-black max-md:mt-10 max-md:max-w-full">
-                  Experience an Intuitive User Interface on the Dashboard
+                  Dashboard is Sick AF
                 </div>
               </div>
               <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
