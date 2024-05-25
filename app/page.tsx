@@ -70,7 +70,7 @@ export default function Home() {
 
               <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-blue-900 text-center shadow-lg">
                 <div className="mb-4">
-                  <Image src="/increase.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+                  <Image src="/icons/increase.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Boost your Revenue</h3>
                 <p className="mb-4">Help your customers find exactly what they need with precision and efficiency.</p>
@@ -78,7 +78,7 @@ export default function Home() {
               </div>
               <div className="flex-1 text-darkestBlue py-36 px-12 border-r border-black text-center shadow-lg">
                 <div className="mb-4">
-                  <Image src="/ui.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+                  <Image src="/icons/ui.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Modernize Your UX</h3>
                 <p className="mb-4">Transform your user experience with cutting-edge AI technology.</p>
@@ -86,7 +86,7 @@ export default function Home() {
               </div>
               <div className="flex-1 text-darkestBlue py-36 px-12 text-center shadow-lg">
                 <div className="mb-4">
-                  <Image src="/analytics.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
+                  <Image src="/icons/analytics.png" alt="Revenue" width={100} height={100} className="mx-auto"></Image>
                 </div>
                 <h3 className="text-xl font-bold mb-2">Automated Data Analytics</h3>
                 <p className="mb-4">Leverage real-time insights through an intuitive business dashboard.</p>
