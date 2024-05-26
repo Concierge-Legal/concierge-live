@@ -183,7 +183,7 @@ export default function Home() {
 
 							</Carousel>
 
-						</div>
+
 					</div>
 				</section>
 
@@ -213,7 +213,9 @@ export default function Home() {
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 							<Card className="bg-card text-card-foreground shadow-lg rounded-lg p-6">
 								<CardHeader>Ask Abe: Legal AI Assistant</CardHeader>
+
 								<CardContent>Integrate Ask Abe, our advanced legal information assistant, to provide authoritative legal information and education directly through your chat interface. This tool helps in providing relevant primary source legislation, enhancing the responsiveness of your service.</CardContent>
+
 							</Card>
 							<Card className="bg-card text-card-foreground shadow-lg rounded-lg p-6">
 								<CardHeader>Compliance and Security</CardHeader>
