@@ -86,7 +86,7 @@ export default function DashboardFeatures() {
                       alt="Efficient Workflow"
                       width={48}
                       height={48}
-                      className="w-12"
+                      className=""
                     />
                     <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
                       Engagement Metrics
@@ -105,7 +105,7 @@ export default function DashboardFeatures() {
               <div className="flex flex-col p-8 border border-rounded border-solid drop-shadow-xl rounded-md bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
                 <Image
                   loading="lazy"
-                  src="/features/analytics.jpg"
+                  src="/icons/server-administration.png"
                   alt="Expert Guidance"
                   width={48}
                   height={48}
@@ -124,7 +124,7 @@ export default function DashboardFeatures() {
               <div className="flex flex-col p-8 border border-rounded border-solid drop-shadow-xl rounded-md bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
                 <Image
                   loading="lazy"
-                  src="/features/analytics.jpg"
+                  src="/icons/server.png"
                   alt="Seamless Connections"
                   width={48}
                   height={48}
@@ -145,7 +145,7 @@ export default function DashboardFeatures() {
               <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full w-6/12">
                 <Image
                   loading="lazy"
-                  src="/features/analytics.jpg"
+                  src="/icons/solution.png"
                   alt="Secure Communication"
                   width={48}
                   height={48}
@@ -185,10 +185,10 @@ export default function DashboardFeatures() {
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
               <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
-                  <div className="flex flex-col justify-center p-8 max-md:px-5">
+                  <div className="flex flex-col justify-center items-center p-8 max-md:px-5">
                     <Image
                       loading="lazy"
-                      src="/features/keys.jpg"
+                      src="/icons/solution.png"
                       alt="Expert Guidance"
                       width={200}
                       height={100}
@@ -197,7 +197,7 @@ export default function DashboardFeatures() {
                     <div className="mt-6 text-2xl font-bold leading-10">
                       Industry Knowledge
                     </div>
-                    <div className="mt-4 leading-6">
+                    <div className="mt-4 text-center leading-6">
                       Stay ahead of the curve with curated industry knowledge.
                       Access the latest trends, research, and developments in
                       the legal sector to make informed decisions and stay
@@ -208,10 +208,10 @@ export default function DashboardFeatures() {
               </div>
               <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
-                  <div className="flex flex-col justify-center p-8 max-md:px-5">
+                  <div className="flex flex-col justify-center items-center p-8 max-md:px-5">
                     <Image
                       loading="lazy"
-                      src="/features/keys.jpg"
+                      src="/icons/library.png"
                       alt="Expert Guidance"
                       width={200}
                       height={100}
@@ -220,7 +220,7 @@ export default function DashboardFeatures() {
                     <div className="mt-6 text-2xl font-bold leading-10">
                       Company Knowledge Base
                     </div>
-                    <div className="mt-4 leading-6">
+                    <div className="mt-4 text-center leading-6">
                       Consolidate all your internal knowledge in one place. From
                       company policies to best practices, ensure your team has
                       easy access to the information they need to perform at
@@ -229,12 +229,12 @@ export default function DashboardFeatures() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md  max-md:mt-8">
-                  <div className="flex flex-col justify-center p-8 max-md:px-5">
+              <div className="flex flex-col ml-5 mr-5 w-[33%] max-md:ml-0 max-md:w-full">
+                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
+                  <div className="flex flex-col justify-center items-center p-8 max-md:px-5">
                     <Image
                       loading="lazy"
-                      src="/features/keys.jpg"
+                      src="/icons/new-product.png"
                       alt="Expert Guidance"
                       width={200}
                       height={100}
@@ -243,7 +243,7 @@ export default function DashboardFeatures() {
                     <div className="mt-6 text-2xl font-bold leading-10">
                       Product and Service Catalog
                     </div>
-                    <div className="mt-4">
+                    <div className="mt-4 text-center">
                       Organize and maintain detailed information about your
                       products and services. Provide your team with
                       comprehensive resources to support sales, marketing, and
@@ -256,57 +256,41 @@ export default function DashboardFeatures() {
           </div>
 
           {/* Appearance Major Section*/}
-          <div className="flex flex-col justify-center px-16 py-20 bg-white max-md:px-5">
-            <div className="mt-8 max-md:mr-1 max-md:max-w-full">
-              <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                <div className="flex flex-col w-[35%] max-md:ml-0 max-md:w-full">
-                  <div className="flex flex-col grow justify-between self-stretch text-black max-md:mt-10 max-md:max-w-full">
-                    <div className="mt-4 text-5xl font-bold leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-                      Customized Visual Experience
-                    </div>
-                    <div className="flex flex-col pl-8 mt-60 max-md:pl-5 max-md:mt-10 max-md:max-w-full">
-                      <div className="text-lg leading-7">
-                        Create a unique and engaging visual experience with
-                        customizable appearance settings. Tailor the look and
-                        feel of your Concierge and seamlessly integrate it with
-                        your website to match your brand identity.
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="flex flex-col ml-5 w-[65%] max-md:ml-0 max-md:w-full">
-                  <div className="grow max-md:mt-10 max-md:max-w-full">
-                    <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                      <div className="flex flex-col w-[57%] max-md:ml-0 max-md:w-full">
-                        <Image
-                          loading="lazy"
-                          src="/features/books.jpg"
-                          alt="Efficient Workflow"
-                          width={48}
-                          height={48}
-                          className="grow w-full aspect-[0.67] max-md:mt-8 max-md:max-w-full"
-                        />
-                      </div>
-                      <div className="flex flex-col ml-5 w-[43%] max-md:ml-0 max-md:w-full">
-                        <Image
-                          loading="lazy"
-                          src="/features/dashboard_features.jpg"
-                          alt="Efficient Workflow"
-                          width={48}
-                          height={48}
-                          className="w-full aspect-square max-md:mt-8"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="flex flex-col items-center px-16 py-20 bg-white max-md:px-5">
+  <div className="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
+    <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+      <div className="flex flex-col max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-lg max-md:mt-8 max-md:max-w-full">
+          <div className="flex flex-col justify-center p-12 max-md:px-5 max-md:max-w-full">
+            <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+              Customized Visual Experience
             </div>
+            <div className="mt-6 text-lg leading-7 text-center text-black max-md:max-w-full">
+              Create a unique and engaging visual experience with customizable appearance settings. Tailor the look and feel of your Concierge and seamlessly integrate it with your website to match your brand identity.
+            </div>
+          </div>
+          <div className="flex justify-center pb-12 ">
+            <Image
+              loading="lazy"
+              src="/features/colorchart.jpg"
+              alt="Expert Guidance"
+              width={5472}
+              height={3648}
+              className="w-3/4 aspect-[1.79] max-md:max-w-full"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+
+          <div className="flex flex-col justify-center px-16 py-20 bg-white max-md:px-5">
             {/* Behavior Major Section*/}
 
             <div className="flex flex-col py-20 bg-white max-md:px-5">
-              <div className="flex flex-row w-full max-md:flex-col">
+              <div className="flex flex-row  w-full max-md:flex-col">
                 <div className="flex flex-col w-2/4 max-md:w-full">
                   <div className="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
                     <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -375,11 +359,11 @@ export default function DashboardFeatures() {
                     </div>
                   </div>
                 </div>
-                <div className="flex flex-col w-1/2 pl-2 self-center max-md:w-full max-md:mt-10">
+                <div className="flex flex-col w-1/2 pr-6 self-center max-md:w-full max-md:mt-10">
                   <div className="mt-4 text-5xl font-bold text-end text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
                     Optimized User Engagement
                   </div>
-                  <div className="mt-6 text-lg leading-7 text-end text-black max-md:max-w-full">
+                  <div className="mt-6 text-lg w-3/4 ml-auto leading-7 text-end text-black max-md:max-w-full">
                     Enhance the efficiency and effectiveness of user
                     interactions with advanced behavior settings. Train your AI
                     Concierge to adapt to user behaviors, optimize tool usage,
