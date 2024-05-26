@@ -82,7 +82,7 @@ export default function DashboardFeatures() {
                     The dashboard provides a comprehensive set of features and
                     tools to streamline your legal information management. From
                     AI-powered chatbot assistance to seamless lawyer
-                    connections, it's all here.
+                    connections, it&apos;s all here.
                   </div>
                 </div>
               </div>
@@ -210,7 +210,7 @@ export default function DashboardFeatures() {
               <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white rounded-md border border-black border-solid max-md:mt-8">
                   <div className="flex flex-col justify-center p-8 max-md:px-5">
-				  <Image
+                    <Image
                       loading="lazy"
                       src="/features/keys.jpg"
                       alt="Expert Guidance"
@@ -233,7 +233,7 @@ export default function DashboardFeatures() {
               <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white rounded-md border border-black border-solid max-md:mt-8">
                   <div className="flex flex-col justify-center p-8 max-md:px-5">
-				  <Image
+                    <Image
                       loading="lazy"
                       src="/features/keys.jpg"
                       alt="Expert Guidance"
@@ -305,80 +305,91 @@ export default function DashboardFeatures() {
             </div>
 
             {/* Behavior Major Section*/}
-			<div className="flex flex-col items-center py-20 w-full text-center text-black">
-  <div className="flex flex-col items-center px-16 py-20 max-md:px-5">
-    <div className="mt-4 text-5xl font-bold text-center text-black leading-[58px] w-[768px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-      Optimized User Engagement
-    </div>
-    <div className="mt-6 text-lg leading-7 text-center text-black w-[768px] max-md:max-w-full">
-      Enhance the efficiency and effectiveness of user interactions with advanced behavior settings. Train your AI Concierge to adapt to user behaviors, optimize tool usage, and manage escalation processes seamlessly.
-    </div>
-    <div className="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
-      <div className="flex flex-col gap-10 max-md:flex-col max-md:gap-0">
-        
-        <div className="flex flex-row items-center w-full max-md:flex-col max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col text-left text-black w-[33%] max-md:mt-10">
-            <div className="mt-6 text-3xl font-bold leading-10">
-              Train on Interactions
-            </div>
-            <div className="mt-6 text-base leading-6">
-              Develop and refine the Concierge's ability to interact with users through continuous training. Improve response accuracy and user satisfaction by teaching the AI to understand and respond to various user inputs effectively.
-            </div>
-          </div>
-          <Image
-            loading="lazy"
-            src="/features/walle.jpg"
-            alt="Train on Interactions"
-            width={200}
-            height={300}
-            className="ml-5 aspect-square max-md:mt-6"
-          />
-        </div>
+            <div className="flex flex-col items-center py-20 w-full text-center text-black">
+              <div className="flex flex-col items-center px-16 py-20 max-md:px-5">
+                <div className="mt-4 text-5xl font-bold text-center text-black leading-[58px] w-[768px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+                  Optimized User Engagement
+                </div>
+                <div className="mt-6 text-lg leading-7 text-center text-black w-[768px] max-md:max-w-full">
+                  Enhance the efficiency and effectiveness of user interactions
+                  with advanced behavior settings. Train your AI Concierge to
+                  adapt to user behaviors, optimize tool usage, and manage
+                  escalation processes seamlessly.
+                </div>
+                <div className="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
+                  <div className="flex flex-col gap-10 max-md:flex-col max-md:gap-0">
+                    <div className="flex flex-row items-center w-full max-md:flex-col max-md:ml-0 max-md:w-full">
+                      <div className="flex flex-col text-left text-black w-[33%] max-md:mt-10">
+                        <div className="mt-6 text-3xl font-bold leading-10">
+                          Train on Interactions
+                        </div>
+                        <div className="mt-6 text-base leading-6">
+                          Develop and refine the Concierge&apos;s ability to interact
+                          with users through continuous training. Improve
+                          response accuracy and user satisfaction by teaching
+                          the AI to understand and respond to various user
+                          inputs effectively.
+                        </div>
+                      </div>
+                      <Image
+                        loading="lazy"
+                        src="/features/walle.jpg"
+                        alt="Train on Interactions"
+                        width={200}
+                        height={300}
+                        className="ml-5 aspect-square max-md:mt-6"
+                      />
+                    </div>
 
-        <div className="flex flex-row items-center w-full max-md:flex-col max-md:ml-0 max-md:w-full">
-			<Image
-            loading="lazy"
-            src="/features/walle.jpg"
-            alt="Enhance Tool Utilization"
-            width={200}
-            height={300}
-            className="mr-5 aspect-square max-md:mt-6"
-          />
-          <div className="flex flex-col w-[33%] text-left text-black max-md:mt-10">
-            <div className="mt-6 text-3xl font-bold leading-10">
-              Enhance Tool Utilization
-            </div>
-            <div className="mt-6 text-base leading-6">
-              Maximize the efficiency of your tools by monitoring and adjusting their usage patterns. Ensure that your AI Concierge leverages the right tools at the right time for optimal performance.
-            </div>
-          </div>
-          
-        </div>
+                    <div className="flex flex-row items-center w-full max-md:flex-col max-md:ml-0 max-md:w-full">
+                      <Image
+                        loading="lazy"
+                        src="/features/walle.jpg"
+                        alt="Enhance Tool Utilization"
+                        width={200}
+                        height={300}
+                        className="mr-5 aspect-square max-md:mt-6"
+                      />
+                      <div className="flex flex-col w-[33%] text-left text-black max-md:mt-10">
+                        <div className="mt-6 text-3xl font-bold leading-10">
+                          Enhance Tool Utilization
+                        </div>
+                        <div className="mt-6 text-base leading-6">
+                          Maximize the efficiency of your tools by monitoring
+                          and adjusting their usage patterns. Ensure that your
+                          AI Concierge leverages the right tools at the right
+                          time for optimal performance.
+                        </div>
+                      </div>
+                    </div>
 
-        <div className="flex flex-row items-center w-full max-md:flex-col max-md:ml-0 max-md:w-full">
-          <div className="flex flex-col text-left text-black w-[33%] max-md:mt-10">
-            <div className="mt-6 text-3xl font-bold leading-10">
-              Proactive Escalation Management
+                    <div className="flex flex-row items-center w-full max-md:flex-col max-md:ml-0 max-md:w-full">
+                      <div className="flex flex-col text-left text-black w-[33%] max-md:mt-10">
+                        <div className="mt-6 text-3xl font-bold leading-10">
+                          Proactive Escalation Management
+                        </div>
+                        <div className="mt-6 text-base leading-6">
+                          Prepare for potential issues by setting clear
+                          protocols and training your Concierge to anticipate
+                          and manage escalations effectively. Ensure that
+                          complex interactions are recognized early and handled
+                          appropriately, minimizing disruption and maintaining
+                          user satisfaction.
+                        </div>
+                      </div>
+                      <Image
+                        loading="lazy"
+                        src="/features/walle.jpg"
+                        alt="Proactive Escalation Management"
+                        width={200}
+                        height={300}
+                        className="ml-5 aspect-square max-md:mt-6"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div className="mt-6 text-base leading-6">
-              Prepare for potential issues by setting clear protocols and training your Concierge to anticipate and manage escalations effectively. Ensure that complex interactions are recognized early and handled appropriately, minimizing disruption and maintaining user satisfaction.
-            </div>
-          </div>
-          <Image
-            loading="lazy"
-            src="/features/walle.jpg"
-            alt="Proactive Escalation Management"
-            width={200}
-            height={300}
-            className="ml-5 aspect-square max-md:mt-6"
-          />
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</div>
-
 
             <div className="flex flex-col items-center p-20 w-full text-6xl font-bold bg-white leading-[67.2px] max-md:px-5 max-md:max-w-full max-md:text-4xl">
               <div className="mt-8 text-center text-black max-md:max-w-full max-md:text-4xl">
