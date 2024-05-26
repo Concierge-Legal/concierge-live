@@ -64,9 +64,9 @@ export default function DashboardFeatures() {
         <div className="flex flex-col justify-center px-16 py-20 bg-white max-md:px-5">
           <div className="max-md:mr-1 max-md:max-w-full">
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-              <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col text-base leading-6 text-black max-md:mt-10 max-md:max-w-full">
-                  <div className="mt-4 text-5xl font-bold leading-[58px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+              <div className="flex flex-col justify-center mt-4 p-8 h-full w-6/12 max-md:ml-0 max-md:w-full">
+                <div className="flex flex-col text-base text-center leading-6 text-black max-md:mt-10 max-md:max-w-full">
+                  <div className="mt-4 text-4xl font-bold leading-8 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
                     Data-Driven Analytics
                   </div>
                   <div className="mt-6 text-lg leading-7 max-md:max-w-full">
@@ -77,7 +77,8 @@ export default function DashboardFeatures() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+
+              <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col grow text-black max-md:mt-10 max-md:max-w-full">
                   <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
                     <Image
@@ -142,11 +143,11 @@ export default function DashboardFeatures() {
               </div>
             </div>
             <div className="flex gap-5 mt-8 max-md:flex-col max-md:gap-0">
-              <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full w-6/12">
+              <div className="flex flex-col p-8 border border-rounded border-solid drop-shadow-xl rounded-md bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
                 <Image
                   loading="lazy"
                   src="/icons/solution.png"
-                  alt="Secure Communication"
+                  alt="Expert Guidance"
                   width={48}
                   height={48}
                   className="w-12"
@@ -156,20 +157,36 @@ export default function DashboardFeatures() {
                 </div>
                 <div className="mt-4 text-base leading-6 max-md:max-w-full">
                   Measure user satisfaction through feedback and ratings.
-                  Understand user sentiment and identify key drivers of
-                  satisfaction to continuously enhance the overall user
+                  Understand user sentiment and the identify key drivers of
+                  satisfaction to continuously update and enhance the user
                   experience.
                 </div>
               </div>
-              <div className="flex flex-col p-8 border border-transparent rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full w-6/12">
-                {/* Placeholder for additional content */}
+              <div className="flex flex-col p-8 border border-rounded border-solid drop-shadow-xl rounded-md bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
+                <Image
+                  loading="lazy"
+                  src="/icons/server.png"
+                  alt="Seamless Connections"
+                  width={48}
+                  height={48}
+                  className="w-12"
+                />
+                <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
+                  Resolution Efficiency
+                </div>
+                <div className="mt-4 text-base leading-6 max-md:max-w-full">
+                  Monitor the effectiveness of your support and resolution
+                  processes. Track the time taken to resolve issues and the
+                  success rate of resolutions to improve service quality and
+                  user trust.
+                </div>
               </div>
             </div>
           </div>
         </div>
 
         {/* Knowledge Library Major Section*/}
-        <div className="flex flex-col py-20 bg-white max-md:px-5">
+        <div className="flex flex-col py-20 px-12 bg-white max-md:px-5">
           <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
             Versatile Knowledge Hub
           </div>
@@ -256,37 +273,39 @@ export default function DashboardFeatures() {
           </div>
 
           {/* Appearance Major Section*/}
-          <div className="flex flex-col items-center px-16 py-20 bg-white max-md:px-5">
-  <div className="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
-    <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-      <div className="flex flex-col max-md:ml-0 max-md:w-full">
-        <div className="flex flex-col grow w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-lg max-md:mt-8 max-md:max-w-full">
-          <div className="flex flex-col justify-center p-12 max-md:px-5 max-md:max-w-full">
-            <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-              Customized Visual Experience
-            </div>
-            <div className="mt-6 text-lg leading-7 text-center text-black max-md:max-w-full">
-              Create a unique and engaging visual experience with customizable appearance settings. Tailor the look and feel of your Concierge and seamlessly integrate it with your website to match your brand identity.
+          <div className="flex flex-col items-center px-12 py-2 bg-white max-md:px-5">
+            <div className="self-stretch mt-16 max-md:mt-10 max-md:max-w-full">
+              <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                  <div className="flex flex-col grow w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-lg max-md:mt-8 max-md:max-w-full">
+                    <div className="flex flex-col justify-center p-12 max-md:px-5 max-md:max-w-full">
+                      <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+                        Customized Visual Experience
+                      </div>
+                      <div className="mt-6 text-lg leading-7 text-center text-black max-md:max-w-full">
+                        Create a unique and engaging visual experience with
+                        customizable appearance settings. Tailor the look and
+                        feel of your Concierge and seamlessly integrate it with
+                        your website to match your brand identity.
+                      </div>
+                    </div>
+                    <div className="flex justify-center pb-12 ">
+                      <Image
+                        loading="lazy"
+                        src="/features/colorchart.jpg"
+                        alt="Expert Guidance"
+                        width={5472}
+                        height={3648}
+                        className="w-3/4 aspect-[1.79] max-md:max-w-full"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex justify-center pb-12 ">
-            <Image
-              loading="lazy"
-              src="/features/colorchart.jpg"
-              alt="Expert Guidance"
-              width={5472}
-              height={3648}
-              className="w-3/4 aspect-[1.79] max-md:max-w-full"
-            />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-
-          <div className="flex flex-col justify-center px-16 py-20 bg-white max-md:px-5">
+          <div className="flex flex-col justify-center px-16  bg-white max-md:px-5">
             {/* Behavior Major Section*/}
 
             <div className="flex flex-col py-20 bg-white max-md:px-5">
@@ -329,7 +348,7 @@ export default function DashboardFeatures() {
                     <div className="flex flex-col ml-2 mr-2 max-md:ml-0 max-md:w-full">
                       <div className="grow w-full bg-white drop-shadow-xl rounded-md max-md:mt-8 max-md:max-w-full">
                         <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                          <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                          <div className="flex flex-col max-md:ml-0 max-md:w-full">
                             <Image
                               loading="lazy"
                               src="/icons/algorithm.png"
@@ -373,7 +392,7 @@ export default function DashboardFeatures() {
               </div>
             </div>
 
-            <div className="flex flex-col items-center p-20 w-full text-6xl font-bold bg-white leading-[67.2px] max-md:px-5 max-md:max-w-full max-md:text-4xl">
+            <div className="flex flex-col items-center pt-20 px-20 w-full text-6xl font-bold bg-white leading-[67.2px] max-md:px-5 max-md:max-w-full max-md:text-4xl">
               <div className="mt-8 text-center text-black max-md:max-w-full max-md:text-4xl">
                 Discover the Dashboard
               </div>
