@@ -1,5 +1,8 @@
 import Image from "next/image";
 import Footer from "@/components/footer";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function DashboardFeatures() {
   //   Analytics
@@ -403,11 +406,19 @@ export default function DashboardFeatures() {
                 for your business.
               </div>
               <div className="flex gap-4 items-start pt-4 mt-6 mb-2.5 text-base leading-6">
-                <div className="justify-center px-6 py-3 text-black whitespace-nowrap bg-black border border-black border-solid max-md:px-5">
+                <div className="justify-center max-md:px-5">
+					<Button variant="default" size="lg">
+						<Link href="/demo">
                   Demo
+				  </Link>
+				  </Button>
                 </div>
-                <div className="justify-center px-6 py-3 text-black border border-black border-solid max-md:px-5">
+                <div className="justify-center max-md:px-5">
+				<Button variant="default" size="lg">
+					<Link href="/pricing">
                   Sign Up
+				  </Link>
+				</Button>
                 </div>
               </div>
             </div>
