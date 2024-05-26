@@ -12,8 +12,8 @@ export function DashboardButton() {
 
 export function LogoutButton() {
   return (
-    <Button asChild>
-      <Link href="/">Logout</Link>
+    <Button variant="destructive" asChild>
+      <Link href="/" className="py-4">Logout</Link>
     </Button>
   )
 }

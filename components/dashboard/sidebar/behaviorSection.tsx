@@ -1,24 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ChartBarIcon, CogIcon, DocumentTextIcon, AcademicCapIcon } from '@heroicons/react/24/solid';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'; // Icons for expanding and collapsing
+import { AcademicCapIcon } from '@heroicons/react/24/solid';
 
-const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ userId, activeMenu }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
-    };
+const SettingsSection: React.FC<{ userId: string}> = ({ userId}) => {
+   
 
     return (
         <div>
-            <button className="flex items-center w-full py-2 text-sm hover:bg-accent focus:outline-none" onClick={toggleExpand}>
+            <button className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none" >
                 <AcademicCapIcon className="h-5 w-5 mr-2" /> Behavior Training
-                {isExpanded ? <ChevronUpIcon className="h-5 w-5 ml-auto" /> : <ChevronDownIcon className="h-5 w-5 ml-auto" />}
+                
             </button>
-            {isExpanded && (
-                <div className="pl-4">
-                    <Link href={`/dashboard/${userId}/training#greetings`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'training' ? 'bg-accent' : ''}`}>
+            
+                <div className="pl-8">
+                    <Link href={`/dashboard/${userId}/training#greetings`} className={`flex items-center py-2 text-sm hover:bg-accent `}>
                         Greetings
                     </Link>
                     <Link href={`/dashboard/${userId}/training#toolUse`} className="flex items-center py-2 text-sm hover:bg-accent">
@@ -29,7 +24,7 @@ const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ us
                     </Link>
 
                 </div>
-            )}
+          
         </div>
     );
 };

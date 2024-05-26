@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Link from 'next/link';
-import { ChartBarIcon, CogIcon } from '@heroicons/react/24/solid';
-import { ChevronDownIcon, ChevronUpIcon } from '@heroicons/react/24/outline'; // Icons for expanding and collapsing
+import { CogIcon } from '@heroicons/react/24/solid';
 
-const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ userId, activeMenu }) => {
-    const [isExpanded, setIsExpanded] = useState(false);
-
-    const toggleExpand = () => {
-        setIsExpanded(!isExpanded);
-    };
+const SettingsSection: React.FC<{ userId: string }> = ({ userId}) => {
 
     return (
         <div>
-            <button className="flex items-center w-full py-2 text-sm hover:bg-accent focus:outline-none" onClick={toggleExpand}>
+			<Link href={`/dashboard/${userId}/settings`} className ="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<CogIcon className="h-5 w-5 mr-2" /> Settings
+			</Link>
+            {/* <button className="flex items-center w-full py-2 text-sm hover:bg-accent focus:outline-none" onClick={toggleExpand}>
                 <CogIcon className="h-5 w-5 mr-2" /> Settings
                 {isExpanded ? <ChevronUpIcon className="h-5 w-5 ml-auto" /> : <ChevronDownIcon className="h-5 w-5 ml-auto" />}
             </button>
@@ -32,7 +29,7 @@ const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ us
                     </Link>
 
                 </div>
-            )}
+            )} */}
         </div>
     );
 };
