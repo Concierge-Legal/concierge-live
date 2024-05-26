@@ -50,6 +50,7 @@ module.exports = {
       colors: {
         darkestBlue: '#04002E',
         mediumBlue: '#2E5181',
+		lightBlue: '#F6F8FF',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

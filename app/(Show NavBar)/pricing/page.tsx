@@ -8,14 +8,23 @@ export default function Pricing() {
  
 
   return (
-    <main className="min-h-screen flex flex-col">
-    <NavBar />
-    <div className="flex flex-col items-center justify-center flex-grow bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-4 text-center">Please contact us for pricing!</h1>
-      <ContactForm />
-    </div>
-    <Footer />
-  </main>
+	<>
+	<NavBar />
+	<main className="min-h-screen flex flex-col">
+	  <div className="flex flex-col items-center justify-center flex-grow mt-36">
+	  <Image
+            src={'/logo/blacklogo.png'}
+            alt="Logo"
+            width={100}
+            height={100}
+          />
+		<h1 className="text-2xl font-bold mb-6 text-center">Please contact us for pricing!</h1>
+		
+		<ContactForm />
+	  </div>
+	  <Footer />
+	</main>
+  </>
   );
 }
 
