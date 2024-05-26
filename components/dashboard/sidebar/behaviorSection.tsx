@@ -13,19 +13,19 @@ const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ us
     return (
         <div>
             <button className="flex items-center w-full py-2 text-sm hover:bg-accent focus:outline-none" onClick={toggleExpand}>
-                <AcademicCapIcon className="h-5 w-5 mr-2" /> Train Behavior
+                <AcademicCapIcon className="h-5 w-5 mr-2" /> Behavior Training
                 {isExpanded ? <ChevronUpIcon className="h-5 w-5 ml-auto" /> : <ChevronDownIcon className="h-5 w-5 ml-auto" />}
             </button>
             {isExpanded && (
                 <div className="pl-4">
-                    <Link href={`/dashboard/${userId}/training`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'training' ? 'bg-accent' : ''}`}>
-                        Training Models
+                    <Link href={`/dashboard/${userId}/training#greetings`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'training' ? 'bg-accent' : ''}`}>
+                        Greetings
                     </Link>
-                    <Link href={`/dashboard/${userId}/responses`} className="flex items-center py-2 text-sm hover:bg-accent">
-                        Automated Responses Setup
+                    <Link href={`/dashboard/${userId}/training#toolUse`} className="flex items-center py-2 text-sm hover:bg-accent">
+                        Tool Use
                     </Link>
-                    <Link href={`/dashboard/${userId}/behavior`} className="flex items-center py-2 text-sm hover:bg-accent">
-                        Chatbot Behavior Settings
+                    <Link href={`/dashboard/${userId}/training#escalation`} className="flex items-center py-2 text-sm hover:bg-accent">
+                        Escalation Protocol
                     </Link>
 
                 </div>

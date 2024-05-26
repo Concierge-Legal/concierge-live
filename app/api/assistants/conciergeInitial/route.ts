@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server';
-import { BaseRequest } from '../../../lib/apiTypes';
+import { BaseRequest } from '../../../../lib/apiTypes';
 import OpenAI from 'openai';
 import { AssistantResponse } from 'ai';
-import { searchSimilarEmbeddings } from '@/app/lib/database';
+import { searchSimilarEmbeddings } from '@/lib/database';
 
 
 const initialUserQuestion = `Hello - I am looking to shut down a US company that works within Crypto and NFTs and open up a new company in the Marshall Islands, transferring all assets from the US company to the new Marshall company. 

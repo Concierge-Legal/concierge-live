@@ -1,7 +1,7 @@
 // pages/api/members/[userId].ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
-import { Member } from '@/utils/types';
+import { Member } from '@/lib/utils/types';
 import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {

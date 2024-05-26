@@ -8,8 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LabelWithTooltip from "./labelWithTooltip";
 import { JurisdictionsCard } from "./jurisdictionInputCard";
 import { ServicesCard } from "./serviceInputCard";
-import { ProductContext } from "@/app/lib/hooks/useProduct"; // Import the context hook
-import { Member, Service, Jurisdiction } from '@/utils/types'; // Importing types
+import { ProductContext } from "@/lib/hooks/useProduct"; // Import the context hook
+import { Member, Service, Jurisdiction } from '@/lib/utils/types'; // Importing types
 import { Dialog, DialogTrigger, DialogContent } from '@/components/ui/dialog';
 
 

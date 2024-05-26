@@ -18,17 +18,17 @@ const SettingsSection: React.FC<{ userId: string, activeMenu: string; }> = ({ us
             </button>
             {isExpanded && (
                 <div className="pl-4">
-                    <Link href={`/dashboard/${userId}/settings/organization`} className="flex items-center py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/settings#organization`} className="flex items-center py-2 text-sm hover:bg-accent">
                         Organization
                     </Link>
-                    <Link href={`/dashboard/${userId}/settings/security`} className="flex items-center py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/settings#security`} className="flex items-center py-2 text-sm hover:bg-accent">
                         Security
                     </Link>
-                    <Link href={`/dashboard/${userId}/settings/users`} className="flex items-center py-2 text-sm hover:bg-accent">
+                    <Link href={`/dashboard/${userId}/settings#users`} className="flex items-center py-2 text-sm hover:bg-accent">
                         User Management
                     </Link>
-                    <Link href={`/dashboard/${userId}/maintenance`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'maintenance' ? 'bg-accent' : ''}`}>
-                        Maintenance
+                    <Link href={`/dashboard/${userId}/settings#profile`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'maintenance' ? 'bg-accent' : ''}`}>
+                        Profile
                     </Link>
 
                 </div>

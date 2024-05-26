@@ -19,14 +19,20 @@ const AnalyticsSection: React.FC<{ userId: string, activeMenu: string }> = ({ us
             </button>
             {isExpanded && (
                 <div className="pl-4">
-                    <Link href={`/dashboard/${userId}/analytics`} className={`block py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
-                        Analytics Overview
+                    <Link href={`/dashboard/${userId}/analytics#userEngagement`} className={`block py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
+                        User Engagement
                     </Link>
-                    <Link href={`/dashboard/${userId}/conversion`} className="block py-2 text-sm hover:bg-accent">
-                        Conversion Metrics
+                    <Link href={`/dashboard/${userId}/analytics#responseMetrics`} className="block py-2 text-sm hover:bg-accent">
+                        Response Metrics
                     </Link>
-                    <Link href={`/dashboard/${userId}/engagement`} className="block py-2 text-sm hover:bg-accent">
-                        Engagement Statistics
+                    <Link href={`/dashboard/${userId}/analytics#customerInsights`} className="block py-2 text-sm hover:bg-accent">
+                        Customer Insights
+                    </Link>
+					<Link href={`/dashboard/${userId}/analytics#resolutionMetrics`} className="block py-2 text-sm hover:bg-accent">
+                        Resolution Metrics
+                    </Link>
+					<Link href={`/dashboard/${userId}/analytics#userSatisfaction`} className="block py-2 text-sm hover:bg-accent">
+                        User Satisfaction
                     </Link>
                 </div>
             )}

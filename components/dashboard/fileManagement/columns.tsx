@@ -12,7 +12,7 @@ import {
 } from "@tanstack/react-table" 
 
 import { Checkbox } from "@/components/ui/checkbox"
-import { BaseFile, IndustryFile, CompanyFile, ProductOffering, AuthorizedJurisdiction, ProductFile } from '@/utils/types';
+import { BaseFile, IndustryFile, CompanyFile, ProductOffering, AuthorizedJurisdiction, ProductFile } from '@/lib/utils/types';
 
 
 // Actions type adjusted to handle the unified File type

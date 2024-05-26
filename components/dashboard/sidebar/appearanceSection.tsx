@@ -18,14 +18,15 @@ const AppearanceSection: React.FC<{ userId: string, activeMenu: string; }> = ({ 
             </button>
             {isExpanded && (
                 <div className="pl-4">
-                    <Link href={`/dashboard/${userId}/appearance`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'appearance' ? 'bg-accent' : ''}`}>
-                        Theme Settings
+                    <Link href={`/dashboard/${userId}/appearance#theme`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'appearance' ? 'bg-accent' : ''}`}>
+                        Theme
                     </Link>
-                    <Link href={`/dashboard/${userId}/layout`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
-                        Layout Customization
+                    <Link href={`/dashboard/${userId}/appearance#color`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
+                        Color
                     </Link>
-                    
-
+					<Link href={`/dashboard/${userId}/appearance#profile`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
+                        Profile Picture
+                    </Link>
                 </div>
             )}
         </div>

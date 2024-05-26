@@ -4,8 +4,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ProductContext } from "@/app/lib/hooks/useProduct";
-import { Jurisdiction } from '@/utils/types';
+import { ProductContext } from "@/lib/hooks/useProduct";
+import { Jurisdiction } from '@/lib/utils/types';
 
 
 

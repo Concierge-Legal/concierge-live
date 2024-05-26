@@ -20,10 +20,10 @@ const KnowledgeSection: React.FC<{ userId: string, activeMenu: string; }> = ({ u
             {isExpanded && (
                 <div className="pl-4">
                     <Link href={`/dashboard/${userId}/industry`} className="flex items-center py-2 text-sm hover:bg-accent">
-                        Industry Knowledge
+                        Industry Files
                     </Link>
                     <Link href={`/dashboard/${userId}/company`} className="flex items-center py-2 text-sm hover:bg-accent">
-                        Company Information
+                        Company Files
                     </Link>
                     <Link href={`/dashboard/${userId}/products`} className="flex items-center py-2 text-sm hover:bg-accent">
                         Products and Services
