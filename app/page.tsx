@@ -61,7 +61,7 @@ export default function Home() {
 											<img src="/icons/integration.svg" alt="Integration Icon" className="w-10 h-10" />
 										</CardHeader>
 										<CardContent>
-											<p>Enhance the shopping experience with direct integration of your products and services into Concierge conversations. Here’s how it transforms your sales approach:</p>
+											<p>Enhance the shopping experience with direct integration of your products and services into Concierge conversations. Here&apos;s how it transforms your sales approach:</p>
 											<ul className="list-disc pl-5 mt-2">
 												<li><strong>Instant Product Suggestions:</strong> Offer real-time product recommendations based on user interactions and queries.</li>
 												<li><strong>Seamless Checkout Processes:</strong> Simplify the checkout process within the chat window, reducing steps and potential drop-offs.</li>
@@ -101,7 +101,7 @@ export default function Home() {
 											<img src="/icons/conversion.svg" alt="Conversion Icon" className="w-10 h-10" />
 										</CardHeader>
 										<CardContent>
-											Discover how Concierge enhances your website's conversion rates through advanced analytics and targeted interaction strategies:
+											Discover how Concierge enhances your website&apos;s conversion rates through advanced analytics and targeted interaction strategies:
 											<ul className="list-disc pl-5 mt-2">
 												<li>Engagement Optimization: Tailor interactions based on user behavior and preferences to increase engagement and likelihood of conversion.</li>
 												<li>Reduction in Abandonment: Implement strategies to identify and intervene in potential drop-off points, reducing cart abandonment and increasing completions.</li>
@@ -145,7 +145,7 @@ export default function Home() {
 						<div className="grid grid-cols-1 md:grid-cols-2 gap-10">
 							<Card className="bg-card text-card-foreground shadow-lg rounded-lg p-6">
 								<CardHeader>Ask Abe: Legal AI Assistant</CardHeader>
-								<CardContent>Integrate 'Ask Abe', our advanced legal assistant, to provide authoritative legal guidance directly through your chat interface. This tool helps in clarifying legal queries quickly, enhancing the responsiveness of your service.</CardContent>
+								<CardContent>Integrate Ask Abe, our advanced legal assistant, to provide authoritative legal guidance directly through your chat interface. This tool helps in clarifying legal queries quickly, enhancing the responsiveness of your service.</CardContent>
 							</Card>
 							<Card className="bg-card text-card-foreground shadow-lg rounded-lg p-6">
 								<CardHeader>Compliance and Security</CardHeader>
