@@ -5,43 +5,43 @@
 @layer base {
   :root {
     /* Primary background and text colors */
-    --background: #ffffff; /* White */
-    --foreground: 200 15% 20%; /* Dark grey for text */
+    --background: #ffffff; /* White remains as the primary background color */
+    --foreground: #000000; /* Black for most text to maximize readability */
 
     /* Muted background and text colors for less emphasis areas */
-    --muted: 220 5% 95%; /* Very light gray */
-    --muted-foreground: 200 15% 20%; /* Dark grey for text */
+    --muted: 220 3% 90%; /* Light gray for less emphasized areas */
+    --muted-foreground: #000000; /* Black for text on muted backgrounds for better contrast */
 
     /* Card background */
-    --card: 0 0% 98%; /* Slightly off-white */
-    --card-foreground: 200 15% 20%; /* Dark grey for text */
+    --card: 0 0% 95%; /* A touch darker off-white for cards for subtle differentiation */
+    --card-foreground: #000000; /* Black text for clarity against card background */
 
     /* Popover component styling */
-    --popover: 0 0% 98%; /* Slightly off-white */
-    --popover-foreground: 200 15% 20%; /* Dark grey for text */
+    --popover: 0 0% 95%; /* Match card background for consistency */
+    --popover-foreground: #000000; /* Black text for clarity */
 
     /* Borders and inputs */
-    --border: 0 0% 80%; /* Light grey */
-    --input: 0 0% 98%; /* Slightly off-white */
+    --border: #000000; /* Black borders for strong definition around components */
+    --input: 0 0% 98%; /* Keep slightly off-white for input fields to differentiate from the primary background */
 
     /* Primary interaction elements like buttons */
-    --primary: 120 40% 50%; /* Green */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 120 40% 50%; /* Green for primary interaction elements like buttons */
+    --primary-foreground: #ffffff; /* White text for contrast on green buttons */
 
     /* Secondary interaction elements */
-    --secondary: 0 0% 95%; /* Light grey */
-    --secondary-foreground: 200 15% 20%; /* Dark grey for text */
+    --secondary: 0 0% 85%; /* Darker gray for secondary elements */
+    --secondary-foreground: #000000; /* Black text for clarity on secondary elements */
 
     /* Accent elements for hover states or small components */
-    --accent: 120 40% 45%; /* Slightly darker green */
-    --accent-foreground: 0 0% 100%; /* White */
+    --accent: 120 40% 40%; /* A bit darker green for hover states to enhance visual feedback */
+    --accent-foreground: #ffffff; /* White text for contrast on hover elements */
 
     /* Destructive actions */
-    --destructive: 0 75% 60%; /* Red */
-    --destructive-foreground: 0 0% 100%; /* White */
+    --destructive: 0 75% 50%; /* Slightly darker red for more contrast on destructive actions */
+    --destructive-foreground: #ffffff; /* White text for clarity on destructive buttons */
 
     /* Focus rings */
-    --ring: 120 40% 50%; /* Green */
+    --ring: 120 40% 50%; /* Green to maintain accessibility standards with focus indication */
 
     /* Common border radius for UI elements */
     --radius: 0.5rem;
@@ -51,6 +51,7 @@
     @apply bg-background text-foreground;
   }
 }
+
 
 
 
