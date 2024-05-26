@@ -6,9 +6,9 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 export const CustomBarChart: React.FC<{ data: any[], title?: string, dataKeyX?: string, dataKeyY?: string; }> = ({ data, title, dataKeyX, dataKeyY }) => {
 	return (
 		<div className="flex flex-col items-center justify-center w-full px-4 py-2">
-			<h3 className="text-lg font-semibold mb-2">{title || 'Bar'}</h3>
+			<h3 className="text-m font-semibold mb-2">{title || 'Bar'}</h3>
 			
-				<ResponsiveContainer width="100%" height="100%">
+			<ResponsiveContainer width="100%" height={300}>
 					<BarChart data={data}>
 						<CartesianGrid strokeDasharray="3 3" />
 						<XAxis dataKey={dataKeyX || 'name'} />

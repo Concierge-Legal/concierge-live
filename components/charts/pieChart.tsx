@@ -8,9 +8,9 @@ export const CustomPieChart: React.FC<{ data: any[], title?: string, dataKey: st
 
 	return (
 		<div className="flex flex-col items-center justify-center w-full px-4 py-2">
-			<h3 className="text-lg font-semibold mb-2">{title || 'Pie Chart'}</h3>
+			<h3 className="text-m font-semibold mb-2">{title || 'Pie Chart'}</h3>
 			
-				<ResponsiveContainer width="100%" height="100%">
+			<ResponsiveContainer width="100%" height={300}>
 					<PieChart>
 						<Pie
 							data={data}

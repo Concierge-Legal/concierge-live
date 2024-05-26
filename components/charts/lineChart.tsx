@@ -7,9 +7,9 @@ export const CustomLineChart: React.FC<{ data: any[], title?: string, dataKeyX?:
 	return (
 		// CustomLineChart component
 		<div className="flex flex-col items-center justify-center w-full min-h-full rounded bg-white">
-			<h3 className="text-lg font-semibold mb-2">{title || 'Line Chart'}</h3>
+			<h3 className="text-m font-semibold mb-2">{title || 'Line Chart'}</h3>
 
-			<ResponsiveContainer width="100%" height="100%">
+			<ResponsiveContainer width="100%" height={300}>
 				<LineChart data={data}>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey={dataKeyX || 'day'} />
