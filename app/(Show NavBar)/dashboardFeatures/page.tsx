@@ -27,54 +27,40 @@ export default function DashboardFeatures() {
 
   return (
     <main>
-      <div className="flex flex-col">
-        <div className="flex flex-col items-center px-16 py-20 w-full text-center text-black bg-white max-md:px-5 max-md:max-w-full">
-          <div className="mt-8 text-6xl font-bold leading-[67.2px] max-md:max-w-full max-md:text-4xl">
-            Complete Control, Centralized
-          </div>
-          <div className="mt-6 mb-2.5 text-lg leading-7 max-md:max-w-full">
-            Configure, Monitor, and Analyze Directly From The Dashboard
-          </div>
-        </div>
-        <div className="flex flex-col px-16 py-20 w-full bg-white max-md:px-5 max-md:max-w-full">
-          <div className="mt-8 max-md:max-w-full">
-            <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-              <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
-                <div
-                  id="intro"
-                  className="self-stretch text-4xl font-bold leading-10 text-black max-md:mt-10 max-md:max-w-full"
-                >
-                  Dashboard is Sick AF
-                </div>
-              </div>
-              <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
-                <div className="self-stretch text-lg leading-7 text-black max-md:mt-10 max-md:max-w-full">
-                  Concierge&apos;s dashboard features an intuitive user
-                  interface that makes it easy for users to navigate and access
-                  the information they need. With a clean and organized layout,
-                  users can quickly find the tools and resources they require to
-                  manage their legal information. The dashboard is designed to
-                  be user-friendly, with clear labels and intuitive icons that
-                  guide users through the various features and functionalities.
-                  Whether it&apos;s searching for legal documents, connecting
-                  with lawyers, or accessing customer support, the dashboard
-                  provides a seamless and efficient experience for users.
-                </div>
-              </div>
-            </div>
-          </div>
-          <Image
-            src="/features/dashboard_features.jpg"
-            alt="Dashboard Interface"
-            layout="responsive"
-            width={1920}
-            height={1080}
-            className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full"
-          />
-        </div>
+    <div className="flex flex-col">
+  <div className="flex flex-col items-center px-16 py-20 w-full text-center text-black bg-white max-md:px-5 max-md:max-w-full">
+    <div className="mt-36 text-6xl font-bold leading-[67.2px] max-md:max-w-full max-md:text-4xl">
+      Complete Control, Centralized
+    </div>
+    <div className="mt-6 mb-2.5 text-lg leading-7 max-md:max-w-full">
+      Configure, Monitor, and Analyze Directly From The Dashboard
+    </div>
+  </div>
+  <div className="flex flex-row justify-center items-center w-full px-16 py-10 bg-white max-md:flex-col max-md:px-5 max-md:max-w-full">
+    <div className="w-9/12 max-md:w-full">
+      <Image
+        src="/features/dashboardtemp.png"
+        alt="Dashboard Interface"
+        layout="responsive"
+        width={1920}
+        height={1080}
+        className="mb-2.5 aspect-[1.79] drop-shadow-2xl max-md:mt-10 max-md:max-w-full"
+      />
+    </div>
+    <div className="flex flex-col w-6/12 max-md:w-full max-md:ml-0 ml-5">
+      <div className="text-5xl font-bold leading-10 text-end text-black max-md:mt-10 max-md:max-w-full">
+        Effortless Navigation and Access
+      </div>
+      <div className="mt-6 text-lg leading-7 text-end text-black max-md:mt-10 max-md:max-w-full">
+        Concierge&apos;s dashboard transforms your experience with a sleek, modern interface that puts control at your fingertips. The dashboard design allows you to effortlessly navigate and access essential information with unparalleled ease. 
+      </div>
+    </div>
+  </div>
+
+
         {/* Analytics Major Section*/}
         <div className="flex flex-col justify-center px-16 py-20 bg-white max-md:px-5">
-          <div className="-8 max-md:mr-1 max-md:max-w-full">
+          <div className="max-md:mr-1 max-md:max-w-full">
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
               <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col text-base leading-6 text-black max-md:mt-10 max-md:max-w-full">
@@ -91,10 +77,10 @@ export default function DashboardFeatures() {
               </div>
               <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
                 <div className="flex flex-col grow text-black max-md:mt-10 max-md:max-w-full">
-                  <div className="flex flex-col p-8 border border-black border-solid max-md:px-5 max-md:max-w-full">
+                  <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
                     <Image
                       loading="lazy"
-                      src="/features/analytics.jpg"
+                      src="/icons/growth.png"
                       alt="Efficient Workflow"
                       width={48}
                       height={48}
@@ -110,74 +96,82 @@ export default function DashboardFeatures() {
                       sessions to optimize their experience.
                     </div>
                   </div>
-                  <div className="flex flex-col p-8 mt-8 border border-rounded border-black border-solid max-md:px-5 max-md:max-w-full">
-                    <Image
-                      loading="lazy"
-                      src="/features/analytics.jpg"
-                      alt="Expert Guidance"
-                      width={48}
-                      height={48}
-                      className="w-12"
-                    />
-                    <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
-                      Perfromance Analysis
-                    </div>
-                    <div className="mt-4 text-base leading-6 max-md:max-w-full">
-                      Track the responsiveness of your services and the
-                      efficiency of user interactions. Analyze response times
-                      and system performance to ensure seamless and timely
-                      support for all users.
-                    </div>
-                  </div>
-                  <div className="flex flex-col p-8 mt-8 border border-black border-solid max-md:px-5 max-md:max-w-full">
-                    <Image
-                      loading="lazy"
-                      src="/features/analytics.jpg"
-                      alt="Seamless Connections"
-                      width={48}
-                      height={48}
-                      className="w-12"
-                    />
-                    <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
-                      Resolution Efficiency
-                    </div>
-                    <div className="mt-4 text-base leading-6 max-md:max-w-full">
-                      Monitor the effectiveness of your support and resolution
-                      processes. Track the time taken to resolve issues and the
-                      success rate of resolutions to improve service quality and
-                      user trust.
-                    </div>
-                  </div>
-                  <div className="flex flex-col p-8 mt-8 border border-black border-solid max-md:px-5 max-md:max-w-full">
-                    <Image
-                      loading="lazy"
-                      src="/features/analytics.jpg"
-                      alt="Secure Communication"
-                      width={48}
-                      height={48}
-                      className="w-12"
-                    />
-                    <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
-                      Satisfaction Scores
-                    </div>
-                    <div className="mt-4 text-base leading-6 max-md:max-w-full">
-                      Measure user satisfaction through feedback and ratings.
-                      Understand user sentiment and identify key drivers of
-                      satisfaction to continuously enhance the overall user
-                      experience.
-                    </div>
-                  </div>
                 </div>
+              </div>
+            </div>
+            <div className="flex gap-5 mt-8 max-md:flex-col max-md:gap-0">
+              <div className="flex flex-col p-8 border border-rounded border-solid drop-shadow-xl rounded-md bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
+                <Image
+                  loading="lazy"
+                  src="/features/analytics.jpg"
+                  alt="Expert Guidance"
+                  width={48}
+                  height={48}
+                  className="w-12"
+                />
+                <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
+                  Performance Analysis
+                </div>
+                <div className="mt-4 text-base leading-6 max-md:max-w-full">
+                  Track the responsiveness of your services and the efficiency
+                  of user interactions. Analyze response times and system
+                  performance to ensure seamless and timely support for all
+                  users.
+                </div>
+              </div>
+              <div className="flex flex-col p-8 border border-rounded border-solid drop-shadow-xl rounded-md bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
+                <Image
+                  loading="lazy"
+                  src="/features/analytics.jpg"
+                  alt="Seamless Connections"
+                  width={48}
+                  height={48}
+                  className="w-12"
+                />
+                <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
+                  Resolution Efficiency
+                </div>
+                <div className="mt-4 text-base leading-6 max-md:max-w-full">
+                  Monitor the effectiveness of your support and resolution
+                  processes. Track the time taken to resolve issues and the
+                  success rate of resolutions to improve service quality and
+                  user trust.
+                </div>
+              </div>
+            </div>
+            <div className="flex gap-5 mt-8 max-md:flex-col max-md:gap-0">
+              <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full w-6/12">
+                <Image
+                  loading="lazy"
+                  src="/features/analytics.jpg"
+                  alt="Secure Communication"
+                  width={48}
+                  height={48}
+                  className="w-12"
+                />
+                <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
+                  Satisfaction Scores
+                </div>
+                <div className="mt-4 text-base leading-6 max-md:max-w-full">
+                  Measure user satisfaction through feedback and ratings.
+                  Understand user sentiment and identify key drivers of
+                  satisfaction to continuously enhance the overall user
+                  experience.
+                </div>
+              </div>
+              <div className="flex flex-col p-8 border border-transparent rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full w-6/12">
+                {/* Placeholder for additional content */}
               </div>
             </div>
           </div>
         </div>
+
         {/* Knowledge Library Major Section*/}
         <div className="flex flex-col  px-16 py-20 bg-white max-md:px-5">
-          <div className="mt-4 text-5xl font-bold text-left text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+          <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
             Versatile Knowledge Hub
           </div>
-          <div className="mt-6 text-lg leading-7 text-black max-md:max-w-full">
+          <div className="mt-6 text-lg leading-7 text-black text-center max-md:max-w-full">
             An adaptable and comprehensive repository that centralizes all your
             essential information. Ensure easy access and up-to-date resources
             for your Concierge, with the flexibility to update, add, or remove
@@ -188,7 +182,7 @@ export default function DashboardFeatures() {
           <div className="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
               <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white rounded-md border border-black border-solid max-md:mt-8">
+                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
                   <div className="flex flex-col justify-center p-8 max-md:px-5">
                     <Image
                       loading="lazy"
@@ -211,7 +205,7 @@ export default function DashboardFeatures() {
                 </div>
               </div>
               <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white rounded-md border border-black border-solid max-md:mt-8">
+                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
                   <div className="flex flex-col justify-center p-8 max-md:px-5">
                     <Image
                       loading="lazy"
@@ -234,7 +228,7 @@ export default function DashboardFeatures() {
                 </div>
               </div>
               <div className="flex flex-col ml-5 w-[33%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white rounded-md border border-black border-solid max-md:mt-8">
+                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md  max-md:mt-8">
                   <div className="flex flex-col justify-center p-8 max-md:px-5">
                     <Image
                       loading="lazy"
@@ -308,12 +302,12 @@ export default function DashboardFeatures() {
             </div>
 
             {/* Behavior Major Section*/}
-            <div className="flex flex-col items-center py-20 w-full text-center text-black">
-              <div className="flex flex-col items-center px-16 py-20 max-md:px-5">
-                <div className="mt-4 text-5xl font-bold text-center text-black leading-[58px] w-[768px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+            <div className="flex flex-col py-20 w-full text-center text-black">
+              <div className="flex flex-col items-start px-16 py-20 max-md:px-5">
+                <div className="mt-4 text-5xl font-bold text-left text-black leading-[58px] w-[768px] max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
                   Optimized User Engagement
                 </div>
-                <div className="mt-6 text-lg leading-7 text-center text-black w-[768px] max-md:max-w-full">
+                <div className="mt-6 text-lg leading-7 text-left text-black w-[768px] max-md:max-w-full">
                   Enhance the efficiency and effectiveness of user interactions
                   with advanced behavior settings. Train your AI Concierge to
                   adapt to user behaviors, optimize tool usage, and manage
@@ -327,11 +321,11 @@ export default function DashboardFeatures() {
                           Train on Interactions
                         </div>
                         <div className="mt-6 text-base leading-6">
-                          Develop and refine the Concierge&apos;s ability to interact
-                          with users through continuous training. Improve
-                          response accuracy and user satisfaction by teaching
-                          the AI to understand and respond to various user
-                          inputs effectively.
+                          Develop and refine the Concierge&apos;s ability to
+                          interact with users through continuous training.
+                          Improve response accuracy and user satisfaction by
+                          teaching the AI to understand and respond to various
+                          user inputs effectively.
                         </div>
                       </div>
                       <Image
@@ -407,18 +401,14 @@ export default function DashboardFeatures() {
               </div>
               <div className="flex gap-4 items-start pt-4 mt-6 mb-2.5 text-base leading-6">
                 <div className="justify-center max-md:px-5">
-					<Button variant="default" size="lg">
-						<Link href="/demo">
-                  Demo
-				  </Link>
-				  </Button>
+                  <Button variant="default" size="lg">
+                    <Link href="/demo">Demo</Link>
+                  </Button>
                 </div>
                 <div className="justify-center max-md:px-5">
-				<Button variant="default" size="lg">
-					<Link href="/pricing">
-                  Sign Up
-				  </Link>
-				</Button>
+                  <Button variant="default" size="lg">
+                    <Link href="/pricing">Sign Up</Link>
+                  </Button>
                 </div>
               </div>
             </div>
