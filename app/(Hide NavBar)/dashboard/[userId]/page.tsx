@@ -133,31 +133,26 @@ export default async function Dashboard({ params }: { params: { userId: string; 
 						</CardHeader>
 						<CardContent className="px-4 py-2">
 							<div className="grid grid-cols-2 gap-4">
-								<div className="flex items-center space-x-2 rounded-sm">
-									
-									<span>Database</span>
+								<div className="flex items-center justify-between px-3 py-2 rounded-lg border border-gray-300 bg-gray-50">
+									<span className="text-gray-800 font-medium">Database</span>
 									<span className="h-3 w-3 bg-green-500 rounded-full"></span>
 								</div>
-								<div className="flex items-center space-x-2 rounded-sm">
-									
-									<span>Storage</span>
+								<div className="flex items-center justify-between px-3 py-2 rounded-lg border border-gray-300 bg-gray-50">
+									<span className="text-gray-800 font-medium">Storage</span>
 									<span className="h-3 w-3 bg-green-500 rounded-full"></span>
 								</div>
-								<div className="flex items-center space-x-2">
-									
-									<span>API</span>
+								<div className="flex items-center justify-between px-3 py-2 rounded-lg border border-gray-300 bg-gray-50">
+									<span className="text-gray-800 font-medium">API</span>
 									<span className="h-3 w-3 bg-green-500 rounded-full"></span>
 								</div>
-								<div className="flex items-center space-x-2">
-									
-									<span>Frontend</span>
+								<div className="flex items-center justify-between px-3 py-2 rounded-lg border border-gray-300 bg-gray-50">
+									<span className="text-gray-800 font-medium">Frontend</span>
 									<span className="h-3 w-3 bg-green-500 rounded-full"></span>
 								</div>
 							</div>
 						</CardContent>
-						<CardFooter className="px-4 py-3 flex justify-end">
-							<Button className="bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg text-sm px-5 py-2.5 text-center">Check Outages</Button>
-						</CardFooter>
+
+
 					</Card>
 
 					<Card x-chunk="dashboard-05-chunk-1">
