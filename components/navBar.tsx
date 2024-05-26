@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { DashboardButton } from "./imported/AuthButton";
-import StyledLink from "./StyledLink"; // Make sure the import path is correct
 import Link from "next/link"; // Import the Link component from the appropriate library
 import Image from "next/image"; // Import the Image component from the appropriate library
 import {
@@ -15,7 +14,7 @@ import {
   NavigationMenuViewport,
   navigationMenuTriggerStyle
 } from "@/components/ui/navigationMenu";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils/cn";
 
 const featureComponents: { title: string; href: string; description: string; }[] = [
   {

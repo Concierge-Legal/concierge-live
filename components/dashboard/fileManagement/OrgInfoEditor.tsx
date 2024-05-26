@@ -1,5 +1,5 @@
 // Assuming CompanyFile is exported from types.ts or a similar file
-import { BaseFile, CompanyFile } from '@/utils/types';
+import { BaseFile, CompanyFile } from '@/lib/utils/types';
 
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';

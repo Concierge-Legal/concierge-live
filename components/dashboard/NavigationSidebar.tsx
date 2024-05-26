@@ -1,68 +1,50 @@
-'use client';
 import Link from 'next/link';
 import { LogoutButton } from '../imported/AuthButton';
 import { useState } from 'react';
-import { HomeIcon, ChartBarIcon, CogIcon, EyeIcon, AcademicCapIcon, BookOpenIcon, WrenchIcon, DocumentTextIcon, ServerIcon, ClipboardIcon } from '@heroicons/react/24/solid';
-import  AnalyticsSection  from '@/components/dashboard/sidebar/analyticsSection';
-import  AppearanceSection  from '@/components/dashboard/sidebar/appearanceSection';
-import  BehaviorSection  from '@/components/dashboard/sidebar/behaviorSection';
-import  BillingSection  from '@/components/dashboard/sidebar/billingSection';
-import  KnowledgeSection  from '@/components/dashboard/sidebar/knowledgeSection';
-import  SettingsSection  from '@/components/dashboard/sidebar/settingsSection';
+import { HomeIcon } from '@heroicons/react/24/solid';
+import AnalyticsSection from '@/components/dashboard/sidebar/analyticsSection';
+import AppearanceSection from '@/components/dashboard/sidebar/appearanceSection';
+import BehaviorSection from '@/components/dashboard/sidebar/behaviorSection';
+import BillingSection from '@/components/dashboard/sidebar/billingSection';
+import KnowledgeSection from '@/components/dashboard/sidebar/knowledgeSection';
+import SettingsSection from '@/components/dashboard/sidebar/settingsSection';
+import { Separator } from '../ui/separator';
+import Image from 'next/image';
 
-interface NavigationSidebarProps {
-  activeMenu: string;
-  userId: string;
-}
 
-const NavigationSidebar: React.FC<{ userId: string, activeMenu: string }> = ({ userId, activeMenu }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const NavigationSidebar: React.FC<{ userId: string }> = ({ userId }) => {
 
-  const toggleExpand = () => {
-      setIsExpanded(!isExpanded);
-  };
-  return (
-    <div className="h-full min-h-screen w-64 bg-card text-foreground flex flex-col">
-      <div className="p-4">
-        {/* Home */}
-        <Link href={`/dashboard/${userId}`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'home' ? 'bg-accent' : ''}`}>
-          <HomeIcon className="h-5 w-5 mr-2" /> Home
-        </Link>
+	return (
+		<div className="flex flex-col h-full min-h-screen w-64 bg-card text-foreground p-4 justify-between">
+			<div>
+				<Link href="/" className="flex items-center justify-center space-x-2 p-2">
+					<Image src="/logo/blacklogo.png" alt="Logo" width={40} height={40} className="rounded-full" />
+					<span className="font-bold text-lg">Concierge</span>
+				</Link>
+				<Separator />
+				<nav className="overflow-y-auto">
+					<Link href={`/dashboard/${userId}`} className={`flex items-center py-2  pl-2 text-sm hover:bg-accent `}>
+						<HomeIcon className="h-5 w-5 mr-2" /> Home
+					</Link>
+					{/* Add other section components here */}
+					<KnowledgeSection userId={userId} />
+					<BehaviorSection userId={userId} />
 
-        {/* Dynamic Grouping Example: Analytics */}
-        <AnalyticsSection userId={userId} activeMenu={activeMenu} />
-        <AppearanceSection userId={userId} activeMenu={activeMenu} />
-        <BehaviorSection userId={userId} activeMenu={activeMenu} />
-        <KnowledgeSection userId={userId} activeMenu={activeMenu} />
-        <BillingSection userId={userId} activeMenu={activeMenu} />   
-        <SettingsSection userId={userId} activeMenu={activeMenu} />
-        {/* <div className="mt-4">
-          <h3 className="text-sm font-bold pl-2">Analytics & Insights</h3>
-          <Link href={`/dashboard/${userId}/analytics`} className={`flex items-center py-2 text-sm hover:bg-accent ${activeMenu === 'analytics' ? 'bg-accent' : ''}`}>
-            <ChartBarIcon className="h-5 w-5 mr-2" /> Overview
-          </Link>
-          
-          <Link href={`/dashboard/${userId}/analytics/traffic`} className="flex items-center py-2 text-sm hover:bg-accent">
-            <DocumentTextIcon className="h-5 w-5 mr-2" /> Traffic Analysis
-          </Link>
-          <Link href={`/dashboard/${userId}/analytics/behavior`} className="flex items-center py-2 text-sm hover:bg-accent">
-            <ClipboardIcon className="h-5 w-5 mr-2" /> User Behavior
-          </Link>
-          <Link href={`/dashboard/${userId}/analytics/conversion`} className="flex items-center py-2 text-sm hover:bg-accent">
-            <DocumentTextIcon className="h-5 w-5 mr-2" /> Conversion Metrics
-          </Link>
-          <Link href={`/dashboard/${userId}/analytics/engagement`} className="flex items-center py-2 text-sm hover:bg-accent">
-            <ClipboardIcon className="h-5 w-5 mr-2" /> Engagement Statistics
-          </Link>
-        </div> */}
-  
+					<AnalyticsSection userId={userId} />
+					<AppearanceSection userId={userId} />
+					
+					<BillingSection userId={userId}  />
+					<SettingsSection userId={userId} />
+				</nav>
+			</div>
 
-      </div>
-      <div className="mt-auto p-4 border-t border-border">
-        <LogoutButton></LogoutButton>
-      </div>
-    </div>
-  );
+			<div className="flex flex-col justify-center space-x-2 p-2 space-y-4">
+				<Separator />
+				<LogoutButton />
+			</div>
+		</div>
+
+	);
 };
 
 export default NavigationSidebar;

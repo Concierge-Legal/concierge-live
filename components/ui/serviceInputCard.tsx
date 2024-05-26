@@ -4,8 +4,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { Service } from '@/utils/types';
-import { ProductContext } from "@/app/lib/hooks/useProduct";
+import { Service } from '@/lib/utils/types';
+import { ProductContext } from "@/lib/hooks/useProduct";
 
 interface ServicesCardProps {
   memberId: string;
