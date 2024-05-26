@@ -209,7 +209,7 @@ export default async function Dashboard({ params }: { params: { userId: string; 
 										Everything is on Fire
 									</DropdownMenuCheckboxItem>
 									<DropdownMenuCheckboxItem>
-										I don't know what to put here
+										I dont know what to put here
 									</DropdownMenuCheckboxItem>
 								</DropdownMenuContent>
 							</DropdownMenu>
@@ -266,7 +266,7 @@ export default async function Dashboard({ params }: { params: { userId: string; 
 												2024-05-30
 											</TableCell>
 											<TableCell className="text-right">
-												Doesn't understand tailwind styling. Refuses to learn. Forced the Concierge Instance to do all frontend styling.
+												Does not understand tailwind styling. Refuses to learn. Forced the Concierge Instance to do all frontend styling.
 											</TableCell>
 										</TableRow>
 										<TableRow>
