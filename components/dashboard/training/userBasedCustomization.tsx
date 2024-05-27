@@ -57,9 +57,6 @@ import {
 } from "@/components/ui/toggle-group";
 import { Switch } from "@/components/ui/switch";
 
-
-
-
 const UserFormSchema = z.object({
 	saveCustomerData: z.boolean().default(false).optional(),
 	personalizeResponses: z.boolean().default(false).optional(),
@@ -69,8 +66,6 @@ const UserFormSchema = z.object({
 
 
 const UserBasedCustomization = () => {
-
-
 	const userForm = useForm<z.infer<typeof UserFormSchema>>({
 		resolver: zodResolver(UserFormSchema),
 	});
@@ -79,6 +74,7 @@ const UserBasedCustomization = () => {
 
 	const submitUserForm = (data: z.infer<typeof UserFormSchema>) => {
 		// Placeholder logic for now, will hook up to database later.
+		// { boolean, boolean, boolean, boolean }
 		toast({
 			title: "You submitted the following values:",
 			description: (
