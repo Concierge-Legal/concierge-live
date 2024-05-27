@@ -1,13 +1,8 @@
 import Link from 'next/link';
-import { LogoutButton } from '../imported/AuthButton';
+import { LogoutButton } from '../ui/authButtons/AuthButton';
 import { useState } from 'react';
 import { HomeIcon } from '@heroicons/react/24/solid';
-import AnalyticsSection from '@/components/dashboard/sidebar/analyticsSection';
-import AppearanceSection from '@/components/dashboard/sidebar/appearanceSection';
-import BehaviorSection from '@/components/dashboard/sidebar/behaviorSection';
-import BillingSection from '@/components/dashboard/sidebar/billingSection';
-import KnowledgeSection from '@/components/dashboard/sidebar/knowledgeSection';
-import SettingsSection from '@/components/dashboard/sidebar/settingsSection';
+import {AnalyticsSection, AppearanceSection, TrainingSection, BillingSection, KnowledgeSection, SettingsSection} from '@/components/dashboard/sidebarSections';
 import { Separator } from '../ui/separator';
 import Image from 'next/image';
 
@@ -28,11 +23,9 @@ const NavigationSidebar: React.FC<{ userId: string }> = ({ userId }) => {
 					</Link>
 					{/* Add other section components here */}
 					<KnowledgeSection userId={userId} />
-					<BehaviorSection userId={userId} />
-
+					<TrainingSection userId={userId} />
 					<AnalyticsSection userId={userId} />
 					<AppearanceSection userId={userId} />
-					
 					<BillingSection userId={userId}  />
 					<SettingsSection userId={userId} />
 				</nav>

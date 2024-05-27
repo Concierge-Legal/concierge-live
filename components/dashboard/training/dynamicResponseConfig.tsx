@@ -71,6 +71,7 @@ import {
 import { Textarea } from "@/components/ui/textArea";
 import { toast } from "@/components/ui/use-toast";
 
+// rows: [{message: string}]
 
 const ResponsesSchema = z.object({
 	rows: z

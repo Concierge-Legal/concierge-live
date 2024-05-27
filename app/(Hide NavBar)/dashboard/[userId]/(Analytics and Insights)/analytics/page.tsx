@@ -1,19 +1,5 @@
-import { CustomAreaChart } from "@/components/charts/areaChart";
-import { CustomBarChart } from "@/components/charts/barChart";
-import { CustomLineChart } from "@/components/charts/lineChart";
-import { CustomHistogram } from "@/components/charts/histogram";
-import { CustomPieChart } from "@/components/charts/pieChart";
+import { CustomAreaChart, CustomBarChart, CustomLineChart, CustomHistogram, CustomPieChart } from "@/components/dashboard/customCharts";
 
-import {
-  ScatterChart,
-  Scatter,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts"; // For representing FlowChart data as Scatter Chart
 
 // Example data, replace with real data passed via props or fetched within the component
 const conversationVolumeData = [

@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentBlock, ContentType, StreamingType } from "../lib/types";
+import { ContentBlock, ContentType, StreamingType } from "../../lib/types";
 import { ChatBlock } from "./chatBlocks";
 
 

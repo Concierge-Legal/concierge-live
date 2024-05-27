@@ -30,7 +30,7 @@ export default function ChatbotFeatures() {
             height={299}
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="relative mt-36 top-5/6 text-darkestBlue text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md mt-28 max-md:max-w-full max-md:mt-10">
+          <div className="relative mt-36 top-5/6 text-darkestBlue text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md max-md:max-w-full max-md:mt-10">
             FEATURES
           </div>
         </div>

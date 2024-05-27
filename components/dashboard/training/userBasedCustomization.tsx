@@ -1,6 +1,5 @@
 
 "use client";
-import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -10,34 +9,8 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from "@/components/ui/select";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-	Table,
-	TableBody,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from "@/components/ui/table";
-import { Textarea } from "@/components/ui/textArea";
-import Link from "next/link";
+
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -51,14 +24,8 @@ import {
 	FormLabel,
 	FormMessage,
 } from "@/components/ui/form";
-import {
-	ToggleGroup,
-	ToggleGroupItem,
-} from "@/components/ui/toggle-group";
+
 import { Switch } from "@/components/ui/switch";
-
-
-
 
 const UserFormSchema = z.object({
 	saveCustomerData: z.boolean().default(false).optional(),
@@ -69,8 +36,6 @@ const UserFormSchema = z.object({
 
 
 const UserBasedCustomization = () => {
-
-
 	const userForm = useForm<z.infer<typeof UserFormSchema>>({
 		resolver: zodResolver(UserFormSchema),
 	});
@@ -79,6 +44,7 @@ const UserBasedCustomization = () => {
 
 	const submitUserForm = (data: z.infer<typeof UserFormSchema>) => {
 		// Placeholder logic for now, will hook up to database later.
+		// { boolean, boolean, boolean, boolean }
 		toast({
 			title: "You submitted the following values:",
 			description: (
