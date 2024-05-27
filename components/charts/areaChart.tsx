@@ -5,7 +5,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 // Assuming data structure: [{name: 'January', cost: 400}, {name: 'February', cost: 300}]
 export const CustomAreaChart: React.FC<{ data: any[], title?: string, dataKeyX?: string, dataKeyY?: string }> = ({ data, title, dataKeyX, dataKeyY }) => {
     return (
-      <div className="text-center p-4 border rounded-lg bg-gray-100">
+      <div className="text-center p-4 border bg-gray-100 px-5 py-5 drop-shadow-md rounded-lg">
         <h3 className="text-lg font-semibold">{title || 'Area Chart'}</h3>
         <ResponsiveContainer width="100%" height={300}>
           <AreaChart data={data}>
