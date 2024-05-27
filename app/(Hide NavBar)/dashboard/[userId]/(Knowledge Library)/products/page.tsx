@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useReducer } from 'react';
-import ProductCard from '@/components/ui/productCard';
+import ProductCard from '@/components/dashboard/fileManagement/productCard';
 import { productReducer, initialState, ProductContext, ProductState } from '@/lib/hooks/useProduct'; // Import the context hook
 import { Member } from '@/lib/utils/types'; // Ensure this import path is correct
 import { Button } from '@/components/ui/button';
