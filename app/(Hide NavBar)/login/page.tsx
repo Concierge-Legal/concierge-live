@@ -1,7 +1,7 @@
 import Link from "next/link";
-
+import { Button } from "@/components/ui/button";
 import { SubmitButton } from "./submit-button";
-import { login, signup } from './actions'
+import { login, loginDemo, signup } from './actions'
 
 export default function Login({
   searchParams,
@@ -12,6 +12,11 @@ export default function Login({
   const signInLocal = async (formData: FormData) => {
     "use server";
     await login(formData);
+  };
+  const signInDemo = async (e: any) => {
+    "use server";
+	e.preventdefault();
+    await loginDemo();
   };
 
   const signUpLocal = async (formData: FormData) => {
@@ -69,7 +74,11 @@ export default function Login({
         >
           Sign In
         </SubmitButton>
-        
+        <Button
+          onClick={signInDemo}
+        >
+          View Demo
+        </Button>
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
             {searchParams.message}
@@ -80,17 +89,3 @@ export default function Login({
   );
 }
 
-// import { login, signup } from './actions'
-
-// export default function LoginPage() {
-//   return (
-//     <form>
-//       <label htmlFor="email">Email:</label>
-//       <input id="email" name="email" type="email" required />
-//       <label htmlFor="password">Password:</label>
-//       <input id="password" name="password" type="password" required />
-//       <button formAction={login}>Log in</button>
-//       <button formAction={signup}>Sign up</button>
-//     </form>
-//   )
-// }

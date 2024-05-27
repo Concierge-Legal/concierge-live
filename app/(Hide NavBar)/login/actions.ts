@@ -26,6 +26,27 @@ export async function login(formData: FormData) {
   redirect(`/dashboard/${data.user.id}`)
 }
 
+export async function loginDemo() {
+	const supabase = createClient()
+  
+	// type-casting here for convenience
+	// in practice, you should validate your inputs
+	const formAuthData = {
+	  email: "demo@demo.com",
+	  password: "demodemo"
+	}
+  
+	const { data, error } = await supabase.auth.signInWithPassword(formAuthData)
+  
+	if (error) {
+	  console.log(`Error from supabase login action: ${error}`)
+	  redirect("/login?message=Wrong username or password");
+	}
+  
+	revalidatePath('/dashboard/[userId]', 'page')
+	redirect(`/dashboard/${data.user.id}`)
+  }
+
 export async function signup(formData: FormData) {
   const supabase = createClient()
 
