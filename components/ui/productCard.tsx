@@ -62,6 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ member }) => {
       console.error("Failed to save member:", error);
     }
   };
+
   const handleChange = (field: keyof Member, value: string) => {
     dispatch({
       type: "UPDATE_MEMBER",
@@ -101,7 +102,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ member }) => {
             </Card>
           </div>
         </DialogTrigger>
-        <DialogContent>
+        <DialogContent className="max-h-screen overflow-y-auto scrollbar-hide">
           <Tabs defaultValue="about" className="w-full h-full">
             <TabsList className="grid w-full grid-cols-3">
               <TabsTrigger value="about">About</TabsTrigger>
