@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { DashboardButton } from "./imported/AuthButton";
+import { DashboardButton } from "./ui/authButtons/AuthButton";
 import Link from "next/link"; // Import the Link component from the appropriate library
 import Image from "next/image"; // Import the Image component from the appropriate library
 import {
@@ -164,7 +164,7 @@ const NavBar = () => {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/chat" legacyBehavior passHref>
+              <Link href="/demo" legacyBehavior passHref>
                 <NavigationMenuLink className={navigationMenuTriggerStyle()}>
                   Demo
                 </NavigationMenuLink>
