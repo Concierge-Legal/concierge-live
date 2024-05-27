@@ -36,14 +36,7 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import {
-	DropdownMenu,
-	DropdownMenuContent,
-	DropdownMenuItem,
-	DropdownMenuLabel,
-	DropdownMenuSeparator,
-	DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
@@ -62,23 +55,70 @@ import {
 	TableHeader,
 	TableRow,
 } from "@/components/ui/table";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm, useFieldArray } from "react-hook-form";
+import { z } from "zod";
+
+import {
+	Form,
+	FormControl,
+	FormDescription,
+	FormField,
+	FormItem,
+	FormLabel,
+	FormMessage,
+} from "@/components/ui/form";
 import { Textarea } from "@/components/ui/textArea";
+import { toast } from "@/components/ui/use-toast";
+
+
+const ResponsesSchema = z.object({
+	rows: z
+		.array(
+			z.object({
+				message: z.string()
+					.min(10, { message: "Each message must be at least 10 characters.", })
+					.max(160, { message: "Each message must not be longer than 160 characters.", })
+
+			})
+		).min(2, { message: "There must be at least 2 messages.", })
+		.max(5, { message: "There can be no more than 5 messages.", })
+});
+type ResponseFormValues = z.infer<typeof ResponsesSchema>;
+const defaultValues: Partial<ResponseFormValues> = {
+	rows: [
+		{ message: "What can you help me with?" },
+		{ message: "What does DemoDAO do?" },
+		{ message: "Can you give me an overview of DemoDAOs members?" },
+		{ message: "Can you recommend me a DemoDAO member to help me?" }
+	]
+};
 
 const DynamicResponseConfig = () => {
 	// Create a state for each message with default values
-	const [messages, setMessages] = useState([
-		"What can you help me with?",
-		"What does DemoDAO do?",
-		"Can you give me an overview of DemoDAOs members?",
-		"Can you recommend me a DemoDAO member to help me?"
-	]);
 
-	const handleInputChange = (index: number, newValue: string) => {
-		// Create a new array that reflects the change in the textarea
-		const newMessages = [...messages];
-		newMessages[index] = newValue;
-		setMessages(newMessages);
-	};
+	const form = useForm<ResponseFormValues>({
+		resolver: zodResolver(ResponsesSchema),
+		defaultValues
+	});
+	const { fields, append } = useFieldArray({
+		name: "rows",
+		control: form.control,
+	});
+
+
+	function onSubmit(data: z.infer<typeof ResponsesSchema>) {
+		toast({
+			title: "You submitted the following values:",
+			description: (
+				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+					<code className="text-white">{JSON.stringify(data, null, 2)}</code>
+				</pre>
+			),
+		});
+	}
+
+
 
 	return (
 		<Card>
@@ -97,29 +137,59 @@ const DynamicResponseConfig = () => {
 						</TableRow>
 					</TableHeader>
 					<TableBody>
-						{messages.map((message, index) => (
-							<TableRow key={index}>
-								<TableCell className="font-semibold text-center">
-									{index + 1}
-								</TableCell>
-								<TableCell>
-									<Label htmlFor={`message-${index}`} className="sr-only">
-										Message
-									</Label>
-									<Textarea
-										id={`message-${index}`}
-										value={message}
-										onChange={(e) => handleInputChange(index, e.target.value)}
-										className="min-h-[4rem] w-full"
-									/>
-								</TableCell>
-								<TableCell>
-									<Button className="w-full">
-										{message}
-									</Button>
-								</TableCell>
-							</TableRow>
-						))}
+						<Form {...form}>
+							<form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
+								<div>
+									{fields.map((field, index) => (
+										<FormField
+											control={form.control}
+											key={field.id}
+											name={`rows.${index}.message`}
+											render={({ field }) => (
+												<FormItem>
+
+
+													<TableRow>
+														<TableCell className="font-semibold text-center">
+															{index + 1}
+														</TableCell>
+														<TableCell>
+															<Label htmlFor={`message-${index}`} className="sr-only">
+																Message
+															</Label>
+															<FormControl>
+
+																<Textarea
+																	id={`message-${index}`}
+																	value={field.value}
+																	className="min-h-[4rem] w-full"
+
+																	defaultValue={field.value}
+
+																/>
+															</FormControl>
+														</TableCell>
+														<TableCell>
+															<Button className="w-full">
+																{field.value}
+															</Button>
+														</TableCell>
+													</TableRow>
+
+
+												</FormItem>
+											)}
+										/>
+
+									))}
+									<Button type="submit">Submit</Button>
+								</div>
+
+
+							</form>
+						</Form>
+
+
 					</TableBody>
 				</Table>
 			</CardContent>
