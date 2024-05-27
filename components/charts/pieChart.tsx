@@ -7,7 +7,7 @@ export const CustomPieChart: React.FC<{ data: any[], title?: string, dataKey: st
 	const COLORS = ['#42A5F5', '#7E57C2', '#26C6DA', '#66BB6A'];
 
 	return (
-		<div className="flex flex-col items-center justify-center w-full px-4 py-2">
+		<div className="flex flex-col items-center justify-center w-full bg-white px-5 py-5 drop-shadow-md rounded-lg">
 			<h3 className="text-m font-semibold mb-2">{title || 'Pie Chart'}</h3>
 			
 			<ResponsiveContainer width="100%" height={300}>

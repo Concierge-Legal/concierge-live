@@ -62,7 +62,7 @@ export default function Home() {
         <h2 className="text-4xl font-bold text-center mb-10 text-black">
           Increase Revenue
         </h2>
-        <section className="py-10 bg-muted">
+        <section className="py-10 bg-background">
           <div className="container  px-8">
             <div className="max-w-7xl p-8">
               <Carousel>
@@ -219,7 +219,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-white text-black py-20">
+        <section className="bg-background text-black py-20">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-10">
               Designed for Legal Service Providers
@@ -284,6 +284,40 @@ export default function Home() {
             </div>
           </div>
         </section>
+		<div className="flex flex-col justify-center px-16 py-20 w-full bg-background max-md:px-5 max-md:max-w-full">
+            <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
+              <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                  <div className="flex flex-col self-stretch my-auto text-black max-md:mt-10 max-md:max-w-full">
+                    <div
+                      id="privacy"
+                      className="text-4xl font-bold leading-10 max-md:max-w-full"
+                    >
+                      Protecting Your Privacy: Ensuring the Security of Your
+                      Personal Data
+                    </div>
+                    <div className="mt-6 text-lg leading-7 max-md:max-w-full">
+                      At Concierge, we understand the importance of user data
+                      privacy. Our chatbot utilizes advanced encryption and data
+                      protection measures to safeguard your personal
+                      information. Rest assured that your data is secure with
+                      us.
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                  <Image
+                    loading="lazy"
+                    src="/features/datasecurity.jpg"
+                    alt="Data Security"
+                    width={1000}
+                    height={960}
+                    className="grow w-full aspect-[0.96] max-md:mt-10 max-md:max-w-full"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
       <Footer />
     </main>

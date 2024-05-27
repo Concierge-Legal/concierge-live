@@ -6,7 +6,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 export const CustomLineChart: React.FC<{ data: any[], title?: string, dataKeyX?: string, dataKeyY?: string; }> = ({ data, title, dataKeyX, dataKeyY }) => {
 	return (
 		// CustomLineChart component
-		<div className="flex flex-col items-center justify-center w-full min-h-full rounded bg-white">
+		<div className="flex flex-col items-center justify-center  w-full min-h-full rounded bg-white px-5 py-5 drop-shadow-md rounded-lg">
 			<h3 className="text-m font-semibold mb-2">{title || 'Line Chart'}</h3>
 
 			<ResponsiveContainer width="100%" height={300}>

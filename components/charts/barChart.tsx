@@ -5,7 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsive
 // Improved CustomBarChart with dynamic key props for the X-axis and bars
 export const CustomBarChart: React.FC<{ data: any[], title?: string, dataKeyX?: string, dataKeyY?: string; }> = ({ data, title, dataKeyX, dataKeyY }) => {
 	return (
-		<div className="flex flex-col items-center justify-center w-full px-4 py-2">
+		<div className="flex flex-col items-center justify-center w-full bg-white px-5 py-5 drop-shadow-md rounded-lg">
 			<h3 className="text-m font-semibold mb-2">{title || 'Bar'}</h3>
 			
 			<ResponsiveContainer width="100%" height={300}>
