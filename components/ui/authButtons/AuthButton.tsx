@@ -13,7 +13,7 @@ export function DashboardButton() {
 export function LogoutButton() {
   return (
     <Button variant="destructive" asChild>
-      <Link href="/" className="py-4">Logout</Link>
+      <Link href="/" className="py-4 text-destructive-foreground">Logout</Link>
     </Button>
   )
 }

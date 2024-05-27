@@ -38,7 +38,7 @@
 
     /* Destructive actions */
     --destructive: 0 75% 50%; /* Slightly darker red for more contrast on destructive actions */
-    --destructive-foreground: #ffffff; /* White text for clarity on destructive buttons */
+    --destructive-foreground: 0 0% 0%; /* White text for clarity on destructive buttons */
 
     /* Focus rings */
     --ring: 120 40% 50%; /* Green to maintain accessibility standards with focus indication */
