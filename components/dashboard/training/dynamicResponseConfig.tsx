@@ -133,30 +133,35 @@ const DynamicResponseConfig = () => {
 
 					</CardHeader>
 					<CardContent>
-						<Table>
+						<Table className="w-full">
 							<TableHeader>
-								<TableRow>
-									<TableHead className="w-[60px]">Display Order</TableHead>
-									<TableHead className="text-left">Message</TableHead>
-									<TableHead>Preview</TableHead>
+								<TableRow className="w-full">
+									<TableHead className="w-1/4">Display Order</TableHead>
+									<TableHead className="text-left w-1/2">Message</TableHead>
+									<TableHead className="w-1/4">Preview</TableHead>
 								</TableRow>
 							</TableHeader>
-							<TableBody >
+							<TableBody className="w-full" >
 
 								{fields.map((field, index) => (
+
 									<FormField
 
 										control={form.control}
 										key={field.id}
 										name={`rows.${index}.message`}
-										
+
 										render={({ field }) => (
-											<FormItem >
-												<TableRow >
-													<TableCell className="font-semibold text-center">
-														{index + 1}
-													</TableCell>
-													<TableCell >
+
+											<TableRow >
+												<TableCell className="font-semibold text-center w-1/4">
+
+													{index + 1}
+
+
+												</TableCell>
+												<TableCell className="w-1/2" >
+													<FormItem>
 														<Label htmlFor={`message-${index}`} className="sr-only">
 															Message
 														</Label>
@@ -164,29 +169,30 @@ const DynamicResponseConfig = () => {
 
 															<Textarea
 																id={`message-${index}`}
-																
+
 																className="min-h-[4rem]"
 
-																
+
 																{...field}
 
 															/>
 														</FormControl>
-													</TableCell>
-													<TableCell>
-														<Button>
-															{field.value}
-														</Button>
-													</TableCell>
-												</TableRow>
+													</FormItem>
+
+												</TableCell>
+												<TableCell className="w-1/4 items-center text-center">
+
+													<Button>
+														{field.value}
+													</Button>
 
 
-											</FormItem>
+												</TableCell>
+											</TableRow>
 										)}
 									/>
-
 								))}
-								
+
 							</TableBody>
 						</Table>
 					</CardContent>
