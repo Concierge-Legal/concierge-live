@@ -62,7 +62,7 @@ export default function Home() {
         <h2 className="text-4xl font-bold text-center mb-10 text-black">
           Increase Revenue
         </h2>
-        <section className="py-10 bg-muted">
+        <section className="py-10 bg-background">
           <div className="container  px-8">
             <div className="max-w-7xl p-8">
               <Carousel>
@@ -219,7 +219,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="bg-white text-black py-20">
+        <section className="bg-background text-black py-20">
           <div className="container mx-auto">
             <h2 className="text-3xl font-bold text-center mb-10">
               Designed for Legal Service Providers
@@ -284,7 +284,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-		<div className="flex flex-col justify-center px-16 py-20 w-full bg-white max-md:px-5 max-md:max-w-full">
+		<div className="flex flex-col justify-center px-16 py-20 w-full bg-background max-md:px-5 max-md:max-w-full">
             <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
               <div className="flex gap-5 max-md:flex-col max-md:gap-0">
                 <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">

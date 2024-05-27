@@ -28,7 +28,7 @@ export default function DashboardFeatures() {
   return (
     <main>
       <div className="flex flex-col">
-        <div className="flex flex-col items-center py-20 w-full text-center text-black bg-white max-md:px-5 max-md:max-w-full">
+        <div className="flex flex-col items-center py-20 w-full text-center text-black bg-background max-md:px-5 max-md:max-w-full">
           <div className="mt-36 text-6xl font-bold leading-[67.2px] max-md:max-w-full max-md:text-4xl">
             Complete Control, Centralized
           </div>
@@ -36,7 +36,7 @@ export default function DashboardFeatures() {
             Configure, Monitor, and Analyze Directly From The Dashboard
           </div>
         </div>
-        <div className="flex flex-row justify-center items-center w-full px-16 py-10 bg-white max-md:flex-col max-md:px-5 max-md:max-w-full">
+        <div className="flex flex-row justify-center items-center w-full px-16 py-10 bg-background max-md:flex-col max-md:px-5 max-md:max-w-full">
           <div className="w-9/12 max-md:w-full">
             <Image
               src="/features/dashboardtemp.png"

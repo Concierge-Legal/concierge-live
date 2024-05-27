@@ -52,7 +52,7 @@ const featureComponents: { title: string; href: string; description: string; }[]
 
 const NavBar = () => {
   return (
-    <header className={`fixed top-0 left-0 w-full flex flex-col justify-center px-16 py-4 text-base bg-secondary leading-6 border-b border-solid z-50 max-md:px-5`}>
+    <header className={`fixed top-0 left-0 w-full flex flex-col justify-center px-16 py-4 text-base bg-white leading-6 border-b border-solid z-50 max-md:px-5`}>
       <div className="flex gap-5 justify-between w-full align-bottom max-md:flex-wrap max-md:mr-1 max-md:max-w-full">
         <Link href="/">
           <Image
@@ -65,8 +65,44 @@ const NavBar = () => {
         </Link>
         <NavigationMenu>
           <NavigationMenuList>
+		  <NavigationMenuItem>
+              <NavigationMenuTrigger>Features</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid gap-3 p-6 md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                        href="/dashboardFeatures"
+                      >
+
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          Concierge Chat Features
+                        </div>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          
+                        </p>
+                        <p className="text-sm leading-tight text-muted-foreground">
+                          
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                  <ListItem href="/dashboardFeatures#intro" title="Concierge Knows">
+                   
+
+                  </ListItem>
+                  <ListItem href="/dashboardFeatures#analytics" title="Legal Library">
+                    Powered by Ask Abe
+                  </ListItem>
+                  <ListItem href="/dashboardFeatures#appearance" title="Integrate">
+                    Seamlessly intergrates with your existing website.
+                  </ListItem>
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
            
-            <NavigationMenuItem>
+            {/* <NavigationMenuItem>
               <NavigationMenuTrigger>Features</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
@@ -81,7 +117,7 @@ const NavBar = () => {
                   ))}
                 </ul>
               </NavigationMenuContent>
-            </NavigationMenuItem>
+            </NavigationMenuItem> */}
             <NavigationMenuItem>
               <NavigationMenuTrigger>Dashboard Features</NavigationMenuTrigger>
               <NavigationMenuContent>

@@ -102,7 +102,6 @@ export default function ChatbotFeatures() {
             </div>
             <div className="self-stretch mt-20 px-10  max-md:mt-10 max-md:max-w-full">
               <div className="flex flex-col gap-10 max-md:gap-0">
-                {/* First Box */}
                 <div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
                   <div className="flex flex-col w-1/2 max-md:w-full">
                     <div className="mt-6 text-3xl font-bold leading-10">

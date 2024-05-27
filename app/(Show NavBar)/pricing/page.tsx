@@ -10,7 +10,7 @@ export default function Pricing() {
   return (
 	<>
 	<NavBar />
-	<main className="min-h-screen flex flex-col">
+	<main className="bg-background min-h-screen flex flex-col">
 	  <div className="flex flex-col items-center justify-center flex-grow mt-36">
 	  <Image
             src={'/logo/blacklogo.png'}
