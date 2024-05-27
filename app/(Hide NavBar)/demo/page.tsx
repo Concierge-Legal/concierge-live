@@ -4,7 +4,6 @@ import { ChatContextProvider } from '../../../components/chatContext';
 import ContentQueue from '../../../components/contentQueue'; // Adjust path as necessary
 import { ContentBlock, ContentType, StreamingType, SpeakerType, PipelineModel } from '../../../lib/types'; // Assume types are exported from a types file
 import { Message, useAssistant as useAssistant } from 'ai/react';
-import { JSONValue } from 'ai';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
