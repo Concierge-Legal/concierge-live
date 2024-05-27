@@ -56,7 +56,7 @@ const featureComponents: {
 const NavBar = () => {
   return (
     <header
-      className={`fixed top-0 left-0 w-full flex flex-col justify-center px-16 py-4 text-base bg-white leading-6 border-b border-solid z-50 max-md:px-5`}
+      className={`fixed top-0 left-0 w-full flex flex-col justify-center px-4 py-2 text-base bg-white border-b border-solid z-50 max-md:px-5`}
     >
       <div className="flex gap-5 justify-between w-full align-bottom max-md:flex-wrap max-md:mr-1 max-md:max-w-full">
         <Link href="/">
@@ -188,7 +188,7 @@ const NavBar = () => {
           </NavigationMenuList>
         </NavigationMenu>
 
-        <div className="flex gap-4 justify-center whitespace-nowrap">
+        <div className="flex justify-center whitespace-nowrap">
           <DashboardButton />
         </div>
       </div>
