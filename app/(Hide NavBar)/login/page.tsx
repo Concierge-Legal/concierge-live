@@ -77,7 +77,7 @@ export default function Login({
         <Button
           onClick={signInDemo}
         >
-          View Demo
+          View Demo (This broke fml)
         </Button>
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
