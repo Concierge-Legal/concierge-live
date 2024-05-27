@@ -46,12 +46,7 @@ const featureComponents: { title: string; href: string; description: string; }[]
     description:
       "We can directly integrate Concierge seamlessly onto your existing website.",
   },
-  {
-    title: "Privacy (Remove This)",
-    href: "/chatbotFeatures#privacy",
-    description:
-      "To be removed. Blah blah blah blah blah.",
-  },
+  
 ];
 
 
@@ -102,16 +97,16 @@ const NavBar = () => {
                           Admin Dashboard
                         </div>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          Monitor: blah blah blah blah blah blah blah blah,
+                          
                         </p>
                         <p className="text-sm leading-tight text-muted-foreground">
-                          Control: blah blah blah blah blah blah blah blah,
+                          
                         </p>
                       </a>
                     </NavigationMenuLink>
                   </li>
                   <ListItem href="/dashboardFeatures#intro" title="Introduction">
-                   TODO blah blah blah blah blah
+                   Control your knowledge hub.
 
                   </ListItem>
                   <ListItem href="/dashboardFeatures#analytics" title="Analytics">
