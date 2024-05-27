@@ -52,22 +52,15 @@ import {
 } from "@/components/ui/form";
 import { Separator } from '@/components/ui/separator';
 
-const RecommendationFormSchema = z.object({
+const FormSchema = z.object({
 	recommendationWeighting: z
 		.string({
 			required_error: "Please select a recommendation weighting method.",
-		})
-
-});
-
-const SearchFormSchema = z.object({
+		}),
 	searchPrecision: z
 		.string({
 			required_error: "Please select a search precision.",
-		})
-
-});
-const AlgorithmFormSchema = z.object({
+		}),
 	searchAlgorithm: z
 		.string({
 			required_error: "Please select a search algorithm",
@@ -76,23 +69,18 @@ const AlgorithmFormSchema = z.object({
 });
 
 
+
 const BehaviorToggles = () => {
 
 
-	const recommendationForm = useForm<z.infer<typeof RecommendationFormSchema>>({
-		resolver: zodResolver(RecommendationFormSchema),
+	const form = useForm<z.infer<typeof FormSchema>>({
+		resolver: zodResolver(FormSchema),
 	});
 
-	const searchForm = useForm<z.infer<typeof SearchFormSchema>>({
-		resolver: zodResolver(SearchFormSchema),
-	});
 
-	const algorithmForm = useForm<z.infer<typeof AlgorithmFormSchema>>({
-		resolver: zodResolver(AlgorithmFormSchema),
-	});
-
-	const submitRecommendationForm = (data: z.infer<typeof RecommendationFormSchema>) => {
+	const onSubmit = (data: z.infer<typeof FormSchema>) => {
 		// Placeholder logic for now, will hook up to database later.
+		console.log(JSON.stringify(data, null, 2));
 		toast({
 			title: "You submitted the following values:",
 			description: (
@@ -102,28 +90,7 @@ const BehaviorToggles = () => {
 			),
 		});
 	};
-	const submitSearchForm = (data: z.infer<typeof SearchFormSchema>) => {
-		// Placeholder logic for now, will hook up to database later.
-		toast({
-			title: "You submitted the following values:",
-			description: (
-				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-					<code className="text-white">{JSON.stringify(data, null, 2)}</code>
-				</pre>
-			),
-		});
-	};
-	const submitAlgorithmForm = (data: z.infer<typeof AlgorithmFormSchema>) => {
-		// Placeholder logic for now, will hook up to database later.
-		toast({
-			title: "You submitted the following values:",
-			description: (
-				<pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-					<code className="text-white">{JSON.stringify(data, null, 2)}</code>
-				</pre>
-			),
-		});
-	};
+
 
 	return (
 		<Card className="bg-white shadow rounded-lg">
@@ -132,10 +99,10 @@ const BehaviorToggles = () => {
 			</CardHeader>
 			<CardContent className="px-5 py-4">
 				<div className="flex flex-col">
-					<Form {...recommendationForm}>
-						<form onSubmit={recommendationForm.handleSubmit(submitRecommendationForm)} className="space-y-8">
+					<Form {...form}>
+						<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
 							<FormField
-								control={recommendationForm.control}
+								control={form.control}
 								name="recommendationWeighting"
 								render={({ field }) => (
 									<FormItem>
@@ -154,20 +121,18 @@ const BehaviorToggles = () => {
 												<SelectItem value="similarity">By AI Similarity Score</SelectItem>
 											</SelectContent>
 										</Select>
-										
+
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
-							
-						</form>
-					</Form>
-					<Separator className="my-2"/>
-					{/* Search Form */}
-					<Form {...searchForm}>
-						<form onSubmit={searchForm.handleSubmit(submitSearchForm)} className="space-y-6">
+
+
+							<Separator className="my-2" />
+							{/* Search Form */}
+
 							<FormField
-								control={searchForm.control}
+								control={form.control}
 								name="searchPrecision"
 								render={({ field }) => (
 									<FormItem>
@@ -185,20 +150,18 @@ const BehaviorToggles = () => {
 												<SelectItem value="precise">Precise</SelectItem>
 											</SelectContent>
 										</Select>
-										
+
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
-							
-						</form>
-					</Form>
-					<Separator className="my-2"/>
-					{/* Algorithm Form */}
-					<Form {...algorithmForm}>
-						<form onSubmit={algorithmForm.handleSubmit(submitAlgorithmForm)} className="space-y-6">
+
+
+							<Separator className="my-2" />
+							{/* Algorithm Form */}
+
 							<FormField
-								control={algorithmForm.control}
+								control={form.control}
 								name="searchAlgorithm"
 								render={({ field }) => (
 									<FormItem>
@@ -216,16 +179,19 @@ const BehaviorToggles = () => {
 												<SelectItem value="rating">Highest Rated</SelectItem>
 											</SelectContent>
 										</Select>
-										
+
 										<FormMessage />
 									</FormItem>
 								)}
 							/>
+
+							<Button type="submit">Submit</Button>
+
 						</form>
 					</Form>
 				</div>
 			</CardContent>
-		</Card>
+		</Card >
 	);
 };
 

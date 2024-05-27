@@ -27,24 +27,25 @@ import {
 
 import { Switch } from "@/components/ui/switch";
 
-const UserFormSchema = z.object({
-	saveCustomerData: z.boolean().default(false).optional(),
-	personalizeResponses: z.boolean().default(false).optional(),
-	adaptiveLearning: z.boolean().default(false).optional(),
-	enableClarifyingQuestions: z.boolean().default(false).optional(),
+const FormSchema = z.object({
+	saveCustomerData: z.boolean().default(false),
+	personalizeResponses: z.boolean().default(false),
+	adaptiveLearning: z.boolean().default(false),
+	enableClarifyingQuestions: z.boolean().default(false),
 });
 
 
 const UserBasedCustomization = () => {
-	const userForm = useForm<z.infer<typeof UserFormSchema>>({
-		resolver: zodResolver(UserFormSchema),
+	const form = useForm<z.infer<typeof FormSchema>>({
+		resolver: zodResolver(FormSchema),
 	});
 
 
 
-	const submitUserForm = (data: z.infer<typeof UserFormSchema>) => {
+	const onSubmit = (data: z.infer<typeof FormSchema>) => {
 		// Placeholder logic for now, will hook up to database later.
 		// { boolean, boolean, boolean, boolean }
+		console.log(JSON.stringify(data, null, 2))
 		toast({
 			title: "You submitted the following values:",
 			description: (
@@ -63,12 +64,12 @@ const UserBasedCustomization = () => {
 
 			</CardHeader>
 			<CardContent className="px-5 py-4">
-				<Form {...userForm}>
-					<form onSubmit={userForm.handleSubmit(submitUserForm)} className="w-full space-y-6">
+				<Form {...form}>
+					<form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
 						<div>
 							<div className="space-y-2">
 								<FormField
-									control={userForm.control}
+									control={form.control}
 									name="saveCustomerData"
 									render={({ field }) => (
 										<FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
@@ -90,7 +91,7 @@ const UserBasedCustomization = () => {
 									)}
 								/>
 								<FormField
-									control={userForm.control}
+									control={form.control}
 									name="personalizeResponses"
 									render={({ field }) => (
 										<FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
@@ -111,7 +112,7 @@ const UserBasedCustomization = () => {
 									)}
 								/>
 								<FormField
-									control={userForm.control}
+									control={form.control}
 									name="adaptiveLearning"
 									render={({ field }) => (
 										<FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
@@ -132,7 +133,7 @@ const UserBasedCustomization = () => {
 									)}
 								/>
 								<FormField
-									control={userForm.control}
+									control={form.control}
 									name="enableClarifyingQuestions"
 									render={({ field }) => (
 										<FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
