@@ -5,7 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import LabelWithTooltip from "./labelWithTooltip";
+import LabelWithTooltip from "../../ui/labelWithTooltip";
 import { JurisdictionsCard } from "./jurisdictionInputCard";
 import { ServicesCard } from "./serviceInputCard";
 import { ProductContext } from "@/lib/hooks/useProduct"; // Import the context hook
