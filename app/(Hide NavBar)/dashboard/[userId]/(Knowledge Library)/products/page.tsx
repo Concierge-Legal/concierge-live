@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useReducer } from 'react';
-import ProductCard from '@/components/dashboard/fileManagement/productCard';
+import ProductCard from '@/components/ui/productCard';
 import { productReducer, initialState, ProductContext, ProductState } from '@/lib/hooks/useProduct'; // Import the context hook
 import { Member } from '@/lib/utils/types'; // Ensure this import path is correct
 import { Button } from '@/components/ui/button';
@@ -72,7 +72,7 @@ export default function ProductsDashboardSubpage({ params }: { params: { organiz
             <div className="min-h-screen bg-background px-8 py-12">
                 <div className="container">
                     <div className="bg-card p-8 rounded-lg shadow-lg mb-12 text-center">
-                        <h1 className="text-5xl font-bold ">Products and Services Knowledge Upload</h1>
+                        <h1 className="text-5xl font-bold text-accent">Products and Services Knowledge Upload</h1>
                     </div>
                     {state.members.length > 0 ? (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
