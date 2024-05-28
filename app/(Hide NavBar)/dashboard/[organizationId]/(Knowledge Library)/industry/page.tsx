@@ -339,7 +339,7 @@ const data: IndustryFile[] = [
 
 
 
-export default function IndustryKnowledgeDashboardSubpage({ params }: { params: { userId: string; }; }) {
+export default function IndustryKnowledgeDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]

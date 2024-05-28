@@ -4,7 +4,7 @@ import ProductCard from '@/components/ui/productCard';
 import { productReducer, initialState, ProductContext, ProductState } from '@/lib/hooks/useProduct'; // Import the context hook
 import { Member } from '@/lib/utils/types'; // Ensure this import path is correct
 import { Button } from '@/components/ui/button';
-export default function ProductsDashboardSubpage({ params }: { params: { userId: string; }; }) {
+export default function ProductsDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
 
 	const [state, dispatch] = useReducer(productReducer, initialState);
 
@@ -13,9 +13,9 @@ export default function ProductsDashboardSubpage({ params }: { params: { userId:
 
 		const fetchData = async () => {
 			try {
-				console.log(params.userId);
+				
 				const requestBody = {
-					userId: params.userId
+					organizationId: params.organizationId
 				};
 				const response = await fetch("/api/members", {
 					method: "POST",
@@ -51,7 +51,7 @@ export default function ProductsDashboardSubpage({ params }: { params: { userId:
 
 
 		fetchData();
-	}, [dispatch]); // Include params.userId in the dependency array
+	}, [dispatch]);
 
 	const addNewMember = () => {
 		const newMember: Member = {

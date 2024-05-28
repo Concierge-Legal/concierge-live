@@ -7,7 +7,7 @@ import { Separator } from '../ui/separator';
 import Image from 'next/image';
 
 
-const NavigationSidebar: React.FC<{ userId: string }> = ({ userId }) => {
+const NavigationSidebar: React.FC<{ organizationId: string }> = ({ organizationId }) => {
 
 	return (
 		<div className="flex flex-col h-full min-h-screen w-64 bg-card text-foreground p-4 justify-between">
@@ -18,16 +18,16 @@ const NavigationSidebar: React.FC<{ userId: string }> = ({ userId }) => {
 				</Link>
 				<Separator />
 				<nav className="overflow-y-auto">
-					<Link href={`/dashboard/${userId}`} className={`flex items-center py-2  pl-2 text-sm hover:bg-accent `}>
+					<Link href={`/dashboard/${organizationId}`} className={`flex items-center py-2  pl-2 text-sm hover:bg-accent `}>
 						<HomeIcon className="h-5 w-5 mr-2" /> Home
 					</Link>
 					{/* Add other section components here */}
-					<KnowledgeSection userId={userId} />
-					<TrainingSection userId={userId} />
-					<AnalyticsSection userId={userId} />
-					<AppearanceSection userId={userId} />
-					<BillingSection userId={userId}  />
-					<SettingsSection userId={userId} />
+					<KnowledgeSection organizationId={organizationId} />
+					<TrainingSection organizationId={organizationId} />
+					<AnalyticsSection organizationId={organizationId} />
+					<AppearanceSection organizationId={organizationId} />
+					<BillingSection organizationId={organizationId}  />
+					<SettingsSection organizationId={organizationId} />
 				</nav>
 			</div>
 

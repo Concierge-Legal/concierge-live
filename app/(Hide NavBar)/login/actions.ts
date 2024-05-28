@@ -21,9 +21,10 @@ export async function login(formData: FormData) {
     console.log(`Error from supabase login action: ${error}`)
     redirect("/login?message=Wrong username or password");
   }
+  const organizationId: string = data.user.app_metadata.organization_id;
 
-  revalidatePath('/dashboard/[userId]', 'page')
-  redirect(`/dashboard/${data.user.id}`)
+  revalidatePath('/dashboard/[organizationId]', 'page')
+  redirect(`/dashboard/${organizationId}`)
 }
 
 export async function loginDemo() {
@@ -43,8 +44,8 @@ export async function loginDemo() {
 	  redirect("/login?message=Wrong username or password");
 	}
   
-	revalidatePath('/dashboard/[userId]', 'page')
-	redirect(`/dashboard/${data.user.id}`)
+	revalidatePath('/dashboard/[organizationId]', 'page')
+	redirect(`/dashboard/${data.user.app_metadata.organization_id}`)
   }
 
 export async function signup(formData: FormData) {

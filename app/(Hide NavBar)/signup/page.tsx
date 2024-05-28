@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SubmitButton } from "../login/submit-button";
-import { login, loginDemo, signup } from './actions'
+import { signup } from './actions'
 
 export default function Login({
   searchParams,
@@ -9,15 +9,6 @@ export default function Login({
   searchParams: { message: string };
 }) {
   
-  const signInLocal = async (formData: FormData) => {
-    "use server";
-    await login(formData);
-  };
-  const signInDemo = async (e: any) => {
-    "use server";
-	e.preventdefault();
-    await loginDemo();
-  };
 
   const signUpLocal = async (formData: FormData) => {
     "use server";
@@ -68,17 +59,38 @@ export default function Login({
           placeholder="••••••••"
           required
         />
+		<label className="text-md" htmlFor="organization">
+          Organization ID
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="organizationId"
+          required
+        />
+		<label className="text-md" htmlFor="firstName">
+          First Name
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="firstName"
+          
+          required
+        />
+		<label className="text-md" htmlFor="lastName">
+          Last Name
+        </label>
+        <input
+          className="rounded-md px-4 py-2 bg-inherit border mb-6"
+          name="lastName"
+          required
+        />
         <SubmitButton
-          formAction={signInLocal}
-          pendingText="Signing In..."
+          formAction={signUpLocal}
+          className="border border-foreground/20 rounded-md px-4 py-2 text-foreground mb-2"
+          pendingText="Signing Up..."
         >
-          Sign In
+          Sign Up
         </SubmitButton>
-        <Button
-          onClick={signInDemo}
-        >
-          View Demo (This broke fml)
-        </Button>
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">
             {searchParams.message}

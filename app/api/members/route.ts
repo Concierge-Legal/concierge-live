@@ -1,4 +1,4 @@
-// pages/api/members/[userId].ts
+
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createClient } from '@supabase/supabase-js';
 import { Member } from '@/lib/utils/types';
@@ -8,14 +8,14 @@ export async function POST(req: Request) {
     
     const request = await req.json();
     console.log(`POST request received.`)
-    const userId: string = request.userId;
-    console.log(`UserId: ${userId}`)
-    if (!userId || typeof userId !== 'string') {
-        return NextResponse.json({ error: 'UserId is required and must be a string', status: 400 });
+    const organizationId: string = request.organizationId;
+   
+    if (!organizationId || typeof organizationId !== 'string') {
+        return NextResponse.json({ error: 'OrganizationId is required and must be a string', status: 400 });
     }
 
     try {
-        const tableName = `${userId}_products`;
+        const tableName = `${organizationId}_products`;
         const supabase = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
         const { data, error } = await supabase
             .from(tableName) // Removing the generic parameter to see if it resolves the issue.

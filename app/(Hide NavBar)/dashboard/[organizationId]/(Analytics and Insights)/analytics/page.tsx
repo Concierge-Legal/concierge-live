@@ -68,7 +68,7 @@ const userDemographicsData = [
 export default function DashboardAnalytics({
   params,
 }: {
-  params: { userId: string };
+  params: { organizationId: string };
 }) {
   return (
     <div className="p-4">
