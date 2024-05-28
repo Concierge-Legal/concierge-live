@@ -46,7 +46,7 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({ memberId }) => {
       </CardHeader>
       <CardContent>
         {services.map((service, index) => (
-          <div key={service.id} className="grid w-full gap-4">
+          <div key={service.id} className="grid w-full gap-4 mb-10 p-4 bg-sky-50 border rounded-lg shadow-md">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor={`service-name-${service.id}`}>Service Name</Label>
               <Input
@@ -54,6 +54,7 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({ memberId }) => {
                 placeholder="Enter service name..."
                 value={service.name}
                 onChange={e => updateService(service.id, 'name', e.target.value)}
+                className="mt-2 p-2 border border-gray-500 rounded w-full"
               />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -64,6 +65,7 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({ memberId }) => {
                 placeholder="Enter price..."
                 value={service.price}
                 onChange={e => updateService(service.id, 'price', parseFloat(e.target.value))}
+                className="mt-2 p-2 border border-gray-500 rounded w-full"
               />
             </div>
             <div className="flex flex-col space-y-1.5">
@@ -73,22 +75,28 @@ export const ServicesCard: React.FC<ServicesCardProps> = ({ memberId }) => {
                 placeholder="Enter pricing method..."
                 value={service.pricingMethod}
                 onChange={e => updateService(service.id, 'pricingMethod', e.target.value)}
+                className="mt-2 p-2 border border-gray-500 rounded w-full"
               />
             </div>
-            <Switch
-              checked={service.retainer}
-              onChange={() => updateService(service.id, 'retainer', !service.retainer)}
-            >Needs Retainer</Switch>
+            <div className="flex items-center space-x-2 mt-4"> <span>Needs Retainer</span>
+              <Switch
+                checked={service.retainer}
+                onChange={() => updateService(service.id, 'retainer', !service.retainer)}
+              />
+             
+            </div>
             {index !== 0 && (
-              <Button variant="outline" onClick={() => handleRemoveService(service.id)}>Remove</Button>
+              <Button variant="outline" className="mt-4" onClick={() => handleRemoveService(service.id)}>
+                Remove
+              </Button>
             )}
           </div>
         ))}
-        <Button onClick={handleAddService}>Add Service</Button>
+        <Button className="mt-4" onClick={handleAddService}>Add Service</Button>
       </CardContent>
       <CardFooter className="flex justify-between">
         <Button variant="outline">Cancel</Button>
       </CardFooter>
     </Card>
   );
-}
+};

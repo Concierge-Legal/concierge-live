@@ -37,7 +37,7 @@
     --accent-foreground: #ffffff; /* White text for contrast on hover elements */
 
     /* Destructive actions */
-    --destructive: 0 75% 50%; /* Slightly darker red for more contrast on destructive actions */
+    --destructive: 0 84% 60%; /* Slightly darker red for more contrast on destructive actions */
     --destructive-foreground: 0 0% 0%; /* White text for clarity on destructive buttons */
 
     /* Focus rings */
@@ -57,3 +57,15 @@
 
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  width: 0px;  /* Safari and Chrome */
+  background: transparent;  /* Optional: just in case */
+}

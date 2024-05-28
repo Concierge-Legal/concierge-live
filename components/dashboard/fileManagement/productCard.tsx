@@ -59,63 +59,97 @@ const ProductCard: React.FC<ProductCardProps> = ({ member }) => {
     };
 
     return (
-        <div className="flex flex-wrap justify-center gap-4 p-4">
-            <Dialog>
-                <DialogTrigger asChild>
-                    <div className="cursor-pointer w-full sm:w-96">
-                        <Card className="shadow-lg rounded-lg overflow-hidden">
-                            <CardHeader className="bg-primary-foreground p-4 flex justify-between items-center">
-                                <CardTitle className="text-lg font-bold">Member</CardTitle>
-                            </CardHeader>
-                            <CardContent className="p-4 bg-card">
-                                <div className="mb-2">
-                                    <p className="font-semibold">{member.fullName || "New Member"}</p>
-                                    <p className="text-sm">{member.description || "No description provided."}</p>
-                                </div>
-                            </CardContent>
-                            <CardFooter className="p-4 bg-secondary-foreground">
-                                <Button className="w-full bg-accent text-white rounded hover:bg-accent-foreground">Edit Member</Button>
-                            </CardFooter>
-                        </Card>
-                    </div>
-                </DialogTrigger>
-                <DialogContent>
-                    <Tabs defaultValue="about" className="w-full h-full">
-                        <TabsList className="grid w-full grid-cols-3">
-                            <TabsTrigger value="about">About</TabsTrigger>
-                            <TabsTrigger value="services">Services</TabsTrigger>
-                            <TabsTrigger value="jurisdictions">Jurisdictions</TabsTrigger>
-                        </TabsList>
-                        <TabsContent value="about">
-                            <Card className="w-full h-full">
-                                <CardHeader>
-                                    <CardTitle>About {member.fullName}</CardTitle>
-                                    <CardDescription>Make Changes to Each Member&apos;s General Information here.</CardDescription>
-                                </CardHeader>
-                                <CardContent className="w-full h-full">
-                                    <form>
-                                        <LabelWithTooltip labelText="Full Name" tooltipText="The fullname of the company" />
-                                        <Input id="fullName" placeholder="" value={member.fullName} onChange={e => handleChange('fullName', e.target.value)} />
-                                        <LabelWithTooltip labelText="Description" tooltipText="Describe what this member does, what their specialty is." />
-                                        <Input id="description" placeholder="" value={member.description} onChange={e => handleChange('description', e.target.value)} />
-                                    </form>
-                                </CardContent>
-                            </Card>
-                        </TabsContent>
-                        <TabsContent value="services">
-                            <ServicesCard memberId={member.id} />
-                        </TabsContent>
-                        <TabsContent value="jurisdictions">
-                            <JurisdictionsCard memberId={member.id} />
-                        </TabsContent>
-                    </Tabs>
-                    <CardFooter>
-                        <Button onClick={saveMember}>Save Member</Button>
-                    </CardFooter>
-                </DialogContent>
-            </Dialog>
-        </div>
-    );
+		<div className="flex flex-wrap justify-center gap-4 p-4">
+		  <Dialog>
+			<DialogTrigger asChild>
+			  <div className="cursor-pointer w-full sm:w-96">
+				<Card className="shadow-lg rounded-lg overflow-hidden">
+				  <CardHeader className="bg-primary-foreground p-4 flex justify-between items-center">
+					<CardTitle className="text-lg font-bold">Member</CardTitle>
+				  </CardHeader>
+				  <CardContent className="p-4 bg-card">
+					<div className="mb-2">
+					  <p className="font-semibold">
+						{member.fullName || "New Member"}
+					  </p>
+					  <p className="text-sm">
+						{member.description || "No description provided."}
+					  </p>
+					</div>
+				  </CardContent>
+				  <CardFooter className="p-4 bg-secondary-foreground">
+					<Button className="w-full bg-accent text-white rounded hover:bg-accent-foreground">
+					  Edit Member
+					</Button>
+				  </CardFooter>
+				</Card>
+			  </div>
+			</DialogTrigger>
+			<DialogContent className="max-h-screen overflow-y-auto scrollbar-hide">
+			  <Tabs defaultValue="about" className="w-full h-full">
+				<TabsList className="grid w-full grid-cols-3">
+				  <TabsTrigger value="about">About</TabsTrigger>
+				  <TabsTrigger value="services">Services</TabsTrigger>
+				  <TabsTrigger value="jurisdictions">Jurisdictions</TabsTrigger>
+				</TabsList>
+				<TabsContent value="about">
+				  <Card className="w-full h-full">
+					<CardHeader>
+					  <CardTitle>About {member.fullName}</CardTitle>
+					  <CardDescription>
+						Make changes to each member&apos;s general information here.
+					  </CardDescription>
+					</CardHeader>
+					<CardContent className="w-full h-full">
+					  <form className="space-y-4">
+						<div>
+						  <LabelWithTooltip
+							labelText="Full Name"
+							tooltipText="The full name of the company"
+						  />
+						  <Input
+							id="fullName"
+							placeholder="Enter full name"
+							value={member.fullName}
+							onChange={(e) =>
+							  handleChange("fullName", e.target.value)
+							}
+							className="mt-2 p-2 border border-gray-300 rounded w-full"
+						  />
+						</div>
+						<div>
+						  <LabelWithTooltip
+							labelText="Description"
+							tooltipText="Describe what this member does, what their specialty is."
+						  />
+						  <Input
+							id="description"
+							placeholder="Enter description"
+							value={member.description}
+							onChange={(e) =>
+							  handleChange("description", e.target.value)
+							}
+							className="mt-2 p-2 border border-gray-300 rounded w-full"
+						  />
+						</div>
+					  </form>
+					</CardContent>
+				  </Card>
+				</TabsContent>
+				<TabsContent value="services">
+				  <ServicesCard memberId={member.id} />
+				</TabsContent>
+				<TabsContent value="jurisdictions">
+				  <JurisdictionsCard memberId={member.id} />
+				</TabsContent>
+			  </Tabs>
+			  <CardFooter>
+				<Button onClick={saveMember}>Save Member</Button>
+			  </CardFooter>
+			</DialogContent>
+		  </Dialog>
+		</div>
+	  );
 };
 
 export default ProductCard;
