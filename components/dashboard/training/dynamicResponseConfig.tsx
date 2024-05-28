@@ -77,6 +77,7 @@ const ResponsesSchema = z.object({
 	rows: z
 		.array(
 			z.object({
+				order: z.number(),
 				message: z.string()
 					.min(10, { message: "Each message must be at least 10 characters.", })
 					.max(160, { message: "Each message must not be longer than 160 characters.", })
@@ -88,10 +89,10 @@ const ResponsesSchema = z.object({
 type ResponseFormValues = z.infer<typeof ResponsesSchema>;
 const defaultValues: Partial<ResponseFormValues> = {
 	rows: [
-		{ message: "What can you help me with?" },
-		{ message: "What does DemoDAO do?" },
-		{ message: "Can you give me an overview of DemoDAOs members?" },
-		{ message: "Can you recommend me a DemoDAO member to help me?" }
+		{ order: 0, message: "What can you help me with?" },
+		{ order: 1, message: "What does DemoDAO do?" },
+		{ order: 2, message: "Can you give me an overview of DemoDAOs members?" },
+		{ order: 3, message: "Can you recommend me a DemoDAO member to help me?" }
 	]
 };
 
@@ -109,6 +110,8 @@ const DynamicResponseConfig = () => {
 
 
 	function onSubmit(data: z.infer<typeof ResponsesSchema>) {
+		console.log(fields);
+		console.log(JSON.stringify(data, null, 2));
 		toast({
 			title: "You submitted the following values:",
 			description: (
@@ -122,85 +125,88 @@ const DynamicResponseConfig = () => {
 
 
 	return (
-		<Card>
-			<CardHeader className="px-5 py-3 border-b">
-				<CardTitle className="text-lg font-semibold">Configure User Response Buttons</CardTitle>
+		<Form {...form}>
+			<form onSubmit={form.handleSubmit(onSubmit)} >
+				<Card>
+					<CardHeader className="px-5 py-3 border-b">
+						<CardTitle className="text-lg font-semibold">Configure User Response Buttons</CardTitle>
 
-			</CardHeader>
-			<CardContent>
+					</CardHeader>
+					<CardContent>
+						<Table className="w-full">
+							<TableHeader>
+								<TableRow className="w-full">
+									<TableHead className="w-1/4">Display Order</TableHead>
+									<TableHead className="text-left w-1/2">Message</TableHead>
+									<TableHead className="w-1/4">Preview</TableHead>
+								</TableRow>
+							</TableHeader>
+							<TableBody className="w-full" >
 
-				<Table>
-					<TableHeader>
-						<TableRow>
-							<TableHead className="w-24 text-center">Display Order</TableHead>
-							<TableHead className="w-1/2">Message</TableHead>
-							<TableHead className="w-1/4">Preview</TableHead>
-						</TableRow>
-					</TableHeader>
-					<TableBody>
-						<Form {...form}>
-							<form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-								<div>
-									{fields.map((field, index) => (
-										<FormField
-											control={form.control}
-											key={field.id}
-											name={`rows.${index}.message`}
-											render={({ field }) => (
-												<FormItem>
+								{fields.map((field, index) => (
 
+									<FormField
 
-													<TableRow>
-														<TableCell className="font-semibold text-center">
-															{index + 1}
-														</TableCell>
-														<TableCell>
-															<Label htmlFor={`message-${index}`} className="sr-only">
-																Message
-															</Label>
-															<FormControl>
+										control={form.control}
+										key={field.id}
+										name={`rows.${index}.message`}
 
-																<Textarea
-																	id={`message-${index}`}
-																	value={field.value}
-																	className="min-h-[4rem] w-full"
+										render={({ field }) => (
 
-																	defaultValue={field.value}
+											<TableRow >
+												<TableCell className="font-semibold text-center w-1/4">
 
-																/>
-															</FormControl>
-														</TableCell>
-														<TableCell>
-															<Button className="w-full">
-																{field.value}
-															</Button>
-														</TableCell>
-													</TableRow>
+													{index + 1}
 
 
-												</FormItem>
-											)}
-										/>
+												</TableCell>
+												<TableCell className="w-1/2" >
+													<FormItem>
+														<Label htmlFor={`message-${index}`} className="sr-only">
+															Message
+														</Label>
+														<FormControl>
 
-									))}
-									<Button type="submit">Submit</Button>
-								</div>
+															<Textarea
+																id={`message-${index}`}
+
+																className="min-h-[4rem]"
 
 
-							</form>
-						</Form>
+																{...field}
+
+															/>
+														</FormControl>
+													</FormItem>
+
+												</TableCell>
+												<TableCell className="w-1/4 items-center text-center">
+
+													<Button>
+														{field.value}
+													</Button>
 
 
-					</TableBody>
-				</Table>
-			</CardContent>
-			<CardFooter className="flex justify-center border-t p-4">
-				<Button size="sm" variant="ghost" className="flex gap-1 items-center">
-					<PlusCircle className="h-3.5 w-3.5" />
-					Add Message
-				</Button>
-			</CardFooter>
-		</Card>
+												</TableCell>
+											</TableRow>
+										)}
+									/>
+								))}
+
+							</TableBody>
+						</Table>
+					</CardContent>
+					<CardFooter className="flex justify-center border-t p-4">
+						<Button size="sm" variant="ghost" className="flex gap-1 items-center">
+							<PlusCircle className="h-3.5 w-3.5" />
+							Add Message
+						</Button>
+						<Button type="submit">Submit</Button>
+					</CardFooter>
+
+				</Card>
+			</form>
+		</Form>
 	);
 };
 

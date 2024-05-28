@@ -337,7 +337,7 @@ const data: CompanyFile[] = [
 
 
 
-export default function CompanyKnowledgeDashboardSubpage({ params }: { params: { userId: string; }; }) {
+export default function CompanyKnowledgeDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
 	const [sorting, setSorting] = React.useState<SortingState>([]);
 	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
 		[]

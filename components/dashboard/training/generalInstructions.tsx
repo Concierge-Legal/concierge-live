@@ -1,5 +1,5 @@
 "use client";
-import { useState } from 'react';
+
 import { Button } from "@/components/ui/button";
 import {
 	Card,
@@ -10,8 +10,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+
 import {
 	Select,
 	SelectContent,
@@ -21,7 +20,6 @@ import {
 } from "@/components/ui/select";
 
 import { Textarea } from "@/components/ui/textArea";
-import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -66,6 +64,7 @@ const GeneralInstructions = () => {
 
 	const onSubmit = (data: z.infer<typeof FormSchema>) => {
 		// Placeholder logic for now, will hook up to database later.
+		console.log(`${JSON.stringify(data, null, 2)}`)
 		toast({
 			title: "You submitted the following values:",
 			description: (
@@ -88,10 +87,10 @@ const GeneralInstructions = () => {
 			<CardContent className=" p-6">
 				<div className="flex flex-row gap-6">
 					<Form {...form}>
-						<form onSubmit={form.handleSubmit(onSubmit)} className="w-full space-y-6">
+						<form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
 							<div className="flex flex-row h-4/5">
 								<div className="flex flex-col w-1/2 space-y-2">
-									<div className="grid gap-1">
+									<div className="grid gap-1 pr-10">
 										<FormField
 											control={form.control}
 											name="tone"
@@ -112,7 +111,7 @@ const GeneralInstructions = () => {
 											)}
 										/>
 									</div>
-									<div className="grid gap-1">
+									<div className="grid gap-1 pr-10">
 										<FormField
 											control={form.control}
 											name="verbosity"
@@ -132,7 +131,7 @@ const GeneralInstructions = () => {
 											)}
 										/>
 									</div>
-									<div className="grid gap-1">
+									<div className="grid gap-1 pr-10">
 										<FormField
 											control={form.control}
 											name="formality"

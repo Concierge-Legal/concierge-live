@@ -1,5 +1,5 @@
 
-export default async function DashboardSubpage({ params }: { params: { userId: string } }) {
+export default async function DashboardSubpage({ params }: { params: { organizationId: string } }) {
 	 //   User Engagement Analytics
   //   Response Metrics
   //   Customer Insights
