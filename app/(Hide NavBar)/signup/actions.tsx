@@ -4,9 +4,25 @@ import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
 import { createClient } from '@/lib/utils/supabase/server';
-import { createAdminClient } from '@/lib/utils/supabase/server';
+import { createClient as createClientDefault } from '@supabase/supabase-js'
 
-
+async function setOrganization(userId: string, organization_id: string) {
+	const supabase = createClientDefault(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPABASE_SERVICE_ROLE_KEY!, {
+		auth: {
+		  autoRefreshToken: false,
+		  persistSession: false
+		}
+	  })
+	  
+	  // Access auth admin api
+	
+	
+	const { data } = await supabase.auth.admin.updateUserById(
+		userId,
+		{ app_metadata: { organization_id: organization_id } }
+	)
+	return;
+}
 export async function signup(formData: FormData) {
 	const supabase = createClient();
 	
@@ -34,10 +50,3 @@ export async function signup(formData: FormData) {
 
 }
 
-async function setOrganization(userId: string, organization_id: string) {
-	const supabase = createAdminClient()
-	const { data } = await supabase.auth.admin.updateUserById(
-		userId,
-		{ app_metadata: { organization_id: organization_id } }
-	  )
-}
