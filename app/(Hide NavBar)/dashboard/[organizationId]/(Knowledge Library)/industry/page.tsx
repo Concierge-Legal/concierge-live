@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-
+import { createClient } from '@/lib/utils/supabase/client';
+import { denyAccess } from '../actions';
 import TextEditor from '@/components/dashboard/fileManagement/TextEditor';
 
 import { getColumns } from "@/components/dashboard/fileManagement/columns";
@@ -334,21 +335,29 @@ const data: IndustryFile[] = [
 	}
 ];
 
-
-
-
-
-
-export default function IndustryKnowledgeDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
-	const [sorting, setSorting] = React.useState<SortingState>([]);
-	const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+export default async function IndustryKnowledgeDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
+	const [sorting, setSorting] = useState<SortingState>([]);
+	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>(
 		[]
 	);
-	const [columnVisibility, setColumnVisibility] =
-		React.useState<VisibilityState>({});
-	const [rowSelection, setRowSelection] = React.useState({});
-	const [editorOpen, setEditorOpen] = React.useState(false);
-	const [currentDocument, setCurrentDocument] = React.useState<BaseFile | null>(null);
+	const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+	const [rowSelection, setRowSelection] = useState({});
+	const [editorOpen, setEditorOpen] = useState(false);
+	const [currentDocument, setCurrentDocument] = useState<BaseFile | null>(null);
+
+	const supabase = createClient()
+	
+	const authResult: { data: { user: any } } = await supabase.auth.getUser()
+
+	console.log(JSON.stringify(data, null, 2))
+	// Check the user is authenticated
+	if (!authResult.data.user) {
+		denyAccess();
+	}
+	// Check the user is authorized
+	if (authResult.data.user.app_metadata.organization_id !== params.organizationId) {
+		denyAccess();
+	}
 
 	const handleEdit = (file: BaseFile) => {
 		setCurrentDocument(file);

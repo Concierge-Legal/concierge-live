@@ -5,8 +5,7 @@ import { createClient } from "@/lib/utils/supabase/server";
 import { CustomLineChart, CustomPieChart, CustomBarChart } from '@/components/dashboard/customCharts';
 import { AlertComponent } from '@/components/dashboard/alert';
 import { BanknotesIcon } from '@heroicons/react/24/solid';
-import Image from "next/image";
-import Link from "next/link";
+import { redirect } from 'next/navigation'
 import {
 	ChevronLeft,
 	ChevronRight,
@@ -111,9 +110,16 @@ const responseTimesData = [
 export default async function Dashboard({ params }: { params: { organizationId: string; }; }) {
 
 
-	const supabase = createClient();
-
-	const { data: { user }, error } = await supabase.auth.getUser();
+	const supabase = createClient()
+	const { data, error } = await supabase.auth.getUser()
+	// Check the user is authenticated
+	if (error || !data?.user) {
+		redirect('/login')
+	}
+	// Check the user is authorized
+	if (data.user.app_metadata.organization_id !== params.organizationId) {
+		redirect('/login')
+	}
 	
 	return (
 		<main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-3 xl:grid-cols-3">
