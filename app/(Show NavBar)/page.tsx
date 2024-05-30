@@ -50,7 +50,29 @@ export default function Home() {
             </div>
           </div>
         </div>
-
+		<div className="flex flex-col items-center px-12 py-2 bg-white max-md:px-5">
+            <div className="self-stretch mt-16 max-md:mt-10 max-md:max-w-full">
+              <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                <div className="flex flex-col max-md:ml-0 max-md:w-full">
+                  <div className="flex flex-col grow w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-lg max-md:mt-8 max-md:max-w-full">
+                    <div className="flex flex-col justify-center p-12 max-md:px-5 max-md:max-w-full">
+                      <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+					  Experience Concierge Live
+                      </div>
+                      <div className="mt-6 text-lg leading-7 text-center text-black max-md:max-w-full">
+                      Click the button below to start a live demo and see Concierge in action.
+                      </div>
+                    </div>
+                    <div className="flex justify-center pb-12 ">
+					<Button className="bg-accent text-accent-foreground px-8 py-3 rounded-full hover:bg-accent-hover">
+            Demo Concierge
+          </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
 
         <section className="bg-background text-foreground p-10 text-center">
           <h2 className="text-4xl font-bold mb-3">Experience Concierge Live</h2>
