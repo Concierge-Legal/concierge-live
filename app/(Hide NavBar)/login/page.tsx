@@ -19,10 +19,7 @@ export default function Login({
     await loginDemo();
   };
 
-  const signUpLocal = async (formData: FormData) => {
-    "use server";
-    await signup(formData);
-  };
+  
 
   return (
     
@@ -77,7 +74,7 @@ export default function Login({
         <Button
           onClick={signInDemo}
         >
-          View Demo (This broke fml)
+          View Demo
         </Button>
         {searchParams?.message && (
           <p className="mt-4 p-4 bg-foreground/10 text-foreground text-center">

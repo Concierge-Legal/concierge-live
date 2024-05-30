@@ -34,7 +34,7 @@ export async function loginDemo() {
 	// in practice, you should validate your inputs
 	const formAuthData = {
 	  email: "demo@demo.com",
-	  password: "demodemo"
+	  password: process.env.DEMO_PASSWORD!
 	}
   
 	const { data, error } = await supabase.auth.signInWithPassword(formAuthData)
