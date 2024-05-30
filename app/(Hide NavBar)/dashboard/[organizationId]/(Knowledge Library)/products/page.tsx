@@ -8,9 +8,12 @@ import { Member } from '@/lib/utils/types'; // Ensure this import path is correc
 import { Button } from '@/components/ui/button';
 
 
-export default async function ProductsDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
+export default function ProductsDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
 	const supabase = createClient();
+	const [state, dispatch] = useReducer(productReducer, initialState);
+
 	const getProfile = useCallback(async () => {
+		console.log(`GetProfile called in useCallback!`)
 		try {
 
 			const authResult: { data: any, error: any } = await supabase.auth.getUser();
@@ -24,6 +27,8 @@ export default async function ProductsDashboardSubpage({ params }: { params: { o
 				console.log(`User is not authorized!`);
 				denyAccess();
 			}
+			//console.log(JSON.stringify(authResult, null, 2))
+			console.log(`======\nWelcome, ${authResult.data.user.user_metadata.first_name} ${authResult.data.user.user_metadata.last_name}\n======`)
 
 
 			const requestBody = {
@@ -59,9 +64,13 @@ export default async function ProductsDashboardSubpage({ params }: { params: { o
 			console.error('Error fetching members:', error);
 			addNewMember();
 		} 
-	}, [params.organizationId, supabase]);
+	}, [params.organizationId, supabase, dispatch]);
 
-	const [state, dispatch] = useReducer(productReducer, initialState);
+	useEffect(() => {
+		getProfile()
+	  }, [params.organizationId, getProfile])
+
+
 
 	const addNewMember = () => {
 		const newMember: Member = {
@@ -71,9 +80,9 @@ export default async function ProductsDashboardSubpage({ params }: { params: { o
 			services: [],
 			jurisdictions: []
 		};
-		console.log('Adding new member:', newMember);
+		
 		dispatch({ type: 'ADD_MEMBER', payload: newMember });
-		console.log('Current state after dispatch:', state.members);
+		
 	};
 
 
