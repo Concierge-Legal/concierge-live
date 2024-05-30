@@ -215,7 +215,7 @@ export default function Home() {
                       User-Centric Design
                     </div>
                     <div className="mt-4 text-center leading-6">
-                      An intuitive interface tailored to your users' needs. Our
+                      An intuitive interface tailored to your users&apos; needs. Our
                       user-centric design approach ensures that every
                       interaction is meaningful and enhances user satisfaction.
                     </div>

@@ -25,8 +25,8 @@
     --input: 0 0% 98%; /* Keep slightly off-white for input fields to differentiate from the primary background */
 
     /* Primary interaction elements like buttons */
-    --primary: 120 40% 50%; /* Green for primary interaction elements like buttons */
-    --primary-foreground: #ffffff; /* White text for contrast on green buttons */
+    --primary: 215 47% 34%; /* Green for primary interaction elements like buttons */
+    --primary-foreground: 0 0% 95%; /* White text for contrast on green buttons */
 
     /* Secondary interaction elements */
     --secondary: 0 0% 85%; /* Darker gray for secondary elements */
