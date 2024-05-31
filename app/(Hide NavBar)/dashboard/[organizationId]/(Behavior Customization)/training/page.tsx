@@ -4,13 +4,25 @@ import { Badge } from "@/components/ui/badge";
 
 import { Button } from "@/components/ui/button";
 
-
+import { createClient } from "@/lib/utils/supabase/server";
+import { redirect } from "next/navigation";
 import DynamicResponseConfig from "@/components/dashboard/training/dynamicResponseConfig";
 import BehaviorToggles from "@/components/dashboard/training/behaviorToggles";
 import GeneralInstructions from "@/components/dashboard/training/generalInstructions";
 import UserBasedCustomization from "@/components/dashboard/training/userBasedCustomization";
 
 export default async function Training({ params }: { params: { organizationId: string; }; }) {
+	const supabase = createClient()
+	const { data, error } = await supabase.auth.getUser()
+	console.log(JSON.stringify(data, null, 2))
+	// Check the user is authenticated
+	if (error || !data?.user) {
+		redirect('/login')
+	}
+	// Check the user is authorized
+	if (data.user.app_metadata.organization_id !== params.organizationId) {
+		redirect('/login')
+	}
 	return (
 		<main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
 			<div className="mx-auto grid flex-1 auto-rows-max gap-4">
