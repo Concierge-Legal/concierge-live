@@ -35,8 +35,8 @@ export const ChatBlock: React.FC<ChatBlockProps> = ({ content, streamingType, sp
 
 	const iconSrc = {
 		//[SpeakerType.assistant]: "/path/to/userIcon.png", // Replace with actual path
-		[SpeakerType.concierge]: "/home/Concierge.png",   // Replace with actual path
-		[SpeakerType.abe]: "/home/ASKABELOGO.png",        // Replace with actual path
+		[SpeakerType.concierge]: "/logo/blacklogo.png",   // Replace with actual path
+		[SpeakerType.abe]: "/logo/ASKABELOGO.png",        // Replace with actual path
 		[SpeakerType.user]: "/fake.png"
 	};
 
