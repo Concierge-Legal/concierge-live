@@ -1,5 +1,5 @@
 import React from 'react';
-import { createClient } from '@/lib/utils/supabase/client';
+import { createClient } from '@/lib/utils/supabase/server';
 import { redirect } from 'next/navigation'
 import CompanyTable from '@/components/dashboard/fileManagement/companyTable'
 
@@ -9,6 +9,7 @@ export default async function IndustryKnowledgeDashboardSubpage({ params }: { pa
 	const { data, error } = await supabase.auth.getUser()
 	// Check the user is authenticated
 	if (error || !data?.user) {
+		console.log(error)
 		redirect('/login')
 	}
 	// Check the user is authorized
