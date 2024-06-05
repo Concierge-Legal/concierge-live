@@ -1,5 +1,6 @@
 import { CustomAreaChart, CustomBarChart, CustomLineChart, CustomHistogram, CustomPieChart } from "@/components/dashboard/customCharts";
-
+import { redirect } from 'next/navigation'
+import { createClient } from "@/lib/utils/supabase/server";
 
 // Example data, replace with real data passed via props or fetched within the component
 const conversationVolumeData = [
@@ -65,11 +66,22 @@ const userDemographicsData = [
   { ageGroup: "46+", value: 100 },
 ];
 
-export default function DashboardAnalytics({
+export default async function DashboardAnalytics({
   params,
 }: {
   params: { organizationId: string };
 }) {
+
+	const supabase = createClient()
+	const { data, error } = await supabase.auth.getUser()
+	// Check the user is authenticated
+	if (error || !data?.user) {
+		redirect('/login')
+	}
+	// Check the user is authorized
+	if (data.user.app_metadata.organization_id !== params.organizationId) {
+		redirect('/login')
+	}
   return (
     <div className="p-4">
       <div className="bg-white text-black p-6 rounded-lg shadow-md mb-8">

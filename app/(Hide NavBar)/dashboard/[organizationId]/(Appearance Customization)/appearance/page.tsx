@@ -25,4 +25,12 @@ export default async function DashboardSubpage({ params }: { params: { organizat
 	  </div>
         
     )
+
+			</div>
+
+
+		</div>
+
+	);
+
 }    
