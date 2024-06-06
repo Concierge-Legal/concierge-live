@@ -216,18 +216,18 @@ export default function Chat() {
   }, [messages]);
 
   return (
-    <ChatContextProvider
+	<ChatContextProvider
       value={{
         currentlyStreamingBlockId: conciergeStreamBlockId,
         showLoadingIcon,
       }}
     >
-      <div className="fixed bottom-4 right-4 bg-white shadow-lg rounded-lg overflow-hidden flex flex-col w-80 h-[60vh] border border-gray-300">
-        <div className="flex flex-col flex-grow p-4">
+      <div className="flex-shrink-0 overflow-x-hidden bg-token-sidebar-surface-primary h-full">
+        <div className="flex h-screen min-h-0 flex-col">
           <div className="overflow-y-auto flex-grow p-4 rounded-lg bg-gray-100">
             <ContentQueue items={contentBlocks} />
           </div>
-          <form className="flex gap-2 mt-4" onSubmit={submitMessage}>
+          <form className="flex gap-2 mt-4 p-4 bg-white" onSubmit={submitMessage}>
             <Input
               disabled={status !== "awaiting_message"}
               className="flex-1 p-2 rounded-lg focus:outline-none focus:border-accent focus:ring-1 border-gray-300"
@@ -237,9 +237,9 @@ export default function Chat() {
             />
             <Button
               type="submit"
-              color="primary" // Choose from 'primary', 'secondary', etc., based on ShadCN themes
+              color="primary"
               className="px-4 py-2 rounded-lg bg-blue-600 text-white"
-              disabled={status !== "awaiting_message"} // Disabled logic
+              disabled={status !== "awaiting_message"}
             >
               Send
             </Button>
@@ -247,5 +247,6 @@ export default function Chat() {
         </div>
       </div>
     </ChatContextProvider>
+
   );
 }
