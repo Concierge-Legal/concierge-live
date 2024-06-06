@@ -3,12 +3,20 @@ import { createClient } from '@/lib/utils/supabase/server';
 
 async function getOrganizationData(organizationId: string) {
 	const supabase = await createClient();
-	const {data, error}= await supabase.from('organizations').select('fullname').eq('id', organizationId).limit(1)
+	
+	//81c8f2cd-bd82-4089-9edc-0f59c818de65
+	//81c8f2cd-bd82-4089-9edc-0f59c818de65
+	const {data, error}= await supabase.from('organizations').select('*').eq('id', organizationId.trim()).single()
 	if(error) {
-		throw new Error("Could not fetch organization data in dashboard layout!")
+		console.log("Could not fetch organization data in dashboard layout!")
+		throw error;
+	}
+	if (!data) {
+		console.log("Data is null!")
+		throw new Error("data null in getOrganizationData")
 	}
 	console.log(JSON.stringify(data, null, 2))
-	return data[0].fullname;	
+	return data.fullname!;	
 }
 
 export default async function Layout({ children, params }: {
