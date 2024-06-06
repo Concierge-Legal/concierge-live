@@ -49,7 +49,7 @@ const ChatWindow = () => {
           className="mb-2 p-2 rounded-lg self-end"
           style={{ backgroundColor: userMessageColor }}
         >
-          User: I'm looking for some information.
+          User: I&apos;m looking for some information.
         </div>
       </div>
     </div>
