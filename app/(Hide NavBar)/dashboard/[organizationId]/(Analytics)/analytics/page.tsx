@@ -66,7 +66,7 @@ const userDemographicsData = [
   { ageGroup: "46+", value: 100 },
 ];
 
-export default async function DashboardAnalytics({
+export default async function Analytics({
   params,
 }: {
   params: { organizationId: string };

@@ -1,14 +1,14 @@
 "use client";
 import React, { useEffect, useReducer, useCallback } from 'react';
 import { createClient } from '@/lib/utils/supabase/client';
-import { denyAccess } from '../actions';
+import { denyAccess } from '../../actions';
 import ProductCard from '@/components/dashboard/fileManagement/productCard';
 import { productReducer, initialState, ProductContext, ProductState } from '@/lib/hooks/useProduct'; // Import the context hook
 import { Member } from '@/lib/utils/types'; // Ensure this import path is correct
 import { Button } from '@/components/ui/button';
 
 
-export default function ProductsDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
+export default function Network({ params }: { params: { organizationId: string; }; }) {
 	const supabase = createClient();
 	const [state, dispatch] = useReducer(productReducer, initialState);
 

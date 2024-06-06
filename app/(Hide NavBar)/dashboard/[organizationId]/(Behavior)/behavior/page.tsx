@@ -11,7 +11,7 @@ import BehaviorToggles from "@/components/dashboard/training/behaviorToggles";
 import GeneralInstructions from "@/components/dashboard/training/generalInstructions";
 import UserBasedCustomization from "@/components/dashboard/training/userBasedCustomization";
 
-export default async function Training({ params }: { params: { organizationId: string; }; }) {
+export default async function Behavior({ params }: { params: { organizationId: string; }; }) {
 	const supabase = createClient()
 	const { data, error } = await supabase.auth.getUser()
 	console.log(JSON.stringify(data, null, 2))

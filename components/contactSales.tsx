@@ -31,27 +31,27 @@ const ContactForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const { data, error } = await supabase
-        .from('contact_form')
-        .insert([formState]);
+    // try {
+    //   const { data, error } = await supabase
+    //     .from('contact_form')
+    //     .insert([formState]);
 
-      if (error) {
-        console.error('Error inserting data:', error);
-      } else {
-        console.log('Data inserted:', data);
-        // Clear the form
-        setFormState({
-          firstName: '',
-          lastName: '',
-          companyName: '',
-          email: '',
-          message: '',
-        });
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-    }
+    //   if (error) {
+    //     console.error('Error inserting data:', error);
+    //   } else {
+    //     console.log('Data inserted:', data);
+    //     // Clear the form
+    //     setFormState({
+    //       firstName: '',
+    //       lastName: '',
+    //       companyName: '',
+    //       email: '',
+    //       message: '',
+    //     });
+    //   }
+    // } catch (error) {
+    //   console.error('Error submitting form:', error);
+    // }
   };
 
   return (
