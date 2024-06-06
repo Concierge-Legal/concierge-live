@@ -216,36 +216,37 @@ export default function Chat() {
   }, [messages]);
 
   return (
-    <ChatContextProvider
-      value={{
-        currentlyStreamingBlockId: conciergeStreamBlockId,
-        showLoadingIcon,
-      }}
-    >
-      <div className="fixed bottom-4 right-4 bg-white shadow-lg rounded-lg overflow-hidden flex flex-col w-80 h-[60vh] border border-gray-300">
-        <div className="flex flex-col flex-grow p-4">
-          <div className="overflow-y-auto flex-grow p-4 rounded-lg bg-gray-100">
-            <ContentQueue items={contentBlocks} />
-          </div>
-          <form className="flex gap-2 mt-4" onSubmit={submitMessage}>
-            <Input
-              disabled={status !== "awaiting_message"}
-              className="flex-1 p-2 rounded-lg focus:outline-none focus:border-accent focus:ring-1 border-gray-300"
-              value={input}
-              placeholder="How can I help you today?"
-              onChange={handleInputChange}
-            />
-            <Button
-              type="submit"
-              color="primary" // Choose from 'primary', 'secondary', etc., based on ShadCN themes
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white"
-              disabled={status !== "awaiting_message"} // Disabled logic
-            >
-              Send
-            </Button>
-          </form>
-        </div>
+	<ChatContextProvider
+  value={{
+    currentlyStreamingBlockId: conciergeStreamBlockId,
+    showLoadingIcon,
+  }}
+>
+  <div className="flex-shrink-0 overflow-x-hidden h-full bg-gray-900 text-gray-200">
+    <div className="flex bg-gray-800 h-screen min-h-0 flex-col">
+      <div className="overflow-y-auto flex-grow p-4  rounded-lg">
+        <ContentQueue items={contentBlocks} />
       </div>
-    </ChatContextProvider>
+      <form className="flex items-center p-4 " onSubmit={submitMessage}>
+        <Input
+          disabled={status !== "awaiting_message"}
+          className="flex-1 p-2 text-gray-200 border-none focus:outline-none focus:ring-0"
+          value={input}
+          placeholder="Type your message..."
+          onChange={handleInputChange}
+        />
+        <Button
+          type="submit"
+          className="ml-2 px-4 py-2 bg-blue-600 text-white rounded-lg"
+          disabled={status !== "awaiting_message"}
+        >
+          Send
+        </Button>
+      </form>
+    </div>
+  </div>
+</ChatContextProvider>
+
+
   );
 }

@@ -46,7 +46,7 @@ export default function Home() {
               CONCIERGE
             </div>
             <div className="mt-6 text-lg leading-7 max-md:max-w-full">
-              The Future of Legal Customer Service
+			Elevating Minds, Connecting Lives
             </div>
           </div>
         </div>
