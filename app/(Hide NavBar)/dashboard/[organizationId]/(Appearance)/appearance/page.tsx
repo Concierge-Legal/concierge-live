@@ -5,7 +5,7 @@ import ChatWindow from '@/components/dashboard/changestoChat';
 
 
 
-export default async function DashboardSubpage({ params }: { params: { organizationId: string } }) {
+export default async function Appearance({ params }: { params: { organizationId: string } }) {
 	 //   User Engagement Analytics
   //   Response Metrics
   //   Customer Insights

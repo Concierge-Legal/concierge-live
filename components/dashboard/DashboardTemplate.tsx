@@ -2,26 +2,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { LogoutButton } from '../ui/authButtons/AuthButton';
 import { HomeIcon } from '@heroicons/react/24/solid';
-import {
-	AnalyticsSection,
-	AppearanceSection,
-	TrainingSection,
-	BillingSection,
-	NetworkSection,
-	OrganizationSection,
-	SettingsSection
-} from '@/components/dashboard/sidebarSections';
 import { Separator } from '../ui/separator';
 import { HeartIcon } from '@heroicons/react/24/solid';
-
+import { ChartBarIcon } from '@heroicons/react/24/solid';
+import { ScissorsIcon } from '@heroicons/react/24/solid';
+import { BanknotesIcon } from '@heroicons/react/24/solid';
+import { BuildingLibraryIcon } from '@heroicons/react/24/solid';
+import { AcademicCapIcon } from '@heroicons/react/24/solid';
+import { CogIcon } from '@heroicons/react/24/solid';
+import { UserGroupIcon } from '@heroicons/react/24/solid';
 
 
 const DashboardTemplate: React.FC<{ orgData: { id: string, fullName: string; }, children: React.ReactNode; }> = ({ orgData, children }) => {
 	if (!orgData.id) {
 		return <p>Unauthorized...</p>; // or any other fallback UI
 	}
-
-
 
 	return (
 		<div className="flex h-screen w-full overflow-hidden">
@@ -40,7 +35,7 @@ const DashboardTemplate: React.FC<{ orgData: { id: string, fullName: string; }, 
 						{/* Other section components */}
 						<NetworkSection organizationId={orgData.id} />
 						<OrganizationSection organizationId={orgData.id} />
-						<TrainingSection organizationId={orgData.id} />
+						<BehaviorSection organizationId={orgData.id} />
 						<AnalyticsSection organizationId={orgData.id} />
 						<AppearanceSection organizationId={orgData.id} />
 						<BillingSection organizationId={orgData.id} />
@@ -71,7 +66,7 @@ const DashboardTemplate: React.FC<{ orgData: { id: string, fullName: string; }, 
 				</header>
 
 
-				<div className="pt-16 overflow-y-auto h-full"> {/* Padding top equal to the header height */}
+				<div className="overflow-y-auto h-full"> {/* Padding top equal to the header height */}
 					{children} {/* Main content scrolls */}
 				</div>
 			</div>
@@ -80,3 +75,129 @@ const DashboardTemplate: React.FC<{ orgData: { id: string, fullName: string; }, 
 };
 
 export default DashboardTemplate;
+
+
+
+const OrganizationSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+	return (
+		<div>
+			<button className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<BuildingLibraryIcon className="h-5 w-5 mr-2" />
+				<Link href={`/dashboard/${organizationId}/organization`} className="">
+					Organization Knowledge
+				</Link>
+			</button>
+		</div>
+	);
+};
+const NetworkSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+	return (
+		<div>
+			<button className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<UserGroupIcon className="h-5 w-5 mr-2" />
+				<Link href={`/dashboard/${organizationId}/network`} className="">
+					Network Directory
+				</Link>
+			</button>
+		</div>
+	);
+};
+
+
+const AnalyticsSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+	return (
+		<div>
+			<button className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<ChartBarIcon className="h-5 w-5 mr-2" />
+				<Link href={`/dashboard/${organizationId}/analytics#userEngagement`} className="">
+					Analytics
+				</Link>
+			</button>
+		</div>
+	);
+};
+
+
+
+
+const AppearanceSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+	return (
+		<div>
+			<Link href={`/dashboard/${organizationId}/appearance`} className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<ScissorsIcon className="h-5 w-5 mr-2" /> Appearance
+			</Link>
+		</div>
+	);
+};
+
+
+
+
+
+const BillingSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+	return (
+		<div>
+			<Link href={`/dashboard/${organizationId}/usage`} className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<BanknotesIcon className="h-5 w-5 mr-2" /> Usage and Billing
+			</Link>
+		</div>
+	);
+};
+
+
+
+
+
+
+
+
+
+
+
+const BehaviorSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+
+	return (
+		<div>
+			<button className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none" >
+				<AcademicCapIcon className="h-5 w-5 mr-2" /> Behavior Training
+
+			</button>
+
+			<div className="pl-8">
+				<Link href={`/dashboard/${organizationId}/behavior#greetings`} className={`flex items-center py-2 text-sm hover:bg-accent `}>
+					Greetings
+				</Link>
+				<Link href={`/dashboard/${organizationId}/behavior#greetings`} className="flex items-center py-2 text-sm hover:bg-accent">
+					Tool Use
+				</Link>
+				<Link href={`/dashboard/${organizationId}/behavior#greetings`} className="flex items-center py-2 text-sm hover:bg-accent">
+					Escalation Protocol
+				</Link>
+
+			</div>
+
+		</div>
+	);
+};
+
+
+
+
+const SettingsSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+
+	return (
+		<div>
+			<Link href={`/dashboard/${organizationId}/settings`} className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<CogIcon className="h-5 w-5 mr-2" /> Settings
+			</Link>
+		</div>
+	);
+};
+

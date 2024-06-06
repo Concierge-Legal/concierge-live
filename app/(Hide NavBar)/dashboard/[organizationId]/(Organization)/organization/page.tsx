@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 import CompanyTable from '@/components/dashboard/fileManagement/companyTable'
 
 // Initialize Supabase client (configure your Supabase details)
-export default async function IndustryKnowledgeDashboardSubpage({ params }: { params: { organizationId: string; }; }) {
+export default async function Organization({ params }: { params: { organizationId: string; }; }) {
 	const supabase = createClient()
 	const { data, error } = await supabase.auth.getUser()
 	// Check the user is authenticated
