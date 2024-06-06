@@ -1,0 +1,89 @@
+[
+    {
+        "id": "demodao",
+        "parent": null,
+        "node_children": [
+            {"id": "", "level_classifier": ""}
+        ],  
+        "node_name": "DemoDAO",
+        "node_type": "root",
+        "classifier": "root",
+        
+        "summary": "Blah blah",   
+        "metadata": {
+            "offersProducts": true,
+            "tokenHolder": true,
+            "contactInformation": {},
+            "products": {},
+            "blah": ""
+        }
+    },
+    {
+        "id": "demodao/voting=WDC-LLC",
+        "parent": "demodao",
+        "node_children": [],
+        "node_type": "member",
+        "classifier": "voting",
+        "slug": "WDC-LLC",
+        "node_name": "Will Diamond Consulting LLC",      
+        "summary": "Specializing in blockchain-based dispute resolution, we provide arbitration and mediation services to resolve conflicts without the need for traditional court proceedings.",
+        "metadata": {
+            "token": "0000000"
+        }
+    },
+    {
+        "id": "demodao/voting=WDC-LLC/service=AITutoring",
+        "parent": "demodao/voting=WDC-LLC",
+        "node_children": [],
+        "node_type": "submember",
+        "classifier": "service",
+        "slug": "AITutoring",
+        "node_name": "AI Engineering Tutoring",
+        "summary": "Hourly tutoring for AI Engineering.",
+        "metadata": {}
+    },
+    {
+        "id": "demodao/voting=WDC-LLC/service=AITutoring/action=contact-form",
+        "parent": "demodao/voting=WDC-LLC/service=AITutoring",
+        "node_children": null,
+        "node_type": "submember",
+        "classifier": "action",
+        "slug": "contact-form",
+        "node_name": "AI Engineering Tutoring Contact Form",
+        "summary": "",
+        "metadata": {}
+    },
+    {
+        "id": "demodao/voting=WDC-LLC/service=AITutoring/tutor=Will",
+        "parent": "demodao/voting=WDC-LLC/service=AITutoring",
+        "node_children": null,
+        "node_type": "submember",
+        "classifier": "tutor",
+        "slug": "Will",
+        "node_name": "Will Diamond, CEO",
+        "summary": "The best tutor around.",
+        "metadata": {}
+    },
+    {
+        "id": "demodao/voting=WDC-LLC/service=AITutoring/tutor=Will/action=contact-form",
+        "parent": "demodao/voting=WDC-LLC/service=AITutoring/tutor=Will",
+        "node_children": null,
+        "node_type": "submember",
+        "classifier": "action",
+        "slug": "contact-form",
+        "node_name": "Contact Will Diamond, CEO",
+        "summary": "Contact The best tutor around.",
+        "metadata": {}
+    },
+    {
+        "id": "demodao/voting=WDC-LLC/service=AITutoring/tutor=Madeline/action=contact-form",
+        "parent": "demodao/voting=WDC-LLC/service=AITutoring/tutor=Madeline",
+        "node_children": null,
+        "node_type": "submember",
+        "classifier": "tutor",
+        "slug": "Madeline",
+        "node_name": "AI Engineering Tutoring - Contact Madeline",
+        "summary": "Second best tutor around.",
+        "metadata": {}
+    }
+]
