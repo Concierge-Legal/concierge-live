@@ -6,34 +6,36 @@ import { BanknotesIcon } from '@heroicons/react/24/solid';
 import { BuildingLibraryIcon } from '@heroicons/react/24/solid';
 import { AcademicCapIcon } from '@heroicons/react/24/solid';
 import { CogIcon } from '@heroicons/react/24/solid';
+import { UserGroupIcon } from '@heroicons/react/24/solid';
 
 
-
-export const KnowledgeSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+export const OrganizationSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
 
 	return (
 		<div>
 			<button className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
 				<BuildingLibraryIcon className="h-5 w-5 mr-2" />
-				Knowledge Library
+				<Link href={`/dashboard/${organizationId}/organization`} className="">
+					Organization Knowledge
+				</Link>
 			</button>
-
-			<div className="pl-8">
-				<Link href={`/dashboard/${organizationId}/industry`} className="flex items-center py-2 text-sm hover:bg-accent">
-					<p>Industry Files</p>
-				</Link>
-				<Link href={`/dashboard/${organizationId}/company`} className="flex items-center py-2 text-sm hover:bg-accent">
-					Company Files
-				</Link>
-				<Link href={`/dashboard/${organizationId}/products`} className="flex items-center py-2 text-sm hover:bg-accent">
-					Products and Services
-				</Link>
-
-			</div>
-
 		</div>
 	);
 };
+export const NetworkSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
+
+	return (
+		<div>
+			<button className="flex pl-2 items-center w-full py-2 text-sm hover:bg-accent focus:outline-none">
+				<UserGroupIcon className="h-5 w-5 mr-2" />
+				<Link href={`/dashboard/${organizationId}/network`} className="">
+					Network Directory
+				</Link>
+			</button>
+		</div>
+	);
+};
+
 
 export const AnalyticsSection: React.FC<{ organizationId: string; }> = ({ organizationId }) => {
 

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { LogoutButton } from '../ui/authButtons/AuthButton';
 import { useState } from 'react';
 import { HomeIcon } from '@heroicons/react/24/solid';
-import {AnalyticsSection, AppearanceSection, TrainingSection, BillingSection, KnowledgeSection, SettingsSection} from '@/components/dashboard/sidebarSections';
+import {AnalyticsSection, AppearanceSection, TrainingSection, BillingSection, NetworkSection, OrganizationSection, SettingsSection} from '@/components/dashboard/sidebarSections';
 import { Separator } from '../ui/separator';
 import Image from 'next/image';
 
@@ -22,7 +22,8 @@ const NavigationSidebar: React.FC<{ organizationId: string }> = ({ organizationI
 						<HomeIcon className="h-5 w-5 mr-2" /> Home
 					</Link>
 					{/* Add other section components here */}
-					<KnowledgeSection organizationId={organizationId} />
+					<NetworkSection organizationId={organizationId} />
+					<OrganizationSection organizationId={organizationId} />
 					<TrainingSection organizationId={organizationId} />
 					<AnalyticsSection organizationId={organizationId} />
 					<AppearanceSection organizationId={organizationId} />
