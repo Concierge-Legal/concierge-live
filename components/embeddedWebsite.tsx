@@ -28,7 +28,7 @@ const EmbeddedWebsite: React.FC = () => {
     <div className="relative z-0 flex h-full w-full overflow-hidden">
       <div className={`flex min-h-screen bg-gray-900 transition-all duration-300 ${isChatOpen ? 'w-3/4' : 'w-full'}`}>
         <div className="flex flex-col w-full">
-          <header className="ßtext-white p-4 text-center">
+          <header className="text-white p-4 text-center">
             <h1 className="text-3xl font-bold">Demo DAO</h1>
           </header>
           <nav className=" text-white p-2 flex justify-center space-x-4">
