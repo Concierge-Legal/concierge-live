@@ -76,3 +76,26 @@ export interface Member {
     jurisdictions: Jurisdiction[];
     isNew?: boolean;
   }
+
+
+
+
+
+export interface ServiceOffered {
+	name: string;
+	price: string;
+	pricingMethod: string;
+	retainer: boolean;
+  }
+  
+  export interface ContactInformation {
+	website: string;
+  }
+  
+  export interface NetworkFile {
+	id: string;
+	name: string;
+	description: string;
+	servicesOffered: ServiceOffered[];
+	contactInformation: ContactInformation;
+  }
