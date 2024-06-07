@@ -33,7 +33,7 @@
     --secondary-foreground: #000000; /* Black text for clarity on secondary elements */
 
     /* Accent elements for hover states or small components */
-    --accent: 120 40% 40%; /* A bit darker green for hover states to enhance visual feedback */
+    --accent: 217 76% 62%; /* Lighter blue */
     --accent-foreground: #ffffff; /* White text for contrast on hover elements */
 
     /* Destructive actions */
@@ -41,7 +41,7 @@
     --destructive-foreground: 0 0% 0%; /* White text for clarity on destructive buttons */
 
     /* Focus rings */
-    --ring: 120 40% 50%; /* Green to maintain accessibility standards with focus indication */
+    --ring:  217 58% 50%; /* Lighter blue */
 
     /* Common border radius for UI elements */
     --radius: 0.5rem;
