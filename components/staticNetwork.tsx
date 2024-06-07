@@ -136,7 +136,7 @@ const networkFiles: NetworkFile[] = [
 			<h1 className="text-5xl font-bold text-indigo-500">Members & Services</h1>
 		  </div>
 		  {networkFiles.length > 0 ? (
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
 			  {networkFiles.map((network: NetworkFile) => (
 				<StaticNetworkCard key={network.id} network={network} />
 			  ))}
