@@ -2,7 +2,7 @@
 import React, { useEffect, useReducer, useCallback } from 'react';
 import { createClient } from '@/lib/utils/supabase/client';
 import { denyAccess } from '../../actions';
-import ProductCard from '@/components/dashboard/fileManagement/productCard';
+import NetworkCard from '@/components/dashboard/fileManagement/networkCard';
 import { productReducer, initialState, ProductContext, ProductState } from '@/lib/hooks/useProduct';
 import { Member } from '@/lib/utils/types';
 import { Button } from '@/components/ui/button';
@@ -80,15 +80,15 @@ export default function Network({ params }: { params: { organizationId: string; 
 
 	return (
 		<ProductContext.Provider value={{ state, dispatch }}>
-			<div className="min-h-screen bg-gray-900 text-white px-8 py-12">
+			<div className="min-h-screen text-black ">
 				<div className="max-w-4xl mx-auto">
-					<div className="bg-gray-800 p-8 rounded-lg shadow-lg mb-12 text-center">
-						<h1 className="text-5xl font-bold text-indigo-500">Products and Services Knowledge Upload</h1>
+					<div className=" p-8 rounded-lg shadow-lg mb-12 text-center">
+						<h1 className="text-5xl font-bold text-indigo-500">Network Card Upload</h1>
 					</div>
 					{state.members.length > 0 ? (
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 							{state.members.map((member: Member) => (
-								<ProductCard key={member.id} member={member} />
+								<NetworkCard key={member.id} member={member} />
 							))}
 						</div>
 					) : (

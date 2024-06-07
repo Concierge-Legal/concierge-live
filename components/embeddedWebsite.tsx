@@ -64,9 +64,9 @@ const HomePage: React.FC = () => (
 );
 
 const ProductsPage: React.FC = () => (
-  <div className="min-h-screen bg-gray-900 text-white px-8 py-12">
+  <div className="min-h-screen bg-gray-900 text-white ">
     <div className="max-w-4xl mx-auto">
-      <h1 className="text-5xl font-bold text-indigo-500 mb-8">Products and Services</h1>
+  
       <StaticNetworks />
     </div>
   </div>
