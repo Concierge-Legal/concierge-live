@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import ChatWindow from './chatWindow'; // Make sure to update the path
+import ChatWindow from './chatWindow'; 
 
 import { ChevronRightIcon, ChevronLeftIcon } from '@heroicons/react/20/solid';
-import StaticNetworks from './staticNetwork'; // Make sure to update the path
+import StaticNetworks from './staticNetwork'; 
 
 const EmbeddedWebsite: React.FC = () => {
   const [currentPage, setCurrentPage] = useState('home');

@@ -8,8 +8,8 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import LabelWithTooltip from "../../ui/labelWithTooltip";
 import { JurisdictionsCard } from "./jurisdictionInputCard";
 import { ServicesCard } from "./serviceInputCard";
-import { ProductContext } from "@/lib/hooks/useProduct"; // Import the context hook
-import { Member, Service, Jurisdiction } from '@/lib/utils/types'; // Importing types
+import { ProductContext } from "@/lib/hooks/useProduct"; 
+import { Member, Service, Jurisdiction } from '@/lib/utils/types'; 
 import { Dialog, DialogTrigger, DialogContent, DialogClose } from '@/components/ui/dialog';
 
 interface NetworkCardProps {
@@ -17,7 +17,7 @@ interface NetworkCardProps {
 }
 
 const NetworkCard: React.FC<NetworkCardProps> = ({ member }) => {
-    const { state, dispatch } = useContext(ProductContext); // Use the context for dispatching actions
+    const { state, dispatch } = useContext(ProductContext); 
 
     const saveMember = async () => {
         const url = member.isNew ? '/api/members/create' : `/api/members/update/${member.id}`;

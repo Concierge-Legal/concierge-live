@@ -16,7 +16,9 @@ const StaticNetworkCard: React.FC<StaticNetworkCardProps> = ({ network }) => {
     <div className="bg-gray-800 p-6 rounded-lg shadow-lg cursor-pointer" onClick={toggleExpand}>
       <div className="flex items-center justify-between mb-2">
         <h3 className="text-lg font-semibold">{network.name}</h3>
-        <span className="px-2 py-1 bg-gray-700 rounded text-xs">Services</span>
+		{/* this will be replaced with a dynamic badge based on the network's classifier (ie. service, member, product) */}
+        <span className="px-2 py-1 bg-gray-700 rounded text-xs">Services</span> 
+		 
       </div>
       {!isExpanded && (
         <div className="mt-4">
