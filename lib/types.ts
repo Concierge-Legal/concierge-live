@@ -499,19 +499,3 @@ const PRICING_DATA: { [vendor: string]: { [model: string]: { input_price: string
 };
 
 
-
-export interface ProductFile {
-	id: string;
-	name: string;
-	description: string;
-	servicesOffered: {
-	  name: string;
-	  price: string;
-	  pricingMethod: string;
-	  retainer: boolean;
-	}[];
-	contactInformation: {
-	  website: string;
-	};
-  }
-  

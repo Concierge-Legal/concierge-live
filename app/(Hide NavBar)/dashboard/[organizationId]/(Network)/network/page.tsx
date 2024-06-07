@@ -3,8 +3,8 @@ import React, { useEffect, useReducer, useCallback } from 'react';
 import { createClient } from '@/lib/utils/supabase/client';
 import { denyAccess } from '../../actions';
 import ProductCard from '@/components/dashboard/fileManagement/productCard';
-import { productReducer, initialState, ProductContext, ProductState } from '@/lib/hooks/useProduct'; // Import the context hook
-import { Member } from '@/lib/utils/types'; // Ensure this import path is correct
+import { productReducer, initialState, ProductContext, ProductState } from '@/lib/hooks/useProduct';
+import { Member } from '@/lib/utils/types';
 import { Button } from '@/components/ui/button';
 import { Suspense } from 'react'
 
@@ -15,7 +15,6 @@ export default function Network({ params }: { params: { organizationId: string; 
 	const getProfile = useCallback(async () => {
 		console.log(`GetProfile called in useCallback!`)
 		try {
-
 			const authResult: { data: any, error: any } = await supabase.auth.getUser();
 			// Check the user is authenticated
 			if (authResult.error || !authResult.data?.user) {
@@ -27,9 +26,7 @@ export default function Network({ params }: { params: { organizationId: string; 
 				console.log(`User is not authorized!`);
 				denyAccess();
 			}
-			//console.log(JSON.stringify(authResult, null, 2))
 			console.log(`======\nWelcome, ${authResult.data.user.user_metadata.first_name} ${authResult.data.user.user_metadata.last_name}\n======`)
-
 
 			const requestBody = {
 				organizationId: params.organizationId
@@ -63,50 +60,44 @@ export default function Network({ params }: { params: { organizationId: string; 
 		} catch (error) {
 			console.error('Error fetching members:', error);
 			addNewMember();
-		} 
+		}
 	}, [params.organizationId, supabase, dispatch]);
 
 	useEffect(() => {
 		getProfile()
-	  }, [params.organizationId, getProfile])
-
-
+	}, [params.organizationId, getProfile])
 
 	const addNewMember = () => {
 		const newMember: Member = {
-			id: `new_${Date.now()}`, // To ensure unique IDs, consider a more robust method if necessary
+			id: `new_${Date.now()}`,
 			fullName: '',
 			description: '',
 			services: [],
 			jurisdictions: []
 		};
-		
 		dispatch({ type: 'ADD_MEMBER', payload: newMember });
-		
 	};
-
 
 	return (
 		<ProductContext.Provider value={{ state, dispatch }}>
-			<div className="min-h-screen bg-background px-8 py-12">
-				<div className="container">
-					<div className="bg-card p-8 rounded-lg shadow-lg mb-12 text-center">
-						<h1 className="text-5xl font-bold text-accent">Products and Services Knowledge Upload</h1>
+			<div className="min-h-screen bg-gray-900 text-white px-8 py-12">
+				<div className="max-w-4xl mx-auto">
+					<div className="bg-gray-800 p-8 rounded-lg shadow-lg mb-12 text-center">
+						<h1 className="text-5xl font-bold text-indigo-500">Products and Services Knowledge Upload</h1>
 					</div>
 					{state.members.length > 0 ? (
-						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 							{state.members.map((member: Member) => (
-								
-									<ProductCard key={member.id} member={member} />
+								<ProductCard key={member.id} member={member} />
 							))}
 						</div>
 					) : (
 						<div className="flex justify-center items-center h-64">
-							<p className="text-secondary">No members found. Click below to add a new member.</p>
+							<p className="text-gray-400">No members found. Click below to add a new member.</p>
 						</div>
 					)}
 					<div className="flex justify-center mt-8">
-						<Button onClick={addNewMember} className="bg-accent hover:bg-accent-foreground text-white font-bold py-2 px-4 rounded">
+						<Button onClick={addNewMember} className="bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">
 							Add New Member
 						</Button>
 					</div>
@@ -114,4 +105,4 @@ export default function Network({ params }: { params: { organizationId: string; 
 			</div>
 		</ProductContext.Provider>
 	);
-};
+}
