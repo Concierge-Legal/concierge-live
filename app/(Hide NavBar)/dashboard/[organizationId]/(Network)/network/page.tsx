@@ -96,9 +96,8 @@ export default function Network({ params }: { params: { organizationId: string; 
 					{state.members.length > 0 ? (
 						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 							{state.members.map((member: Member) => (
-								<Suspense fallback={<p>Loading member...</p>}>
+								
 									<ProductCard key={member.id} member={member} />
-								</Suspense>
 							))}
 						</div>
 					) : (
