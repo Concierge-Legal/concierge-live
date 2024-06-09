@@ -46,7 +46,7 @@ export default async function DemoNetworkDirectory({ params }: { params: { organ
         <div className="flex flex-col min-h-screen px-8 py-12">
             <div className="mx-auto">
                 <div className="p-8 rounded-lg shadow-lg mb-6 text-center">
-                    <h1 className="text-5xl font-bold mb-4">View DemoDAO's Network Directory</h1>
+                    <h1 className="text-5xl font-bold mb-4">View DemoDAO&apos;s Network Directory</h1>
                     <p className="text-lg mb-6">Explore, Search, and Interact with all of our individual members, all in one place.</p>
                     {/* Placeholder banner graphic */}
                     <div className="h-48 rounded-lg shadow-inner mb-6 bg-purple-400">
