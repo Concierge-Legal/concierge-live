@@ -10,6 +10,10 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 
+interface NetworkNodeHUDProps {
+	node: NetworkNode | null;
+}
+
 const NodeHUD: React.FC<NetworkNodeHUDProps> = ({ node }) => {
 	if (!node) return null;  // Don't render if no node is selected
   
@@ -29,13 +33,15 @@ const NodeHUD: React.FC<NetworkNodeHUDProps> = ({ node }) => {
 			  <>
 				<div><strong>Pricing Method:</strong> {node.metadata.pricingMethod}</div>
 				<div><strong>Price:</strong> {node.metadata.price}</div>
+				<div><strong>Retainer Needed:</strong> {node.metadata.retainer}</div>
 			  </>
 			)}
   
-			{node.classifier === "product" && (
+			{node.classifier === "form" && (
 			  <>
-				<div><strong>Product ID:</strong> {node.metadata.productId}</div>
-				<div><strong>Stock:</strong> {node.metadata.stock}</div>
+				<div><strong>Email</strong> {node.metadata.email}</div>
+				<div><strong>Discord</strong> {node.metadata.discord}</div>
+				<div><strong>Website</strong> {node.metadata.website}</div>
 			  </>
 			)}
   

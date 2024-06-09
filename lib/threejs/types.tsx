@@ -5,19 +5,19 @@ import { NodeObject as BaseNodeObject } from 'react-force-graph-3d';
 export interface NetworkNodeProps {
 	node_id?: string,
 	parent?: string,
-	node_children?: JSON,
+	node_children?: any,
 	node_type?: string,
 	classifier?: string,
 	slug?: string,
 	node_name?: string,
 	description?: string,
-	metadata?: JSON,
+	metadata?: any,
 	reverse_hyde?: string[],
-	tags?: JSON,
-	traffic?: JSON,
-	settings?: JSON,
-	metrics?: JSON,
-	ownership?: JSON
+	tags?: any,
+	traffic?: any,
+	settings?: any,
+	metrics?: any,
+	ownership?: any
 
 }
 
@@ -35,10 +35,10 @@ export interface Link {
 
 export function getColor(node: NetworkNode): string{
 	
-	switch(node.node_type!) {
+	switch(node.classifier!) {
 	case "root":
 		return "purple";
-	case "network":
+	case "voting-member":
 		return  "hotpink";
 	case "subtitle":
 		return "red";
@@ -46,9 +46,9 @@ export function getColor(node: NetworkNode): string{
 		return "orange";
 	case "subchapter":
 		return "yellow";
-	case "part":
+	case "service":
 		return "green";
-	case "subpart":
+	case "form":
 		return "blue";
 	default:
 		return "white";
