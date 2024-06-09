@@ -142,6 +142,66 @@ export type Database = {
         }
         Relationships: []
       }
+      network_nodes: {
+        Row: {
+          classifier: string | null
+          description: string | null
+          description_embedding: string | null
+          id: string
+          metadata: Json | null
+          metrics: Json | null
+          node_children: Json | null
+          node_name: string | null
+          node_type: string | null
+          ownership: Json | null
+          parent: string | null
+          reverse_hyde: string[] | null
+          reverse_hyde_embedding: string | null
+          settings: Json | null
+          slug: string | null
+          tags: Json | null
+          traffic: Json | null
+        }
+        Insert: {
+          classifier?: string | null
+          description?: string | null
+          description_embedding?: string | null
+          id: string
+          metadata?: Json | null
+          metrics?: Json | null
+          node_children?: Json | null
+          node_name?: string | null
+          node_type?: string | null
+          ownership?: Json | null
+          parent?: string | null
+          reverse_hyde?: string[] | null
+          reverse_hyde_embedding?: string | null
+          settings?: Json | null
+          slug?: string | null
+          tags?: Json | null
+          traffic?: Json | null
+        }
+        Update: {
+          classifier?: string | null
+          description?: string | null
+          description_embedding?: string | null
+          id?: string
+          metadata?: Json | null
+          metrics?: Json | null
+          node_children?: Json | null
+          node_name?: string | null
+          node_type?: string | null
+          ownership?: Json | null
+          parent?: string | null
+          reverse_hyde?: string[] | null
+          reverse_hyde_embedding?: string | null
+          settings?: Json | null
+          slug?: string | null
+          tags?: Json | null
+          traffic?: Json | null
+        }
+        Relationships: []
+      }
       organizations: {
         Row: {
           created_at: string
