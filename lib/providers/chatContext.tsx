@@ -48,35 +48,38 @@ interface ChatContextProviderProps {
 // 		ChatContextProvider
 // 	);
 // }
-const [conciergeStreamBlockId, setConciergeStreamBlockId] =
-	useState<String>("NULL");
-const [showLoadingIcon, setShowLoadingIcon] = useState<boolean>(false);
-const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([
-	{
-		blockId: `concierge_welcome`, // Generate a unique ID for the new block
-		type: ContentType.Welcome,
-		content: "Hello, my name is Concierge. How can I assist you today?",
-		streamingType: StreamingType.fake,
-		speaker: SpeakerType.concierge,
-	},
-]);
-const { status, messages, input, submitMessage, handleInputChange, error } =
-	useAssistant({
-		api: "/api/assistants/conciergeInitial",
-		body: {
-			vendor: "openai",
-			model: "gpt-4-turbo-preview",
-			callingFunction: "scoreQuestion",
-			pipelineModel: new PipelineModel({ history: [], session_id: "test20" }),
-		},
-	});
-const [oldMessageIds, setOldMessageIds] = useState<String[]>([]);
+// const [conciergeStreamBlockId, setConciergeStreamBlockId] =
+// 	useState<String>("NULL");
+// const [showLoadingIcon, setShowLoadingIcon] = useState<boolean>(false);
+// const [contentBlocks, setContentBlocks] = useState<ContentBlock[]>([
+// 	{
+// 		blockId: `concierge_welcome`, // Generate a unique ID for the new block
+// 		type: ContentType.Welcome,
+// 		content: "Hello, my name is Concierge. How can I assist you today?",
+// 		streamingType: StreamingType.fake,
+// 		speaker: SpeakerType.concierge,
+// 	},
+// ]);
+// const { status, messages, input, submitMessage, handleInputChange, error } =
+// 	useAssistant({
+// 		api: "/api/assistants/conciergeInitial",
+// 		body: {
+// 			vendor: "openai",
+// 			model: "gpt-4-turbo-preview",
+// 			callingFunction: "scoreQuestion",
+// 			pipelineModel: new PipelineModel({ history: [], session_id: "test20" }),
+// 		},
+// 	});
+// const [oldMessageIds, setOldMessageIds] = useState<String[]>([]);
 
 export default function ChatContextProvider(props: ChatContextProviderProps) {
 	return (
-		<ChatContext.Provider value={{
-			currentlyStreamingBlockId: conciergeStreamBlockId,
-			showLoadingIcon,
-		}}>{props.children}</ChatContext.Provider>
+		<div>
+			Nuked
+		</div>
+		// <ChatContext.Provider value={{
+		// 	currentlyStreamingBlockId: conciergeStreamBlockId,
+		// 	showLoadingIcon,
+		// }}>{props.children}</ChatContext.Provider>
 	);
 }
