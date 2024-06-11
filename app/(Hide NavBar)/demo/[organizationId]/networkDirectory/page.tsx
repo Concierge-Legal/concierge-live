@@ -6,6 +6,19 @@ import { NetworkNode } from '@/lib/utils/types';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
+
+export async function generateStaticParams() {
+	//const posts = await fetch('https://.../posts').then((res) => res.json())
+	const supabase = createClient()
+	const { data, error } = await supabase.from("organizations").select("id")
+    if (!data) {
+		return [];
+	}
+	return data.map((organization) => ({
+		organizationId: organization.id,
+	}))
+  }
+
 async function getNetworkNodes() {
 	const supabase = createClient()
 	const { data, error } = await supabase.from("network_nodes")
