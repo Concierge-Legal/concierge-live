@@ -1,81 +1,81 @@
 export type BaseFile = {
-    id: string;
-    name: string;
-    type: string; // e.g., "PDF", "Text File"
-    size: string; // e.g., "1.2 MB"
-    lastModified: string; // e.g., "2023-01-01"
+	id: string;
+	name: string;
+	type: string; // e.g., "PDF", "Text File"
+	size: string; // e.g., "1.2 MB"
+	lastModified: string; // e.g., "2023-01-01"
 };
 
 // Extended IndustryFile type definition
 export type IndustryFile = BaseFile & {
-    rawText: string;
-    summary: string;
-    textVectorEmbedding: number[]; // Assuming an array of numbers for simplicity
-    hypotheticalQuestions: {
-        commonQuestions: string[];
-        humanPopulated: boolean;
-        aiSuggested: boolean;
-    };
-    aboutTheSource: string[];
-    categoryTags: string[];
+	rawText: string;
+	summary: string;
+	textVectorEmbedding: number[]; // Assuming an array of numbers for simplicity
+	hypotheticalQuestions: {
+		commonQuestions: string[];
+		humanPopulated: boolean;
+		aiSuggested: boolean;
+	};
+	aboutTheSource: string[];
+	categoryTags: string[];
 };
 export type CompanyFile = BaseFile & {
 
-    rawText: string;
-    categoryTags: string[]; // Example values: "Mission", "Github", etc.
-    summary: string;
-    hypotheticalQuestions: {
-        commonQuestions: string[];
-        humanPopulated: boolean;
-        aiSuggested: boolean;
-    };
-    managingDepartment: string; // Department responsible for the file
+	rawText: string;
+	categoryTags: string[]; // Example values: "Mission", "Github", etc.
+	summary: string;
+	hypotheticalQuestions: {
+		commonQuestions: string[];
+		humanPopulated: boolean;
+		aiSuggested: boolean;
+	};
+	managingDepartment: string; // Department responsible for the file
 };
 
 export type ProductOffering = {
-    name: string;
-    price: number;
-    pricingMethod: string;
-    retainer: boolean;
+	name: string;
+	price: number;
+	pricingMethod: string;
+	retainer: boolean;
 };
 export type AuthorizedJurisdiction = {
-    jurisdiction: string;
-    jurisdictionType: 'Federal' | 'State' | 'Special';
-}
+	jurisdiction: string;
+	jurisdictionType: 'Federal' | 'State' | 'Special';
+};
 
 // Define the ProductFile type for products and services database
 export type ProductFile = BaseFile & {
-    fullName: string; // Name/Title of the legal professional
-    contactInformation: {
-        email: string;
-        discord: string;
-        website?: string;
-        profilePictureUrl?: string;
-    };
-    authorizedJurisdictions: AuthorizedJurisdiction[];
-    description: string;
-    servicesOffered: ProductOffering[];
-}
+	fullName: string; // Name/Title of the legal professional
+	contactInformation: {
+		email: string;
+		discord: string;
+		website?: string;
+		profilePictureUrl?: string;
+	};
+	authorizedJurisdictions: AuthorizedJurisdiction[];
+	description: string;
+	servicesOffered: ProductOffering[];
+};
 export interface Service {
-    id: number;
-    name: string;
-    price: number;
-    pricingMethod: string;
-    retainer: boolean;
-  }
+	id: number;
+	name: string;
+	price: number;
+	pricingMethod: string;
+	retainer: boolean;
+}
 export interface Jurisdiction {
-    id: number;
-    name: string;
-    type: string;
-  }
+	id: number;
+	name: string;
+	type: string;
+}
 export interface Member {
-    id: string;
-    fullName: string;
-    description: string;
-    services: Service[];
-    jurisdictions: Jurisdiction[];
-    isNew?: boolean;
-  }
+	id: string;
+	fullName: string;
+	description: string;
+	services: Service[];
+	jurisdictions: Jurisdiction[];
+	isNew?: boolean;
+}
 
 
 
@@ -86,16 +86,26 @@ export interface ServiceOffered {
 	price: string;
 	pricingMethod: string;
 	retainer: boolean;
-  }
-  
-  export interface ContactInformation {
+}
+
+export interface ContactInformation {
 	website: string;
-  }
-  
-  export interface NetworkFile {
-	id: string;
-	name: string;
-	description: string;
-	servicesOffered: ServiceOffered[];
-	contactInformation: ContactInformation;
-  }
+}
+
+export interface NetworkNode {
+	id: string,
+	parent: string,
+	node_children?: any,
+	node_type: string,
+	classifier: string,
+	slug?: string,
+	node_name?: string,
+	description?: string,
+	metadata?: any,
+	reverse_hyde?: string[],
+	tags?: any,
+	traffic?: any,
+	settings?: any,
+	metrics?: any,
+	ownership?: any;
+}

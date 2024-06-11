@@ -1,5 +1,5 @@
 import React from 'react';
-import { useChatContext } from './chatContext';
+import { useChatContext } from '../../lib/providers/chatContext';
 import { useStreaming } from '../../lib/hooks/useStreaming';
 import { StreamingType, SpeakerType } from '../../lib/types';
 import ReactMarkdown from 'react-markdown';
