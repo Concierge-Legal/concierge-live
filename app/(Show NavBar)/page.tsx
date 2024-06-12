@@ -46,285 +46,240 @@ export default function Home() {
               CONCIERGE
             </div>
             <div className="mt-6 text-lg leading-7 max-md:max-w-full">
-			Elevating Minds, Connecting Lives
+              Your AI-Powered DAO Navigator
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center px-36 py-10 bg-white max-md:px-5">
-          <div className="self-stretch mt-16 max-md:mt-10 max-md:max-w-full">
-            <div className="flex justify-center max-md:flex-col max-md:gap-0">
-              <div className="flex flex-col max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col grow w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-lg max-md:mt-8 max-md:max-w-full">
-                  <div className="flex flex-col justify-center p-12 max-md:px-5 max-md:max-w-full">
-                    <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-                      Experience Concierge Live
+        <div className="flex flex-col">
+          <div className="flex overflow-hidden relative flex-col justify-center items-center p-20 w-full text-white min-h-[900px] max-md:px-5 max-md:max-w-full">
+            <Image
+              src="/homepage/clouds.jpg"
+              alt="Background"
+              layout="fill"
+              objectFit="cover"
+            />
+
+            <div className="relative mt-56 text-6xl font-bold text-center leading-[67px] w-[800px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+              Experience Concierge Live
+            </div>
+            <div className="relative mt-6 text-lg leading-7 text-center w-[768px] max-md:max-w-full">
+              Our advanced AI concierge service simplifies, streamlines, and
+              enhances user experiences, ensuring that every interaction with
+              your organization is seamless and productive.
+            </div>
+            <div className="flex relative gap-4 items-start pt-4 mt-6 mb-36 text-base leading-6 whitespace-nowrap max-md:mb-10">
+              <Button className="bg-accent text-accent-foreground px-8 py-3 rounded-full hover:bg-accent-hover">
+                Demo Concierge
+              </Button>
+            </div>
+          </div>
+          <div className="flex flex-col justify-center py-12 w-full bg-white max-md:max-w-full">
+            <div className="w-full max-md:max-w-full">
+              <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                <div className="flex flex-col pl-12 w-6/12 max-md:ml-0 max-md:w-full">
+                  <div className="flex flex-col grow justify-center self-stretch px-8 py-20 max-md:px-5 max-md:max-w-full">
+                    <div className=" text-6xl font-bold text-black leading-[67px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+                      Navigate Complexity
                     </div>
-                    <div className="mt-6 text-lg leading-7 text-center text-black max-md:max-w-full">
-                      Click the button below to start a live demo and see
-                      Concierge in action.
+                    <div className="mt-6 text-lg leading-7 text-black max-md:max-w-full">
+                      DAOs are inherently complex and often inaccessible.
+                      Concierge simplifies the user experience, making it easy
+                      for everyone to participate.
                     </div>
-                  </div>
-                  <div className="flex justify-center pb-12">
-                    <Button className="bg-accent text-accent-foreground px-8 py-3 rounded-full hover:bg-accent-hover">
-                      Demo Concierge
-                    </Button>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <section className="py-10 bg-background">
-          <div className="container mx-auto px-8">
-            <div className="max-w-7xl mx-auto p-8">
-              <Carousel>
-                <h2 className="text-4xl text-center font-bold mb-6">
-                  Boost Revenue
-                </h2>
-                <CarouselContent>
-                  <CarouselItem className="flex-shrink-0 w-full md:w-1/3">
-                    <Card className="bg-card text-card-foreground shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                      <CardContent className="flex flex-col md:flex-row items-center justify-between">
-                        <div className="w-full md:w-1/2 flex justify-center overflow-hidden mb-4 md:mb-0">
-                          <Image
-                            src="/icons/optimization.png"
-                            alt="Optimization Picture"
-                            width={300}
-                            height={300}
-                            layout="intrinsic"
-                            objectFit="cover"
-                            className="rounded-lg"
-                          />
-                        </div>
-
-                        <div className="w-full md:w-1/2 flex flex-col justify-around">
-                          <div className="bg-card p-4 rounded-lg shadow flex-1 mx-2 mb-4">
-                            <h4 className="text-2xl font-bold mb-2">
-                              Faster Conversions
-                            </h4>
-                            <p className="text-md">
-                              By providing highly personalized recommendations
-                              based on customer behavior and preferences, our
-                              system ensures that customers are presented with
-                              products or services they are more likely to
-                              purchase.
-                            </p>
-                          </div>
-
-                          <div className="w-full flex justify-center mt-4"></div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                  <CarouselItem className="flex-shrink-0 w-full md:w-1/3">
-                    <Card className="bg-card text-card-foreground shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                      <CardContent className="flex flex-col md:flex-row items-center justify-between">
-                        {/* Image on the left */}
-                        <div className="w-full md:w-1/2 flex justify-center overflow-hidden mb-4 md:mb-0">
-                          <Image
-                            src="/icons/money.png"
-                            alt="Money Picture"
-                            width={300}
-                            height={300}
-                            layout="intrinsic"
-                            objectFit="cover"
-                            className="rounded-lg"
-                          />
-                        </div>
-                        {/* Feature boxes on the right */}
-                        <div className="w-full md:w-1/2 flex flex-col justify-around">
-                          <div className="bg-card p-4 rounded-lg shadow flex-1 mx-2 mb-4">
-                            <h4 className="text-2xl  font-bold mb-2">
-                              Enhanced Customer Satisfaction
-                            </h4>
-                            <p className="text-md">
-                              Concierge ensures smooth and efficient
-                              communication with your customers. By providing a
-                              seamless experience, customers are likely to
-                              return and repeat purchases, increasing customer
-                              lifetime value.
-                            </p>
-                          </div>
-
-                          <div className="w-full flex justify-center mt-4"></div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                  <CarouselItem className="flex-shrink-0 w-full md:w-1/3">
-                    <Card className="bg-card text-card-foreground shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
-                      <CardContent className="flex flex-col md:flex-row items-center justify-between">
-                        {/* Image on the left */}
-                        <div className="w-full md:w-1/2 flex justify-center overflow-hidden mb-4 md:mb-0">
-                          <Image
-                            src="/icons/money.png"
-                            alt="Money Picture"
-                            width={300}
-                            height={300}
-                            layout="intrinsic"
-                            objectFit="cover"
-                            className="rounded-lg"
-                          />
-                        </div>
-                        {/* Feature boxes on the right */}
-                        <div className="w-full md:w-1/2 flex flex-col justify-around">
-                          <div className="bg-card p-4 rounded-lg shadow flex-1 mx-2">
-                            <h4 className="text-2xl font-bold mb-2">
-                              Reduced Drop-off Rates
-                            </h4>
-                            <p className="text-md">
-                              By guiding customers through their journey with
-                              precision and efficiency, our solution minimizes
-                              potential drop-off points and ensures that more
-                              visitors complete their transactions.
-                            </p>
-                          </div>
-                          <div className="w-full flex justify-center mt-4"></div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                </CarouselContent>
-                <CarouselPrevious></CarouselPrevious>
-                <CarouselNext></CarouselNext>
-              </Carousel>
-            </div>
-          </div>
-        </section>
-
-        <div className="flex flex-col py-20 px-12 bg-white max-md:px-5">
-          <div className="mt-4 text-4xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-            Modernize Your User Experience
-          </div>
-
-          <div className="self-stretch mt-20 max-md:mt-10 max-md:max-w-full">
-            <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-              <div className="flex flex-col ml-5 w-[50%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
-                  <div className="flex flex-col justify-center items-center p-8 max-md:px-5">
+                <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                  <div className="flex flex-col grow self-stretch w-full max-md:max-w-full">
                     <Image
-                      loading="lazy"
-                      src="/icons/solution.png"
-                      alt="Expert Guidance"
-                      width={200}
-                      height={100}
-                      className=""
+                      src="/homepage/navigate.jpg"
+                      alt="Section Image"
+                      width={500}
+                      height={477}
                     />
-                    <div className="mt-6 text-2xl font-bold leading-10">
-                      User-Centric Design
-                    </div>
-                    <div className="mt-4 text-center leading-6">
-                      An intuitive interface tailored to your users&apos; needs. Our
-                      user-centric design approach ensures that every
-                      interaction is meaningful and enhances user satisfaction.
-                    </div>
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col ml-5 w-[50%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
-                  <div className="flex flex-col justify-center items-center p-8 max-md:px-5">
-                    <Image
-                      loading="lazy"
-                      src="/icons/library.png"
-                      alt="Expert Guidance"
-                      width={200}
-                      height={100}
-                      className=""
-                    />
-                    <div className="mt-6 text-2xl font-bold leading-10">
-                      Accesibility Features
+            </div>
+          </div>
+          <div className="flex overflow-hidden relative flex-col justify-center px-16 py-20 min-h-[900px] max-md:px-5">
+            <Image
+              loading="lazy"
+              src="/homepage/knowledge2.jpg"
+              layout="fill"
+              objectFit="cover"
+              className="absolute inset-0"
+              alt="Background image"
+            />
+            <div className="relative mt-8 max-md:mr-1 max-md:max-w-full">
+              <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+                <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+                  <div className="flex relative flex-col grow justify-end self-stretch pt-20 text-white max-md:mt-10 max-md:max-w-full">
+                    <div className="mt-96 text-5xl font-bold leading-[67px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+                      with
                     </div>
-                    <div className="mt-4 text-center leading-6">
-                      Empower all users with inclusive and accessible features.
-                      Our solutions prioritize accessibility, making your
-                      platform usable for everyone, regardless of their
-                      abilities or disabilities.
+                    <div className="mt-2 text-6xl font-bold leading-[67px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+                      Dynamic Knowledge Extension
+                    </div>
+                    <div className="flex gap-4 items-start self-start pt-4 mt-4 text-base leading-6 whitespace-nowrap">
+                      <div className="justify-center px-6 py-3 border border-white border-solid max-md:px-5">
+                        Learn More
+                      </div>
                     </div>
                   </div>
                 </div>
+                <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+                  <div className="relative text-xl leading-7 text-white max-md:mt-10 max-md:max-w-full">
+                    Extend your entire organizational knowledge to each user
+                    dynamically, ensuring they have access to the information
+                    they need, when they need it.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex overflow-hidden relative flex-col justify-center items-center p-20 w-full text-white min-h-[900px] max-md:px-5 max-md:max-w-full">
+            <Image
+              src="/homepage/clouds.jpg"
+              alt="Background"
+              layout="fill"
+              objectFit="cover"
+            />
+            <div className="relative mt-52 text-6xl font-bold text-center leading-[67px] w-[768px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+              Seamless Integration
+            </div>
+            <div className="relative mt-6 text-lg leading-7 text-center w-[768px] max-md:max-w-full">
+              Our AI integrates directly into your existing infrastructure,
+              providing immediate and profound benefits without disruption.
+            </div>
+            <div className="flex relative gap-4 items-start pt-4 mt-6 mb-36 text-base leading-6 whitespace-nowrap max-md:mb-10">
+              <div className="justify-center px-6 py-3 border border-white border-solid max-md:px-5">
+                Learn How
               </div>
             </div>
           </div>
         </div>
-
-        <section className="py-10 bg-background">
-          <div className="container mx-auto">
-            <div className=" mx-auto">
-              <div className="flex flex-col justify-center bg-white max-md:px-5">
-                <div className="flex gap-5 max-md:flex-col max-md:gap-0">
-                  <div className="flex flex-col justify-center items-center mt-4 p-8 h-full w-6/12 max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col text-base text-center leading-6 text-black max-md:mt-10 max-md:max-w-full">
-                      <div className="mt-4 text-4xl font-bold leading-8 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
-                        Advanced AI-Driven Data Tracking and Analytics
-                      </div>
-                      <div className="mt-6 text-lg leading-7 max-md:max-w-full">
-                        The dashboard provides a comprehensive set of features
-                        and tools to streamline your legal information
-                        management. From AI-powered chatbot assistance to
-                        seamless lawyer connections, it&apos;s all here.
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col justify-center mt-4 p-8 h-full w-6/12 max-md:ml-0 max-md:w-full">
-                    <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
-                      {/* <Image
-                        loading="lazy"
-                        src="/icons/growth.png"
-                        alt="Efficient Workflow"
-                        width={48}
-                        height={48}
-                        className=""
-                      /> */}
-                      <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
-                        Real-Time Analytics
-                      </div>
-                      <div className="mt-4 text-base leading-6 max-md:max-w-full">
-                        descript
-                      </div>
-                    </div>
-                    <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
-                      {/* <Image
-                        loading="lazy"
-                        src="/icons/growth.png"
-                        alt="Efficient Workflow"
-                        width={48}
-                        height={48}
-                        className=""
-                      /> */}
-                      <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
-                        User Behavior Insights
-                      </div>
-                      <div className="mt-4 text-base leading-6 max-md:max-w-full">
-                        descript
-                      </div>
-                    </div>
-                    <div className="flex flex-col p-8 border border-solid rounded-md drop-shadow-xl bg-lightBlue shadow-sm max-md:px-5 max-md:max-w-full">
-                      {/* <Image
-                        loading="lazy"
-                        src="/icons/growth.png"
-                        alt="Efficient Workflow"
-                        width={48}
-                        height={48}
-                        className=""
-                      /> */}
-                      <div className="mt-4 text-2xl font-bold leading-8 max-md:max-w-full">
-                        Performance Metrics
-                      </div>
-                      <div className="mt-4 text-base leading-6 max-md:max-w-full">
-                        descript
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+		<div className="flex flex-col justify-center w-full bg-white max-md:max-w-full">
+  <div className="w-full max-md:max-w-full">
+    <div className="flex gap-5 max-md:flex-col max-md:gap-0">
+      <div className="flex flex-col w-6/12 max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow justify-center self-stretch px-16 py-20 max-md:px-5 max-md:max-w-full">
+          <div className="mt-52 text-6xl font-bold text-black leading-[67px] max-md:mt-10 max-md:max-w-full max-md:text-4xl max-md:leading-[54px]">
+		  Empower Your DAO Community
+          </div>
+          <div className="mt-6 text-lg leading-7 text-black max-md:max-w-full">
+            Placeholder
+          </div>
+          <div className="flex gap-4 items-start self-start pt-4 mt-6 text-base leading-6 whitespace-nowrap">
+           
+            <div className="justify-center px-6 py-3 text-black border border-black border-solid max-md:px-5">
+              Placeholder Button
             </div>
           </div>
-        </section>
+        </div>
+      </div>
+      <div className="flex flex-col ml-5 w-6/12 max-md:ml-0 max-md:w-full">
+        <div className="flex flex-col grow self-stretch w-full  max-md:max-w-full">
+          <Carousel>
+            <h2 className="text-4xl text-center font-bold mb-6">
+              
+            </h2>
+            <CarouselContent>
+              <CarouselItem className="flex-shrink-0 w-full md:w-1/3">
+                <Card className="bg-card text-card-foreground shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                  <CardContent className="flex flex-col md:flex-row items-center justify-between">
+                    <div className="w-full md:w-1/2 flex justify-center overflow-hidden mb-4 md:mb-0">
+                      <Image
+                        src="/homepage/organization.jpg"
+                        alt="Optimization Picture"
+                        width={300}
+                        height={300}
+                        layout="intrinsic"
+                        objectFit="cover"
+                        className="rounded-lg"
+                      />
+                    </div>
+                    <div className="w-full md:w-1/2 flex flex-col justify-around">
+                      <div className="bg-card p-4 rounded-lg shadow flex-1 mx-2 mb-4">
+                        <h4 className="text-2xl font-bold mb-2">
+						For Organizations
+                        </h4>
+                        <p className="text-md">
+						Provide efficient, comprehensive access to organizational information and streamline user connections with network members.
+                        </p>
+                      </div>
+                      <div className="w-full flex justify-center mt-4"></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+              <CarouselItem className="flex-shrink-0 w-full md:w-1/3">
+                <Card className="bg-card text-card-foreground shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                  <CardContent className="flex flex-col md:flex-row items-center justify-between">
+                    <div className="w-full md:w-1/2 flex justify-center overflow-hidden mb-4 md:mb-0">
+                      <Image
+                        src="/homepage/network.jpg"
+                        alt="Money Picture"
+                        width={300}
+                        height={300}
+                        layout="intrinsic"
+                        objectFit="cover"
+                        className="rounded-lg"
+                      />
+                    </div>
+                    <div className="w-full md:w-1/2 flex flex-col justify-around">
+                      <div className="bg-card p-4 rounded-lg shadow flex-1 mx-2 mb-4">
+                        <h4 className="text-2xl font-bold mb-2">
+						For Network Members
+                        </h4>
+                        <p className="text-md">
+						Increase visibility and exposure, helping members to connect with and convert end-users effectively.
+                        </p>
+                      </div>
+                      <div className="w-full flex justify-center mt-4"></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+              <CarouselItem className="flex-shrink-0 w-full md:w-1/3">
+                <Card className="bg-card text-card-foreground shadow-lg rounded-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                  <CardContent className="flex flex-col md:flex-row items-center justify-between">
+                    <div className="w-full md:w-1/2 flex justify-center overflow-hidden mb-4 md:mb-0">
+                      <Image
+                        src="/homepage/users.jpg"
+                        alt="Money Picture"
+                        width={300}
+                        height={300}
+                        layout="intrinsic"
+                        objectFit="cover"
+                        className="rounded-lg"
+                      />
+                    </div>
+                    <div className="w-full md:w-1/2 flex flex-col justify-around">
+                      <div className="bg-card p-4 rounded-lg shadow flex-1 mx-2">
+                        <h4 className="text-2xl font-bold mb-2">
+						For Users
+                        </h4>
+                        <p className="text-md">
+						Guide, assist, and educate users to enhance their engagement and participation
+                        </p>
+                      </div>
+                      <div className="w-full flex justify-center mt-4"></div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </CarouselItem>
+            </CarouselContent>
+            <CarouselPrevious></CarouselPrevious>
+            <CarouselNext></CarouselNext>
+          </Carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
-        <div className="flex flex-col py-20 px-8 bg-white max-md:px-5">
-          <div className="flex flex-row  w-full max-md:flex-col">
+        {/* <div className="flex flex-col py-20 px-8 bg-white max-md:px-5">
+          <div className="flex flex-row w-full max-md:flex-col">
             <div className="flex flex-col w-2/4 max-md:w-full">
               <div className="self-stretch mt-20 pl-6 max-md:mt-10 max-md:max-w-full">
                 <div className="flex gap-5 max-md:flex-col max-md:gap-0">
@@ -332,9 +287,13 @@ export default function Home() {
                     <div className="flex flex-col grow justify-center self-stretch w-full text-base text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
                       <div className="flex flex-col p-6 max-md:px-5">
                         <div className="mt-4 text-2xl font-bold leading-8">
-                          Ask Abe: Legal AI Assitant
+                          Concierge AI: Your Legal Assistant
                         </div>
-                        <div className="mt-2 leading-6">Descreipty</div>
+                        <div className="mt-2 leading-6">
+                          Effortlessly connect with the right legal resources
+                          and receive personalized guidance through our advanced
+                          AI-powered legal assistant.
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -344,7 +303,11 @@ export default function Home() {
                         <div className="mt-4 text-2xl font-bold leading-8">
                           Compliance & Security
                         </div>
-                        <div className="mt-2 leading-6">Descript</div>
+                        <div className="mt-2 leading-6">
+                          Our solutions ensure compliance with legal standards
+                          and provide robust security measures to protect your
+                          organization&apos;s data.
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -356,12 +319,13 @@ export default function Home() {
                 Designed for Legal Service Providers
               </div>
               <div className="mt-6 text-lg w-3/4 ml-auto leading-7 text-end text-black max-md:max-w-full">
-                Descript
+                Our platform is tailored to meet the needs of legal service
+                providers, offering comprehensive tools to manage and optimize
+                your organization&apos;s operations and user interactions.
               </div>
             </div>
           </div>
-        </div>
-
+        </div> */}
         <div className="flex flex-col justify-center px-16 py-20 w-full bg-background max-md:px-5 max-md:max-w-full">
           <div className="mt-8 mb-2.5 max-md:mr-1 max-md:max-w-full">
             <div className="flex gap-5 max-md:flex-col max-md:gap-0">
