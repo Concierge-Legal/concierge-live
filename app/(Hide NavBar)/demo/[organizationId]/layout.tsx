@@ -12,11 +12,6 @@ export default async function Layout({ children, params }: {
 
 	return (
 		// <AI>
-
-		
-		
-
-
 			<div className="flex h-screen min-h-screen"> {/* Ensure the container fills the viewport height */}
 				<div className={`flex min-h-screen bg-gray-900 transition-all duration-300 w-full`}>
 					<div className="flex flex-col w-full">
