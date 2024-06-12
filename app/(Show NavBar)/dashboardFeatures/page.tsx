@@ -212,7 +212,7 @@ export default function DashboardFeatures() {
                       className=""
                     />
                     <div className="mt-6 text-2xl font-bold leading-10">
-                      Industry Knowledge
+                      Organizational Knowledge
                     </div>
                     <div className="mt-4 text-center leading-6">
                       Stay ahead of the curve with curated industry knowledge.
@@ -235,7 +235,7 @@ export default function DashboardFeatures() {
                       className=""
                     />
                     <div className="mt-6 text-2xl font-bold leading-10">
-                      Company Knowledge Base
+                      Network Knowledge Base
                     </div>
                     <div className="mt-4 text-center leading-6">
                       Consolidate all your internal knowledge in one place. From
@@ -246,29 +246,7 @@ export default function DashboardFeatures() {
                   </div>
                 </div>
               </div>
-              <div className="flex flex-col ml-5 mr-5 w-[33%] max-md:ml-0 max-md:w-full">
-                <div className="flex flex-col justify-center w-full text-base leading-6 text-black bg-white drop-shadow-xl rounded-md max-md:mt-8">
-                  <div className="flex flex-col justify-center items-center p-8 max-md:px-5">
-                    <Image
-                      loading="lazy"
-                      src="/icons/new-product.png"
-                      alt="Expert Guidance"
-                      width={200}
-                      height={100}
-                      className=""
-                    />
-                    <div className="mt-6 text-2xl font-bold leading-10">
-                      Product and Service Catalog
-                    </div>
-                    <div className="mt-4 text-center">
-                      Organize and maintain detailed information about your
-                      products and services. Provide your team with
-                      comprehensive resources to support sales, marketing, and
-                      customer service efforts.
-                    </div>
-                  </div>
-                </div>
-              </div>
+             
             </div>
           </div>
 

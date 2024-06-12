@@ -31,7 +31,7 @@ export default function ChatbotFeatures() {
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="relative mt-36 top-5/6 text-darkestBlue text-center text-5xl font-raleway font-bold leading-[80px] max-w-screen-md max-md:max-w-full max-md:mt-10">
-            FEATURES
+		  Simplifying DAO Interactions
           </div>
         </div>
         <div className="flex flex-col">
@@ -95,25 +95,21 @@ export default function ChatbotFeatures() {
               height={1080}
               className="mt-20 mb-2.5 w-full aspect-[1.79] max-md:mt-10 max-md:max-w-full"
             />
-          </div> */}
-          <div className="flex flex-col py-20 px-12 bg-background max-md:px-5">
+  </div> */}
+
+		  <div className="flex flex-col py-20 px-12 bg-background max-md:px-5">
             <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
-              Concierge Knows Your
+			Solutions you are going to love
             </div>
             <div className="self-stretch mt-20 px-10  max-md:mt-10 max-md:max-w-full">
               <div className="flex flex-col gap-10 max-md:gap-0">
                 <div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
                   <div className="flex flex-col w-1/2 max-md:w-full">
                     <div className="mt-6 text-3xl font-bold leading-10">
-                      Industry
+					Dynamic Knowledge Extension
                     </div>
                     <div className="mt-4 text-left leading-6">
-                      Concierge understands the nuances and specifics of your
-                      industry to provide tailored out-of-the-box solutions. Our
-                      engineering team has aggregated leading industrial
-                      resources and knowledge for you to ensure your agent is
-                      deeply familiar with your industry and the type of users
-                      you interact with.
+					Provide users with direct access to your entire library of organizational information through our AI interface.
                     </div>
                   </div>
                   <div className="flex justify-center w-1/2 max-md:w-full">
@@ -140,72 +136,165 @@ export default function ChatbotFeatures() {
                   </div>
                   <div className="flex flex-col w-1/2 max-md:w-full">
                     <div className="mt-6 text-3xl font-bold leading-10">
-                      Company
+					Network Directory
                     </div>
                     <div className="mt-4 text-left leading-6">
-                      Our chatbot leverages metadata to deliver highly relevant
-                      search results, ensuring a seamless user experience. By
-                      analyzing user behavior and preferences, we are able to
-                      provide personalized recommendations and streamline the
-                      search process.
+					Utilize our comprehensive organizational mapping and AI tools to connect users with the right network members effortlessly.
                     </div>
                   </div>
                 </div>
-                <div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
+				<div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
                   <div className="flex flex-col w-1/2 max-md:w-full">
                     <div className="mt-6 text-3xl font-bold leading-10">
-                      Product and Service
+					Comprehensive Management Tools
                     </div>
                     <div className="mt-4 text-left leading-6">
-                      Stay ahead of the curve with curated industry knowledge.
-                      Access the latest trends, research, and developments in
-                      the legal sector to make informed decisions and stay
-                      competitive.
-                    </div>
-                    <div className="flex gap-4 mt-10 max-md:flex-wrap">
-                      <Image
-                        src="/icons/bulb.png"
-                        alt="Accurate Results"
-                        width={16}
-                        height={16}
-                        className="shrink-0 my-auto w-4 aspect-square"
-                      />
-                      <div className="flex-1 max-md:max-w-full">
-                        Search and weight products/services according to
-                        customer prompts.
-                      </div>
-                    </div>
-                    <div className="flex gap-4 mt-4 max-md:flex-wrap">
-                      <Image
-                        src="/icons/bulb.png"
-                        alt="Algorithms"
-                        width={16}
-                        height={16}
-                        className="shrink-0 my-auto w-4 aspect-square"
-                      />
-                      <div className="flex-1 max-md:max-w-full">
-                        Utilize advanced algorithms to match customer needs with
-                        the best options available.
-                      </div>
-                    </div>
-                    <div className="flex gap-4 mt-4 max-md:flex-wrap">
-                      <Image
-                        src="/icons/bulb.png"
-                        alt="Save Time"
-                        width={16}
-                        height={16}
-                        className="shrink-0 my-auto w-4 aspect-square"
-                      />
-                      <div className="flex-1 max-md:max-w-full">
-                        Save Time and Effort in Helping Users Find Legal
-                        Solutions
-                      </div>
+					Utilize our robust dashboard for complete customization of your Concierge instance, offering timely analytics on user interactions.
                     </div>
                   </div>
                   <div className="flex justify-center w-1/2 max-md:w-full">
                     <Image
                       loading="lazy"
-                      src="/icons/new-product.png"
+                      src="/icons/solution.png"
+                      alt="Expert Guidance"
+                      width={200}
+                      height={100}
+                      className=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+		  <div className="flex flex-col py-20 px-12 bg-background max-md:px-5">
+            <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+			Solutions your members are going to love
+            </div>
+            <div className="self-stretch mt-20 px-10  max-md:mt-10 max-md:max-w-full">
+              <div className="flex flex-col gap-10 max-md:gap-0">
+                <div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
+                  <div className="flex flex-col w-1/2 max-md:w-full">
+                    <div className="mt-6 text-3xl font-bold leading-10">
+					Enhanced Visibility and Exposure
+                    </div>
+                    <div className="mt-4 text-left leading-6">
+					Ensure network members are visible and accessible through our organizational network directory.
+                    </div>
+                  </div>
+                  <div className="flex justify-center w-1/2 max-md:w-full">
+                    <Image
+                      loading="lazy"
+                      src="/icons/solution.png"
+                      alt="Expert Guidance"
+                      width={200}
+                      height={100}
+                      className=""
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
+                  <div className="flex justify-center w-1/2 max-md:w-full">
+                    <Image
+                      loading="lazy"
+                      src="/icons/library.png"
+                      alt="Expert Guidance"
+                      width={200}
+                      height={100}
+                      className=""
+                    />
+                  </div>
+                  <div className="flex flex-col w-1/2 max-md:w-full">
+                    <div className="mt-6 text-3xl font-bold leading-10">
+					User Connections
+                    </div>
+                    <div className="mt-4 text-left leading-6">
+					Dynamically connect users with the right network members via our AI, facilitating better interactions and conversions.
+                    </div>
+                  </div>
+                </div>
+				<div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
+                  <div className="flex flex-col w-1/2 max-md:w-full">
+                    <div className="mt-6 text-3xl font-bold leading-10">
+					Brand Optimization Platform
+                    </div>
+                    <div className="mt-4 text-left leading-6">
+					Enable network members to intuitively optimize their branding and dynamically present their portfolio of products and services.
+                    </div>
+                  </div>
+                  <div className="flex justify-center w-1/2 max-md:w-full">
+                    <Image
+                      loading="lazy"
+                      src="/icons/solution.png"
+                      alt="Expert Guidance"
+                      width={200}
+                      height={100}
+                      className=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex flex-col py-20 px-12 bg-background max-md:px-5">
+            <div className="mt-4 text-5xl font-bold text-center text-black leading-[57.6px] max-md:max-w-full max-md:text-4xl">
+			Solutions your users are going to love
+            </div>
+            <div className="self-stretch mt-20 px-10  max-md:mt-10 max-md:max-w-full">
+              <div className="flex flex-col gap-10 max-md:gap-0">
+                <div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
+                  <div className="flex flex-col w-1/2 max-md:w-full">
+                    <div className="mt-6 text-3xl font-bold leading-10">
+					Organizational Information Access
+                    </div>
+                    <div className="mt-4 text-left leading-6">
+					Concierge Chat dynamically provides your users with essential organizational information, guiding then through the intricacies of the DAO.
+                    </div>
+                  </div>
+                  <div className="flex justify-center w-1/2 max-md:w-full">
+                    <Image
+                      loading="lazy"
+                      src="/icons/solution.png"
+                      alt="Expert Guidance"
+                      width={200}
+                      height={100}
+                      className=""
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
+                  <div className="flex justify-center w-1/2 max-md:w-full">
+                    <Image
+                      loading="lazy"
+                      src="/icons/library.png"
+                      alt="Expert Guidance"
+                      width={200}
+                      height={100}
+                      className=""
+                    />
+                  </div>
+                  <div className="flex flex-col w-1/2 max-md:w-full">
+                    <div className="mt-6 text-3xl font-bold leading-10">
+					Connection Facilitation:
+                    </div>
+                    <div className="mt-4 text-left leading-6">
+					Utilize our comprehensive organizational mapping and AI tools to connect users with the right network members effortlessly.
+                    </div>
+                  </div>
+                </div>
+				<div className="flex gap-5 items-center max-md:flex-col max-md:gap-0 bg-white drop-shadow-xl rounded-md p-8 max-md:px-5">
+                  <div className="flex flex-col w-1/2 max-md:w-full">
+                    <div className="mt-6 text-3xl font-bold leading-10">
+					Enhanced Accessibility
+                    </div>
+                    <div className="mt-4 text-left leading-6">
+					Increase user participation and engagement with DAOs by providing them with personalized assistance, guidance, and education from our AI concierge.
+                    </div>
+                  </div>
+                  <div className="flex justify-center w-1/2 max-md:w-full">
+                    <Image
+                      loading="lazy"
+                      src="/icons/solution.png"
                       alt="Expert Guidance"
                       width={200}
                       height={100}
@@ -225,7 +314,7 @@ export default function ChatbotFeatures() {
                   Legal Information
                 </div>
                 <div className="text-lg leading-6 text-black max-md:max-w-full mt-40">
-                  Concierge utilizes Ask Abe AI technology to provide legal
+                  Concierge can utilize Ask Abe AI technology to provide legal
                   information to users, ensuring they have access to accurate
                   and up-to-date legal knowledge. With Ask Abe, users can ask
                   questions and receive reliable legal information instantly.
