@@ -1,19 +1,27 @@
-import { type NextRequest } from 'next/server'
-import { updateSession } from '@/lib/utils/supabase/middleware'
+import { updateSession } from '@/lib/utils/supabase/middleware';
+import { type NextRequest, NextResponse } from 'next/server';
+
+// Set to true to bypass authentication for demo purposes
+const BYPASS_AUTH = true;
 
 export async function middleware(request: NextRequest) {
-  return await updateSession(request)
+	// Skip authentication for demo mode
+	if (BYPASS_AUTH) {
+		return NextResponse.next();
+	}
+
+	return await updateSession(request);
 }
 
 export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
-}
+	matcher: [
+		/*
+		 * Match all request paths except for the ones starting with:
+		 * - _next/static (static files)
+		 * - _next/image (image optimization files)
+		 * - favicon.ico (favicon file)
+		 * Feel free to modify this pattern to include more paths.
+		 */
+		'/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+	],
+};
