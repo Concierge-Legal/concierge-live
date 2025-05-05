@@ -1,69 +1,57 @@
-'use server'
+'use server';
 
-import { revalidatePath } from 'next/cache'
-import { redirect } from 'next/navigation'
+import { MOCK_ORGANIZATIONS } from '@/lib/utils/mock/data';
+import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 
-import { createClient } from '@/lib/utils/supabase/server'
-
+// Mock authentication function - replaces Supabase authentication
 export async function login(formData: FormData) {
-  const supabase = createClient()
+	// For demo purposes, we'll accept any credentials and redirect to the demo organization
+	// You could add simple validation here if needed
+	const email = formData.get('email') as string;
+	const password = formData.get('password') as string;
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
-  const formAuthData = {
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-  }
+	// Simple validation to make it seem real
+	if (!email || !password || password.length < 6) {
+		redirect("/login?message=Invalid email or password format");
+	}
 
-  const { data, error } = await supabase.auth.signInWithPassword(formAuthData)
+	// In a real app, we would validate credentials against a database
+	// For the demo, we'll just redirect to the demo organization
+	const demoOrganization = MOCK_ORGANIZATIONS.find(org => org.id === 'demo-organization');
 
-  if (error) {
-    console.log(`Error from supabase login action: ${error}`)
-    redirect("/login?message=Wrong username or password");
-  }
-  const organizationId: string = data.user.app_metadata.organization_id;
+	if (!demoOrganization) {
+		redirect("/login?message=Organization not found");
+	}
 
-  revalidatePath('/dashboard/[organizationId]', 'page')
-  redirect(`/dashboard/${organizationId}`)
+	revalidatePath('/dashboard/[organizationId]', 'page');
+	redirect(`/dashboard/${demoOrganization.id}`);
 }
 
+// Simplified demo login that goes directly to the demo organization
 export async function loginDemo() {
-	const supabase = createClient()
-  
-	// type-casting here for convenience
-	// in practice, you should validate your inputs
-	const formAuthData = {
-	  email: "demo@demo.com",
-	  password: process.env.DEMO_PASSWORD!
-	}
-  
-	const { data, error } = await supabase.auth.signInWithPassword(formAuthData)
-  
-	if (error) {
-	  console.log(`Error from supabase login action: ${error}`)
-	  redirect("/login?message=Wrong username or password");
-	}
-  
-	revalidatePath('/dashboard/[organizationId]', 'page')
-	redirect(`/dashboard/${data.user.app_metadata.organization_id}`)
-  }
+	const demoOrganization = MOCK_ORGANIZATIONS.find(org => org.id === 'demo-organization');
 
+	if (!demoOrganization) {
+		redirect("/login?message=Demo organization not found");
+	}
+
+	revalidatePath('/dashboard/[organizationId]', 'page');
+	redirect(`/dashboard/${demoOrganization.id}`);
+}
+
+// Mock signup function
 export async function signup(formData: FormData) {
-  const supabase = createClient()
+	const email = formData.get('email') as string;
+	const password = formData.get('password') as string;
 
-  const { error } = await supabase.auth.signUp({
-    email: formData.get('email') as string,
-    password: formData.get('password') as string,
-    options: {
-      emailRedirectTo: `${process.env.VERCEL_URL}/auth/callback`,
-    },
-  });
-  
-  if (error) {
-    console.log(`Error from supabase Signup action: ${error}`)
-    redirect("/login?message=Could not sign up user");
-  }
-  revalidatePath('/', 'layout')
-  redirect("/login?message=Check email to continue sign in process");
+	// Simple validation
+	if (!email || !password || password.length < 6) {
+		redirect("/login?message=Invalid signup information");
+	}
 
+	// In a real app, we would create a new user in the database
+	// For the demo, we'll just show a success message
+	revalidatePath('/', 'layout');
+	redirect("/login?message=Account created successfully! You can now log in.");
 }

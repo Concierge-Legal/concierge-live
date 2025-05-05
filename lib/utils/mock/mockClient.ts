@@ -14,6 +14,53 @@ export function createMockClient() {
 			},
 			signOut: async () => {
 				return { error: null };
+			},
+			// Added missing auth methods to fix build errors
+			signInWithPassword: async (credentials: { email: string, password: string; }) => {
+				console.log(`Mock Auth: Simulating sign in for ${credentials.email}`);
+				return {
+					data: {
+						user: {
+							...MOCK_USER,
+							email: credentials.email,
+							app_metadata: {
+								organization_id: 'demo-organization',
+								role: 'admin'
+							}
+						}
+					},
+					error: null
+				};
+			},
+			signUp: async (credentials: any) => {
+				console.log(`Mock Auth: Simulating sign up for ${credentials.email}`);
+				return {
+					data: {
+						user: {
+							id: 'mock-user-id',
+							email: credentials.email,
+							app_metadata: {
+								organization_id: 'demo-organization',
+								role: 'admin'
+							}
+						}
+					},
+					error: null
+				};
+			},
+			exchangeCodeForSession: async (code: string) => {
+				console.log(`Mock Auth: Simulating code exchange with code: ${code}`);
+				return { data: {}, error: null };
+			},
+			verifyOtp: async (params: { type: string, token_hash: string; }) => {
+				console.log(`Mock Auth: Simulating OTP verification of type ${params.type} with token: ${params.token_hash}`);
+				return { data: {}, error: null };
+			},
+			admin: {
+				updateUserById: async (userId: string, data: any) => {
+					console.log(`Mock Auth: Simulating updating user ${userId} with`, data);
+					return { data: {}, error: null };
+				}
 			}
 		},
 		from: (table: string) => {
